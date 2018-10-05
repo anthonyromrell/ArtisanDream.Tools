@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "FloatBase")]
-public class FloatBase : ScriptableObject
+namespace ArtisanDream.Tools.Objects
 {
-	public float Value;
+	[CreateAssetMenu(fileName = "FloatBase")]
+	public class FloatBase : ScriptableObject
+	{
+		public float Value;
+	}
 }

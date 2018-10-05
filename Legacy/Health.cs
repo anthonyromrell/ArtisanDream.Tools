@@ -1,30 +1,34 @@
-﻿using UnityEngine;
+﻿using ArtisanDream.Tools.Actions;
+using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "PlayerHealth")]
-public class Health : ScriptableObject
+namespace ArtisanDream.Tools.Legacy
 {
-    public GameAction EndGameAction;
-
-    public GameAction HealthAction;
-
-    public Image HealthBarImage;
-    [Range(0, 1)] public float HealthValue;
-
-    private void OnEnable()
+    [CreateAssetMenu(fileName = "PlayerHealth")]
+    public class Health : ScriptableObject
     {
-        HealthAction.Call += HealthActionHandler;
-    }
+        public GameAction EndGameAction;
 
-    private void HealthActionHandler(object obj)
-    {
-        HealthBarImage = obj as Image;
-    }
+        public GameAction HealthAction;
 
-    private void UpdateHealth(float powerLevel)
-    {
-        HealthBarImage.fillAmount += powerLevel;
+        public Image HealthBarImage;
+        [Range(0, 1)] public float HealthValue;
 
-        if (HealthBarImage.fillAmount < 0) EndGameAction.CallNoArgs();
+        private void OnEnable()
+        {
+            HealthAction.Call += HealthActionHandler;
+        }
+
+        private void HealthActionHandler(object obj)
+        {
+            HealthBarImage = obj as Image;
+        }
+
+        private void UpdateHealth(float powerLevel)
+        {
+            HealthBarImage.fillAmount += powerLevel;
+
+            if (HealthBarImage.fillAmount < 0) EndGameAction.CallNoArgs();
+        }
     }
 }

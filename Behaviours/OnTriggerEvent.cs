@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class OnTriggerEvent : MonoBehaviour
+namespace ArtisanDream.Tools.Behaviours
 {
-
-	public UnityEvent Event;
-	
-	private void OnTriggerEnter(Collider other)
+	public class OnTriggerEvent : MonoBehaviour
 	{
-		Event.Invoke();
+
+		public UnityEvent Event;
+	
+		private void OnTriggerEnter(Collider other)
+		{
+			Event.Invoke();
+		}
 	}
 }

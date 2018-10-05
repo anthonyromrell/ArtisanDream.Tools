@@ -1,18 +1,22 @@
-﻿using UnityEngine;
+﻿using ArtisanDream.Tools.Actions;
+using UnityEngine;
 using UnityEngine.Events;
 
-public class GameActionHandler : MonoBehaviour
+namespace ArtisanDream.Tools.ActionHandlers
 {
-    public GameAction Action;
-    public UnityEvent Event;
-
-    private void OnEnable()
+    public class GameActionHandler : MonoBehaviour
     {
-        Action.CallNoArgs += Respond;
-    }
+        public GameAction Action;
+        public UnityEvent Event;
 
-    private void Respond()
-    {
-        Event.Invoke();
+        private void OnEnable()
+        {
+            Action.CallNoArgs += Respond;
+        }
+
+        private void Respond()
+        {
+            Event.Invoke();
+        }
     }
 }

@@ -1,20 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ArtisanDream.Tools.Dragable.Interfaces;
 using UnityEngine;
 
-public class DragMove : MonoBehaviour, IDrag{
+namespace ArtisanDream.Tools.Dragable.Behaviours
+{
+	public class DragMove : MonoBehaviour, IDrag{
 
 
 	
 
-	public void OnMouseDown()
-	{
+		public void OnMouseDown()
+		{
 		
-	}
+		}
 
-	public void OnMouseDrag()
-	{
+		public void OnMouseDrag()
+		{
 		
-		transform.Translate(Vector3.right*Input.GetAxis("Mouse X"));
+			transform.Translate(Vector3.right*Input.GetAxis("Mouse X"));
+		}
 	}
 }

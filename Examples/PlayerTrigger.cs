@@ -1,20 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ArtisanDream.Tools.Objects;
 using UnityEngine;
 
-public class PlayerTrigger : MonoBehaviour
+namespace ArtisanDream.Tools.Examples
 {
-	public FloatBase HealthLevel;
-	public FloatBase EvilPower;
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void OnTriggerEnter ()
+	public class PlayerTrigger : MonoBehaviour
 	{
-		HealthLevel.Value -= EvilPower.Value;
+		public FloatBase HealthLevel;
+		public FloatBase EvilPower;
+	
+		// Use this for initialization
+		void Start () {
+		
+		}
+	
+		// Update is called once per frame
+		void OnTriggerEnter ()
+		{
+			HealthLevel.Value -= EvilPower.Value;
+		}
 	}
 }

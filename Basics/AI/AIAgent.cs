@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class AIAgent : MonoBehaviour
+namespace ArtisanDream.Tools.Basics.AI
 {
-
-	private NavMeshAgent agent;
-
-	public Transform destination;
-	// Use this for initialization
-	void Start ()
+	public class AIAgent : MonoBehaviour
 	{
-		agent = GetComponent<NavMeshAgent>();
-	}
+
+		private NavMeshAgent agent;
+
+		public Transform destination;
+		// Use this for initialization
+		void Start ()
+		{
+			agent = GetComponent<NavMeshAgent>();
+		}
 	
-	// Update is called once per frame
-	void OnTriggerStay ()
-	{
-		agent.destination = destination.position;
+		// Update is called once per frame
+		void OnTriggerStay ()
+		{
+			agent.destination = destination.position;
+		}
 	}
 }

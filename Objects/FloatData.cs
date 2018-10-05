@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
 //Made By Anthony Romrell
-[CreateAssetMenu]
-public class FloatData : ScriptableObject
+namespace ArtisanDream.Tools.Objects
 {
-	public float value;
-	
-	public virtual float Value
+	[CreateAssetMenu]
+	public class FloatData : ScriptableObject
 	{
-		get { return value;}
-		set { this.value = value; }
+		public float value;
+	
+		public virtual float Value
+		{
+			get { return value;}
+			set { this.value = value; }
+		}
 	}
 }

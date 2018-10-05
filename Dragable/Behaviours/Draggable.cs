@@ -2,40 +2,43 @@
 using UnityEngine;
 
 //Made By Anthony Romrell
-public class Draggable : MonoBehaviour
+namespace ArtisanDream.Tools.Dragable.Behaviours
 {
-    private Vector3 offsetPosition;
-    private Vector3 newPostion;
-    private Camera cam;
-
-    public bool CanDrag;
-
-    private void Start()
+    public class Draggable : MonoBehaviour
     {
-        cam = Camera.main;
-    }
+        private Vector3 offsetPosition;
+        private Vector3 newPostion;
+        private Camera cam;
 
-    public IEnumerator OnMouseDown()
-    {
-        offsetPosition = transform.position - cam.ScreenToWorldPoint(Input.mousePosition);
-        yield return new WaitForFixedUpdate();
-        CanDrag = true;
-        while (CanDrag)
+        public bool CanDrag;
+
+        private void Start()
         {
-            yield return new WaitForFixedUpdate();
-            newPostion = cam.ScreenToWorldPoint(Input.mousePosition) + offsetPosition;
-            transform.position = newPostion;
+            cam = Camera.main;
         }
-    }
 
-    private void OnMouseUp()
-    {
-        CanDrag = false;
-    }
+        public IEnumerator OnMouseDown()
+        {
+            offsetPosition = transform.position - cam.ScreenToWorldPoint(Input.mousePosition);
+            yield return new WaitForFixedUpdate();
+            CanDrag = true;
+            while (CanDrag)
+            {
+                yield return new WaitForFixedUpdate();
+                newPostion = cam.ScreenToWorldPoint(Input.mousePosition) + offsetPosition;
+                transform.position = newPostion;
+            }
+        }
+
+        private void OnMouseUp()
+        {
+            CanDrag = false;
+        }
 
 //    public void OnMouseDrag()
 //    {
 //        newPostion = cam.ScreenToWorldPoint(Input.mousePosition) + offsetPosition;
 //        transform.position = newPostion;
 //    }
+    }
 }

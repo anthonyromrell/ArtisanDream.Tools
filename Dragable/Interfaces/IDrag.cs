@@ -1,7 +1,10 @@
 ﻿//Made By Anthony Romrell
 
-public interface IDrag
+namespace ArtisanDream.Tools.Dragable.Interfaces
 {
-    void OnMouseDown();
-    void OnMouseDrag();
+    public interface IDrag
+    {
+        void OnMouseDown();
+        void OnMouseDrag();
+    }
 }
