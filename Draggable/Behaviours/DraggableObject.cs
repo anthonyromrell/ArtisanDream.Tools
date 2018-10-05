@@ -2,12 +2,12 @@
 using UnityEngine;
 
 //Made By Anthony Romrell
-namespace ArtisanDream.Tools.Dragable.Behaviours
+namespace ArtisanDream.Tools.Draggable.Behaviours
 {
-    public class Draggable : MonoBehaviour
+    public class DraggableObject : MonoBehaviour
     {
         private Vector3 offsetPosition;
-        private Vector3 newPostion;
+        private Vector3 newPosition;
         private Camera cam;
 
         public bool CanDrag;
@@ -25,8 +25,8 @@ namespace ArtisanDream.Tools.Dragable.Behaviours
             while (CanDrag)
             {
                 yield return new WaitForFixedUpdate();
-                newPostion = cam.ScreenToWorldPoint(Input.mousePosition) + offsetPosition;
-                transform.position = newPostion;
+                newPosition = cam.ScreenToWorldPoint(Input.mousePosition) + offsetPosition;
+                transform.position = newPosition;
             }
         }
 
@@ -34,11 +34,5 @@ namespace ArtisanDream.Tools.Dragable.Behaviours
         {
             CanDrag = false;
         }
-
-//    public void OnMouseDrag()
-//    {
-//        newPostion = cam.ScreenToWorldPoint(Input.mousePosition) + offsetPosition;
-//        transform.position = newPostion;
-//    }
     }
 }
