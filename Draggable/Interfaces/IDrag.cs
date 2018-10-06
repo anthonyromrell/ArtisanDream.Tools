@@ -1,6 +1,6 @@
 ﻿//Made By Anthony Romrell
 
-namespace ArtisanDream.Tools.Dragable.Interfaces
+namespace ArtisanDream.Tools.Draggable.Interfaces
 {
     public interface IDrag
     {

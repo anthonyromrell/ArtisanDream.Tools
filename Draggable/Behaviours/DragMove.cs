@@ -1,7 +1,7 @@
-﻿using ArtisanDream.Tools.Dragable.Interfaces;
+﻿using ArtisanDream.Tools.Draggable.Interfaces;
 using UnityEngine;
 
-namespace ArtisanDream.Tools.Dragable.Behaviours
+namespace ArtisanDream.Tools.Draggable.Behaviours
 {
 	public class DragMove : MonoBehaviour, IDrag{
 
