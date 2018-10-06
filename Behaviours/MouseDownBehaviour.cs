@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class MouseDownBehaviour : MonoBehaviour
+namespace ArtisanDream.Tools.Behaviours
 {
-	public UnityEvent Event;
-	
-	private void OnMouseDown()
+	public class MouseDownBehaviour : MonoBehaviour
 	{
-		Event.Invoke();
+		public UnityEvent Event;
+	
+		private void OnMouseDown()
+		{
+			Event.Invoke();
+		}
 	}
 }

@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "IntData")]
-public class IntData : ScriptableObject 
+namespace ArtisanDream.Tools.Objects
 {
-	public int Value;
+	[CreateAssetMenu(fileName = "IntData")]
+	public class IntData : ScriptableObject 
+	{
+		public int Value;
+	}
 }

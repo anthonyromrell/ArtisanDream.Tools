@@ -1,11 +1,14 @@
 ﻿using UnityEngine.Events;
 
-public class TextActionHandler : GameActionHandler
+namespace ArtisanDream.Tools.ActionHandlers
 {
-    public new UnityEvent<string> Event;
-
-    protected void Respond(object obj)
+    public class TextActionHandler : GameActionHandler
     {
-        Event.Invoke((string) obj);
+        public new UnityEvent<string> Event;
+
+        protected void Respond(object obj)
+        {
+            Event.Invoke((string) obj);
+        }
     }
 }

@@ -1,41 +1,44 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "Object", menuName = "Object/Send And Get Object")]
-public class SendAndGetObject : ScriptableObject
+namespace ArtisanDream.Tools.Legacy
 {
-    public UnityEvent SendObject;
-    public object Object { get; private set; }
-
-    private void OnEnable()
+    [CreateAssetMenu(fileName = "Object", menuName = "Object/Send And Get Object")]
+    public class SendAndGetObject : ScriptableObject
     {
-        Object = null;
-    }
+        public UnityEvent SendObject;
+        public object Object { get; private set; }
 
-    private void SendObjectWork(object obj)
-    {
-        Object = obj;
-        SendObject.Invoke();
-    }
+        private void OnEnable()
+        {
+            Object = null;
+        }
 
-    //Overloads
-    public void GetObject(Transform obj)
-    {
-        SendObjectWork(obj);
-    }
+        private void SendObjectWork(object obj)
+        {
+            Object = obj;
+            SendObject.Invoke();
+        }
 
-    public void GetObject(GameObject obj)
-    {
-        SendObjectWork(obj);
-    }
+        //Overloads
+        public void GetObject(Transform obj)
+        {
+            SendObjectWork(obj);
+        }
 
-    public void GetObject(ScriptableObject obj)
-    {
-        SendObjectWork(obj);
-    }
+        public void GetObject(GameObject obj)
+        {
+            SendObjectWork(obj);
+        }
 
-    public void GetObject(string obj)
-    {
-        SendObjectWork(obj);
+        public void GetObject(ScriptableObject obj)
+        {
+            SendObjectWork(obj);
+        }
+
+        public void GetObject(string obj)
+        {
+            SendObjectWork(obj);
+        }
     }
 }

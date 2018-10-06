@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public abstract class FunctionBase : ScriptableObject
+namespace ArtisanDream.Tools.Functions
 {
-	public abstract void Run(object Data);
+	public abstract class FunctionBase : ScriptableObject
+	{
+		public abstract void Run(object Data);
+	}
 }

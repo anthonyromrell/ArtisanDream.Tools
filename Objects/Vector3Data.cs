@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ArtisanDream.Generics.Scripts.Objects
+namespace ArtisanDream.Tools.Objects
 {
     [CreateAssetMenu]
     public class Vector3Data: ScriptableObject

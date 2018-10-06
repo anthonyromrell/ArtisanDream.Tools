@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class MouseDragEventBehaviour : MonoBehaviour
+namespace ArtisanDream.Tools.Behaviours
 {
-	public UnityEvent Event;
-
-	private void OnMouseDrag()
+	public class MouseDragEventBehaviour : MonoBehaviour
 	{
-		Event.Invoke();
+		public UnityEvent Event;
+
+		private void OnMouseDrag()
+		{
+			Event.Invoke();
+		}
 	}
 }
