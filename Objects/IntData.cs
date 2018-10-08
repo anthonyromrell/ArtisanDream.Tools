@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ArtisanDream.Tools.Objects
+namespace ArtisanDream.Tools
 {
 	[CreateAssetMenu(fileName = "IntData")]
 	public class IntData : ScriptableObject 

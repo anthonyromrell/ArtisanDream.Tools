@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace ArtisanDream.Tools.DataStorage.Examples.Scripts
+namespace ArtisanDream.Tools
 {
     [CreateAssetMenu(fileName = "DataStorage", menuName = "Data Storage/String List")]
     public class StringData : ScriptableObject

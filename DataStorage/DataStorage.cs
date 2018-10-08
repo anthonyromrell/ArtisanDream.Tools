@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ArtisanDream.Tools.DataStorage
+namespace ArtisanDream.Tools
 {
     [CreateAssetMenu(fileName = "DataStorage", menuName = "Data Storage/Data Storage Object")]
     public class DataStorage : ScriptableObject

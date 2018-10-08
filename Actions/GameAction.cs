@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace ArtisanDream.Tools.Actions
+namespace ArtisanDream.Tools
 {
     [CreateAssetMenu(menuName = "Actions/Game Action")]
     public class GameAction : ScriptableObject

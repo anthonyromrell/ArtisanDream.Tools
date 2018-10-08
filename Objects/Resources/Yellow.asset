@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23dac13e7e319460ab2eeb4d64534a9c, type: 3}
-  m_Name: GlobalTime
+  m_Script: {fileID: 11500000, guid: 97ce78083360c468aa3dbf7c1da3dd80, type: 3}
+  m_Name: Yellow
   m_EditorClassIdentifier: 
-  Value: 0.001
+  Value: {r: 1, g: 0.879798, b: 0.031372547, a: 1}

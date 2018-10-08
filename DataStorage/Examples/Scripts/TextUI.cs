@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 //Made By Anthony Romrell
-namespace ArtisanDream.Tools.DataStorage.Examples.Scripts
+namespace ArtisanDream.Tools
 {
     public class TextUI : MonoBehaviour
     {
