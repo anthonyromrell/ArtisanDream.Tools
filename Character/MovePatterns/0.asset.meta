@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Character/MovePatterns/0.asset.meta
 guid: 5159358ce66f944fda4373cabd53af1e
+=======
+guid: a7265a87ce52b4a44a7f0feb421f7006
+>>>>>>> master:Objects/Resources/Green.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
