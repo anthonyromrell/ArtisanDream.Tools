@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 //Made By Anthony Romrell
-namespace ArtisanDream.Tools
-{
+
 	[CreateAssetMenu]
 	public class FloatData : ScriptableObject
 	{
@@ -15,4 +14,3 @@ namespace ArtisanDream.Tools
 			set => this.value = value;
 		}
 	}
-}
