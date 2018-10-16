@@ -6,7 +6,7 @@ namespace ArtisanDream.Experimental
 	public class MovePatternDual : MovePattern
 	{
 		public IntData Count;
-		private int CanJump;
+		private int canJump;
 		//public bool doubleJump = true;
 	
 		public override void Invoke(CharacterController controller, Transform transform)
@@ -19,7 +19,7 @@ namespace ArtisanDream.Experimental
 		
 			if (Input.GetButtonDown("Jump") && Count.Value > 0)
 			{
-				moveDirection.y = 4;
+				MoveDirection.y = 4;
 				Count.Value--;
 			}
 		

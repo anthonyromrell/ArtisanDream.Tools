@@ -4,7 +4,7 @@ using UnityEngine.UI;
 //Made By Anthony Romrell
 namespace ArtisanDream.Tools
 {
-    public class TextUI : MonoBehaviour
+    public class TextUi : MonoBehaviour
     {
         public InputField DataField;
         public Text DataOutputText;

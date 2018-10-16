@@ -4,17 +4,17 @@
 	[CreateAssetMenu]
 	public class MovePattern : ScriptableObject 
 	{
-		public FloatData gravity;
+		public FloatData Gravity;
 
 		public FloatData MoveX, MoveY, MoveZ;
 		public FloatData RotX, RotY, RotZ;
 	
-		protected Vector3 moveDirection;
+		protected Vector3 MoveDirection;
 		private Vector3 rotDirection;
 
 		private void OnEnable()
 		{
-			moveDirection = Vector3.zero;
+			MoveDirection = Vector3.zero;
 			rotDirection = Vector3.zero;
 		}
 
@@ -31,15 +31,15 @@
 	
 		protected void Move(Transform transform)
 		{
-			moveDirection.Set(MoveX.Value, MoveY.Value, MoveZ.Value);
+			MoveDirection.Set(MoveX.Value, MoveY.Value, MoveZ.Value);
 			rotDirection.Set(RotX.Value, RotY.Value, RotZ.Value);
 			transform.Rotate(rotDirection);
-			moveDirection = transform.TransformDirection(moveDirection);
+			MoveDirection = transform.TransformDirection(MoveDirection);
 		}
 
 		protected void Move(CharacterController controller)
 		{
-			moveDirection.y = gravity.Value;
-			controller.Move(moveDirection * Time.deltaTime);
+			MoveDirection.y = Gravity.Value;
+			controller.Move(MoveDirection * Time.deltaTime);
 		}
 	}
