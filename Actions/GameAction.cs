@@ -1,31 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-
     [CreateAssetMenu(menuName = "Actions/Game Action")]
     public class GameAction : ScriptableObject
     {
-        public UnityAction<object> Call;
-        public UnityAction CallNoArgs;
+        public UnityAction<object> Raise;
+        public UnityAction<Coroutine> RaiseCoroutine;
+        public UnityAction RaiseNoArgs;
 
         //Overloading
-        public void ActionCall()
+        public void RaiseAction()
         {
-            CallNoArgs();
+            RaiseNoArgs();
         }
 
-        public void ActionCall(object obj)
+        public void RaiseAction(object obj)
         {
-            Call(obj);
+            Raise(obj);
         }
-
-        public void ActionCall(float obj)
+        
+        public void RaiseAction(float obj)
         {
-            Call(obj);
+            Raise(obj);
         }
-
-        public void ActionCall(Transform obj)
+        
+        public void RaiseAction(Transform obj)
         {
-            Call(obj);
+            Raise(obj);
+        }
+        
+        public void RaiseAction(Coroutine obj)
+        {
+            RaiseCoroutine(obj);
         }
     }

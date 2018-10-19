@@ -11,7 +11,7 @@ namespace ArtisanDream.Tools.ActionHandlers
 
         private void OnEnable()
         {
-            Action.CallNoArgs += Respond;
+            Action.RaiseNoArgs += Respond;
         }
 
         private void Respond()
