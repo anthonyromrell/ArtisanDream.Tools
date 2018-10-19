@@ -2,8 +2,7 @@
 using UnityEngine.UI;
 
 //Made By Anthony Romrell
-namespace ArtisanDream.Tools
-{
+
     public class TextUi : MonoBehaviour
     {
         public InputField DataField;
@@ -26,4 +25,3 @@ namespace ArtisanDream.Tools
             NameDataStorage.SetData();
         }
     }
-}

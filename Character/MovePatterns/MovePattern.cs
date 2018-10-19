@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //Made By Anthony Romrell
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "Character/MovePattern")]
 	public class MovePattern : ScriptableObject 
 	{
 		public FloatData Gravity;
@@ -18,8 +18,7 @@
 			rotDirection = Vector3.zero;
 		}
 
-
-		public virtual void Invoke(CharacterController controller, Transform transform)
+		public virtual void Call(CharacterController controller, Transform transform)
 		{
 			if (controller.isGrounded)
 			{

@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-namespace ArtisanDream.Tools.Objects
+
+[CreateAssetMenu(fileName = "GenericObjects", menuName = "Objects/Generic Objects")]
+public class GenericObjects : GenericObjectsBase<Object>
 {
-    [CreateAssetMenu(fileName = "GenericObjects", menuName = "Generic/Generic Objects")]
-    public class GenericObjects : GenericObjectsBase<Object>
-    {
-    }
 }

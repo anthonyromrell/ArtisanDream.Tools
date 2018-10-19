@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-namespace ArtisanDream.Experimental
+[CreateAssetMenu(menuName = "Character/MovePattern NotGrounded")]
+public class MovePatternNotGrounded : MovePattern
 {
-	[CreateAssetMenu(fileName = "MovePatternNotGrounded")]
-	public class MovePatternNotGrounded : MovePattern 
-	{
-		public override void Invoke(CharacterController controller, Transform transform)
-		{
-			Move(transform);
-			Move(controller);
-		}
-	}
+    public override void Call(CharacterController controller, Transform transform)
+    {
+        Move(transform);
+        Move(controller);
+    }
 }

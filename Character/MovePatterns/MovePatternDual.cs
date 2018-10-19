@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
-namespace ArtisanDream.Experimental
-{
-	[CreateAssetMenu(fileName = "MovePatternDual")]
+
+	[CreateAssetMenu(menuName = "Character/MovePattern Dual")]
 	public class MovePatternDual : MovePattern
 	{
 		public IntData Count;
 		private int canJump;
 		//public bool doubleJump = true;
 	
-		public override void Invoke(CharacterController controller, Transform transform)
+		public override void Call(CharacterController controller, Transform transform)
 		{
 			if (controller.isGrounded)
 			{
@@ -28,4 +27,4 @@ namespace ArtisanDream.Experimental
 			Move(controller);
 		}
 	}
-}
+
