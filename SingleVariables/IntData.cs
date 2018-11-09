@@ -9,4 +9,9 @@ public class IntData : ScriptableObject
     {
         Value += i;
     }
+    
+    public void UpdateValue(IntData data)
+    {
+        Value += data.Value;
+    }
 }

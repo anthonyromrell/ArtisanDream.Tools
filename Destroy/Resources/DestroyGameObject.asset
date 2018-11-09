@@ -8,7 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c482cf336c04c9f9f0458f2a470117, type: 3}
-  m_Name: 9.82
+  m_Script: {fileID: 11500000, guid: 85e82d553ec1641679cabffeb7b4cc09, type: 3}
+  m_Name: DestroyGameObject
   m_EditorClassIdentifier: 
-  value: -9.81

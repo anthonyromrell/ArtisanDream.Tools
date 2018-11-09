@@ -1,44 +1,49 @@
 ﻿using UnityEngine;
 
 //Made By Anthony Romrell
-	[CreateAssetMenu(menuName = "Character/MovePattern")]
-	public class MovePattern : ScriptableObject 
-	{
-		public FloatData Gravity;
+[CreateAssetMenu(menuName = "Character/MovePattern")]
+public class MovePattern : ScriptableObject
+{
+    public FloatData Gravity;
 
-		public FloatData MoveX, MoveY, MoveZ;
-		public FloatData RotX, RotY, RotZ;
-	
-		protected Vector3 MoveDirection;
-		private Vector3 rotDirection;
+    public FloatData MoveX, MoveY, MoveZ;
+    public FloatData RotX, RotY, RotZ;
 
-		private void OnEnable()
-		{
-			MoveDirection = Vector3.zero;
-			rotDirection = Vector3.zero;
-		}
+    protected Vector3 MoveDirection;
+    private Vector3 rotDirection;
 
-		public virtual void Call(CharacterController controller, Transform transform)
-		{
-			if (controller.isGrounded)
-			{
-				Move(transform);
-			}
+    private void OnEnable()
+    {
+        MoveDirection = Vector3.zero;
+        rotDirection = Vector3.zero;
+    }
 
-			Move(controller);
-		}
-	
-		protected void Move(Transform transform)
-		{
-			MoveDirection.Set(MoveX.Value, MoveY.Value, MoveZ.Value);
-			rotDirection.Set(RotX.Value, RotY.Value, RotZ.Value);
-			transform.Rotate(rotDirection);
-			MoveDirection = transform.TransformDirection(MoveDirection);
-		}
+    public virtual void Call(CharacterController controller, Transform transform)
+    {
+        if (controller.isGrounded)
+        {
+            MoveDirection.Set(MoveX.Value, MoveY.Value, MoveZ.Value);
+            rotDirection.Set(RotX.Value, RotY.Value, RotZ.Value);
+            transform.Rotate(rotDirection);
+            MoveDirection = transform.TransformDirection(MoveDirection);
+        }
 
-		protected void Move(CharacterController controller)
-		{
-			MoveDirection.y = Gravity.Value;
-			controller.Move(MoveDirection * Time.deltaTime);
-		}
-	}
+        MoveDirection.y -= Gravity.Value;
+        controller.Move(MoveDirection * Time.deltaTime);
+    }
+
+    protected void Move(Transform transform)
+    {
+        MoveDirection.Set(MoveX.Value, MoveY.Value, MoveZ.Value);
+        rotDirection.Set(RotX.Value, RotY.Value, RotZ.Value);
+        transform.Rotate(rotDirection);
+        MoveDirection = transform.TransformDirection(MoveDirection);
+    }
+
+    protected void Move(CharacterController controller)
+    {
+        MoveDirection.y = Gravity.Value;
+        Debug.Log(MoveDirection.y);
+        controller.Move(MoveDirection * Time.deltaTime);
+    }
+}
