@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyOtherObject : MonoBehaviour
 {
@@ -19,7 +17,6 @@ public class DestroyOtherObject : MonoBehaviour
 		}
 		else
 		{
-			//Destroy(other.gameObject);
 			other.gameObject.SetActive(false);
 		}
 	}

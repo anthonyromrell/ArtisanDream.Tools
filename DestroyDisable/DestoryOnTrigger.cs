@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestoryObject : MonoBehaviour
+public class DestoryOnTrigger : MonoBehaviour
 {
-	public bool UseTrigger;
-	
-	public void Call()
+	public bool useTrigger;
+
+	public bool UseTrigger
 	{
-		Destroy(gameObject);
+		get => useTrigger;
+		set => useTrigger = value;
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (UseTrigger)
 		{
-			Destroy(gameObject);
+			Destroy(other.gameObject);
 		}
 	}
 }

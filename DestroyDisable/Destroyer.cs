@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroySelf : MonoBehaviour
+public class Destroyer : MonoBehaviour
 {
 	public float HoldTime = 2;
+	public bool UseTrigger = true;
+	
 	IEnumerator Start () {
 		yield return new WaitForSeconds(HoldTime);
 		Destroy(gameObject);
@@ -19,4 +21,12 @@ public class DestroySelf : MonoBehaviour
 	{
 		Destroy(obj);
 	}
+
+//	private void OnTriggerEnter(Collider other)
+//	{
+//		if (UseTrigger)
+//		{
+//			Destroy(other.gameObject);
+//		}
+//	}
 }

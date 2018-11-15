@@ -3,12 +3,11 @@ using UnityEngine.Events;
 
 namespace ArtisanDream.Tools.Behaviours
 {
-	public class OnTriggerEvent : MonoBehaviour
+	public class MouseDragBehaviour : MonoBehaviour
 	{
-
 		public UnityEvent Event;
-	
-		private void OnTriggerEnter(Collider other)
+
+		private void OnMouseDrag()
 		{
 			Event.Invoke();
 		}
