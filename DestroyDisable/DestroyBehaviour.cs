@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroyer : MonoBehaviour
+public class DestroyBehaviour : MonoBehaviour
 {
-	public float HoldTime = 2;
+	public float Seconds = 2;
 	public bool UseTrigger = true;
 	
 	IEnumerator Start () {
-		yield return new WaitForSeconds(HoldTime);
+		yield return new WaitForSeconds(Seconds);
 		Destroy(gameObject);
 	}
 
