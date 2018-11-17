@@ -5,11 +5,11 @@
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : ScriptableObject
 {
-    [SerializeField] protected float value;
+    public float value;
 
     public virtual float Value
     {
-        get => this.value;
-        set => this.value = value;
+        get { return value; }
+        set { value = value; }
     }
 }
