@@ -20,6 +20,8 @@
 
 		public virtual void Call(CharacterController controller, Transform transform)
 		{
+			
+			
 			if (controller.isGrounded)
 			{
 				Move(transform);
@@ -27,7 +29,7 @@
 
 			Move(controller);
 		}
-	
+		
 		protected void Move(Transform transform)
 		{
 			MoveDirection.Set(MoveX.Value, MoveY.Value, MoveZ.Value);
