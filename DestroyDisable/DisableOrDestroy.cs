@@ -49,7 +49,6 @@ public class DisableOrDestroy : MonoBehaviour
 
     public void Call()
     {
-        //State = States.This;
         StartCoroutine(OnCall());
     }
     
