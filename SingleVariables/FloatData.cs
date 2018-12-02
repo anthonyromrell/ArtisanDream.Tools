@@ -6,11 +6,16 @@
 public class FloatData : ScriptableObject
 {
     public float value;
-    private float startValue;
+    public float startValue;
 
     private void OnEnable()
     {
         startValue = value;
+    }
+
+    private void OnDisable()
+    {
+        ResetValue();
     }
 
     public virtual float Value
