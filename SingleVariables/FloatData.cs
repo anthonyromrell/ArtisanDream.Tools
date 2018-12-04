@@ -5,11 +5,12 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : ScriptableObject, IDataVars
-{
-    public UnityEvent DisableEvent;
-    
+{   
     public float value;
     public float startValue;
+    
+    
+    public bool CanReset;
 
     public void OnEnable()
     {
@@ -18,12 +19,15 @@ public class FloatData : ScriptableObject, IDataVars
 
     public void OnDisable()
     {
-        DisableEvent.Invoke();
+        ResetValue();
     }
 
     public void ResetValue()
     {
-        value = startValue;
+        if (CanReset)
+        {
+            value = startValue;
+        }
     }
 
     public virtual float Value

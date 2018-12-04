@@ -4,30 +4,32 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
 public class IntData : ScriptableObject, IDataVars
 {
-    public UnityEvent DisableEvent;
-    
     public int value;
     public int startValue;
+    private bool CanReset;
 
     public int Value
     {
         get => value;
         set => this.value = value;
     }
-
+    
     public void OnEnable()
     {
         startValue = value;
     }
 
     public void OnDisable()
-    { 
-        DisableEvent.Invoke();
+    {
+        ResetValue();
     }
 
     public void ResetValue()
     {
-        value = startValue;
+        if (CanReset)
+        {
+            value = startValue;
+        }
     }
 
     public void UpdateValue(int i)
