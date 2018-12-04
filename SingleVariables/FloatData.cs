@@ -1,21 +1,29 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 //Made By Anthony Romrell
 
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
-public class FloatData : ScriptableObject
+public class FloatData : ScriptableObject, IDataVars
 {
+    public UnityEvent DisableEvent;
+    
     public float value;
     public float startValue;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         startValue = value;
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
-        ResetValue();
+        DisableEvent.Invoke();
+    }
+
+    public void ResetValue()
+    {
+        value = startValue;
     }
 
     public virtual float Value
@@ -27,16 +35,26 @@ public class FloatData : ScriptableObject
     public void UpdateValue(float i)
     {
         Value += i;
-        Debug.Log(Value);
     }
 
-    public void UpdateValue(FloatData data)
+    public void UpdateValue(Object data)
     {
-        Value += data.Value;
+        var newData = data as FloatData;
+        Value += newData.Value;
     }
 
-    public void ResetValue()
+    public void SetValue(Object data)
     {
-        value = startValue;
+        var newData = data as FloatData;
+        Value = newData.Value;
     }
+}
+
+public interface IDataVars
+{
+    void OnEnable();
+    void OnDisable();
+    void UpdateValue(Object data);
+    void SetValue(Object data);
+    void ResetValue();
 }
