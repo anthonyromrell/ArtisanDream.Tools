@@ -4,37 +4,27 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Store", menuName = "Store/StoreFront")]
-public class Store : ScriptableObject
+public class Store : ScriptableObject, IRunCoroutine
 {
-
 	public PurchaseableObjects Available;
 	public PurchaseableObjects Purchased;
 	public GameObject Canvas;
 	public GameObject Button;
 	public IntData Cash;
 	public int TotalValue = 3000;
-
+	
 	public float HoldTime = 0.25f;
 
-	public UnityEvent MadePurchase;
-	
-	private void OnEnable()
-	{
-		TotalValue = 0;
-		foreach (var item in Available.ObjectList)
-		{
-			var newItem = item;
-			TotalValue += newItem.Value;
-		}
-		TotalValue %= 75;
-	}
+	public GameAction SendThis;
+	public GameAction RunBuildButtonsCoroutine;
 
 	public void BuildUI()
 	{
-		//(BuildButtons());
+		SendThis.Raise(this);
+		RunBuildButtonsCoroutine.RaiseNoArgs();
 	}
 
-	private IEnumerator BuildButtons()
+	public IEnumerator RunCoroutine()
 	{
 		var newCanvas = Instantiate(Canvas);
 		
@@ -86,7 +76,6 @@ public class Store : ScriptableObject
 			{
 				Available.ObjectList.Remove(availableObject);
 			}
-			MadePurchase.Invoke();
 		}
 	}
 
@@ -104,5 +93,16 @@ public class Store : ScriptableObject
 
 			Available.ObjectList.Clear();
 		}
+	}
+
+	public void CalculateAllValues()
+	{
+		TotalValue = 0;
+		foreach (var item in Available.ObjectList)
+		{
+			var newItem = item;
+			TotalValue += newItem.Value;
+		}
+		TotalValue %= 75;
 	}
 }

@@ -5,7 +5,7 @@ public class FloatBoolAndCount : FloatBool
 {
     public IntData Count;
 
-    private void OnEnable()
+    private new void OnEnable()
     {
         Count.Value = 0;
     }

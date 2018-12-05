@@ -6,7 +6,7 @@ public class IntData : ScriptableObject, IDataVars
 {
     public int value;
     public int startValue;
-    private bool CanReset;
+    public bool CanReset;
 
     public int Value
     {

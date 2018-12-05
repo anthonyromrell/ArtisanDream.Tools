@@ -9,6 +9,11 @@ public class FloatData : ScriptableObject, IDataVars
     public float value;
     public float startValue;
     
+    public virtual float Value
+    {
+        get => value;
+        set => this.value = value;
+    }
     
     public bool CanReset;
 
@@ -30,12 +35,7 @@ public class FloatData : ScriptableObject, IDataVars
         }
     }
 
-    public virtual float Value
-    {
-        get => value;
-        set => this.value = value;
-    }
-
+    
     public void UpdateValue(float i)
     {
         Value += i;

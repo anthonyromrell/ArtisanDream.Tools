@@ -14,7 +14,7 @@ using UnityEngine.Events;
             RaiseNoArgs();
         }
 
-        public void RaiseAction(object obj)
+        public void RaiseAction(Object obj)
         {
             Raise(obj);
         }
