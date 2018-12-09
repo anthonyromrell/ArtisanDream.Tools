@@ -12,11 +12,24 @@ public class Store : ScriptableObject, IRunCoroutine
 	public GameObject Button;
 	public IntData Cash;
 	public int TotalValue = 3000;
-	
 	public float HoldTime = 0.25f;
-
 	public GameAction SendThis;
 	public GameAction RunBuildButtonsCoroutine;
+	public UnityEvent EnableEvent;
+
+	public enum LayoutTypes
+	{
+		Grid,
+		Horizontal,
+		Vertical
+	}
+
+	public LayoutTypes CurrentLayout;
+	
+	private void OnEnable()
+	{
+		EnableEvent.Invoke();
+	}
 
 	public void BuildUI()
 	{
@@ -31,7 +44,7 @@ public class Store : ScriptableObject, IRunCoroutine
 		foreach (var obj in Available.ObjectList)
 		{
 			yield return new WaitForSeconds(HoldTime);
-			var newButton = Instantiate(Button, newCanvas.GetComponentInChildren<VerticalLayoutGroup>().transform);
+			var newButton = Instantiate(Button, newCanvas.GetComponentInChildren<LayoutGroup>().transform);
 			var buttonComponent = newButton.GetComponent<Button>();
 			var imageComponent = newButton.GetComponent<Image>();
 			imageComponent.sprite = obj.PreviewArt;
@@ -59,7 +72,7 @@ public class Store : ScriptableObject, IRunCoroutine
 		for (var i = 0; i < Available.ObjectList.Count; i++)
 		{
 			var availableObject = Available.ObjectList[i];
-
+			
 			if (availableObject != obj || Cash.Value < availableObject.Value) continue;
 			Cash.Value -= availableObject.Value;
 			

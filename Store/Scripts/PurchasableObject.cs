@@ -18,7 +18,6 @@ public class PurchasableObject : ScriptableObject
     public bool Perpetual;
     public bool Instanciatable;
     public UnityEvent OnCreate;
-    //public UnityEvent CreateAgain;
 
     public void CreateItems()
     {
