@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "DebugObject", menuName = "Objects/Debug Object")]
-public class DebugObject : ScriptableObject
+public class DebugObject : ScriptableObject, ICall
 {
-    public void Call(string s)
+    [SerializeField] private string value;
+
+    public string Value
     {
-        Debug.Log(s);
+        private get { return value; }
+        set { this.value = value; }
+    }
+
+    public void Call()
+    {
+        Debug.Log(Value);
     }
 }

@@ -13,9 +13,11 @@ public class Store : ScriptableObject, IRunCoroutine
 	public IntData Cash;
 	public int TotalValue = 3000;
 	public float HoldTime = 0.25f;
-	public GameAction SendThis;
+	public GameAction SendThisCoroutine;
 	public GameAction RunBuildButtonsCoroutine;
 	public UnityEvent EnableEvent;
+	public WaitForSeconds Wait { get;  set; }
+	public IWait WaitObj { get; set; }
 
 	public enum LayoutTypes
 	{
@@ -28,12 +30,13 @@ public class Store : ScriptableObject, IRunCoroutine
 	
 	private void OnEnable()
 	{
+		Wait = new WaitForSeconds(HoldTime);
 		EnableEvent.Invoke();
 	}
 
-	public void BuildUI()
+	public void BuildUi()
 	{
-		SendThis.Raise(this);
+		SendThisCoroutine.Raise(this);
 		RunBuildButtonsCoroutine.RaiseNoArgs();
 	}
 
@@ -43,7 +46,7 @@ public class Store : ScriptableObject, IRunCoroutine
 		
 		foreach (var obj in Available.ObjectList)
 		{
-			yield return new WaitForSeconds(HoldTime);
+			yield return Wait;
 			var newButton = Instantiate(Button, newCanvas.GetComponentInChildren<LayoutGroup>().transform);
 			var buttonComponent = newButton.GetComponent<Button>();
 			var imageComponent = newButton.GetComponent<Image>();

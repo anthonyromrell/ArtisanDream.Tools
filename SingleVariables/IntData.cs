@@ -4,8 +4,8 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
 public class IntData : ScriptableObject, IDataVars
 {
-    public int value;
-    public int startValue;
+    [SerializeField] private int value;
+    private int startValue;
     public bool CanReset;
 
     public int Value

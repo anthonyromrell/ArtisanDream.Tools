@@ -1,13 +1,17 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class DisableOrDestroy : MonoBehaviour
 {
     
-    public UnityEvent StartEvent, EndEvent;
+    public UnityEvent StartEvent, BeginDestroy, EndDestroyEvent;
     private GameObject otherObj;
+
+    private void Start()
+    {
+        StartEvent.Invoke();
+    }
 
     private void OnDisable()
     {
@@ -21,7 +25,7 @@ public class DisableOrDestroy : MonoBehaviour
 
     private void EndAll()
     {
-        EndEvent.Invoke();
+        EndDestroyEvent.Invoke();
         StopAllCoroutines();
     }
     
@@ -59,7 +63,7 @@ public class DisableOrDestroy : MonoBehaviour
 
     private IEnumerator OnCall ()
     {
-        StartEvent.Invoke();
+        BeginDestroy.Invoke();
         yield return new WaitForSeconds(Seconds);
         
         switch (State)

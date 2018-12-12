@@ -6,8 +6,8 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : ScriptableObject, IDataVars
 {   
-    public float value;
-    public float startValue;
+    [SerializeField] protected float value;
+    private float startValue;
     
     public virtual float Value
     {
