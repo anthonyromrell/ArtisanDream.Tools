@@ -8,8 +8,8 @@ using UnityEngine.Events;
 public class FloatData : ScriptableObject, IDataVars
 {   
     [SerializeField] protected float value;
-    private float startValue;
-    
+    private float StartValue { get; set; }
+
     public virtual float Value
     {
         get => value;
@@ -21,7 +21,7 @@ public class FloatData : ScriptableObject, IDataVars
     [ContextMenu("Reset Start Data")]
     public void OnEnable()
     {
-        startValue = value;
+        StartValue = Value;
     }
 
     public void OnDisable()
@@ -33,7 +33,7 @@ public class FloatData : ScriptableObject, IDataVars
     {
         if (CanReset)
         {
-            value = startValue;
+            Value = StartValue;
         }
     }
 
