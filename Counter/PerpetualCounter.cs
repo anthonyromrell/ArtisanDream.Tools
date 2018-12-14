@@ -8,7 +8,7 @@ public class PerpetualCounter : MonoBehaviour
     public FloatData Seconds;
     public float HoldTime = 0.3f;
 
-    private IEnumerator Start()
+    private IEnumerator OnStart()
     {
         yield return new WaitForSeconds(HoldTime);
         while (true)
@@ -20,6 +20,6 @@ public class PerpetualCounter : MonoBehaviour
 
     public void Restart()
     {
-        StartCoroutine(Start());
+        StartCoroutine(OnStart());
     }
 }

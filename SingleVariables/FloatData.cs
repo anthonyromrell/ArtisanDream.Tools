@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 //Made By Anthony Romrell
 
+[ExecuteInEditMode]
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : ScriptableObject, IDataVars
 {   
@@ -17,6 +18,7 @@ public class FloatData : ScriptableObject, IDataVars
     
     public bool CanReset;
 
+    [ContextMenu("Reset Start Data")]
     public void OnEnable()
     {
         startValue = value;
