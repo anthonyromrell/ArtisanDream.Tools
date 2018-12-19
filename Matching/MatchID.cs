@@ -11,6 +11,7 @@ public class MatchID : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var otherId = other.GetComponent<MatchID>();
+        if (otherId == null) return;
         
         if (otherId.ID == ID || otherId.MatchMade)
         {

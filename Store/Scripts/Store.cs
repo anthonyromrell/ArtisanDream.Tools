@@ -17,6 +17,7 @@ public class Store : ScriptableObject, IRunCoroutine
 	public GameAction RunBuildButtonsCoroutine;
 	public UnityEvent EnableEvent;
 	public WaitForSeconds Wait { get;  set; }
+	public Object WaitObject { get; set; }
 	public IWait WaitObj { get; set; }
 
 	public enum LayoutTypes
@@ -28,7 +29,7 @@ public class Store : ScriptableObject, IRunCoroutine
 
 	public LayoutTypes CurrentLayout;
 	
-	private void OnEnable()
+	public void OnEnable()
 	{
 		Wait = new WaitForSeconds(HoldTime);
 		EnableEvent.Invoke();

@@ -54,6 +54,11 @@ public class FloatData : ScriptableObject, IDataVars
         var newData = data as FloatData;
         Value = newData.Value;
     }
+    
+    public void SetValue(float number)
+    {
+        Value = number;
+    }
 }
 
 public interface IDataVars
