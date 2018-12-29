@@ -29,4 +29,9 @@ public class ToggleEvent : ScriptableObject
         OffEvent.Invoke();
         Raise = TurnOn;
     }
+
+    private void DoWork () {
+     
+    }
 }
+

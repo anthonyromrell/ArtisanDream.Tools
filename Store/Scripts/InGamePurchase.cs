@@ -1,23 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "Purchase", menuName = "Store/Purchasable")]
-public class PurchasableObject : ScriptableObject
+[CreateAssetMenu(fileName = "InGamePurchase", menuName = "Store/In Game Purchasable")]
+public class InGamePurchase : ScriptableObject, ICanBePurchased
 {
     public Object Item;
-    public Sprite PreviewArt;
+    public Object Obj { get; set; }
+    [SerializeField] private Sprite previewArt;
     public int UsageCount = 3;
-    public int UsagePurchase;
+    public int UsagePurchase = 10;
     public bool UnlimitedUse;
-    public int Value;
+    [SerializeField] private int value;
     public bool Upgrade;
-    public PurchasableObject UpgradeFrom;
+    public InGamePurchase UpgradeFrom;
     public GameAction GetInstanceLocation;
     private Transform location;
 
     public bool Perpetual;
     public bool Instanciatable;
     public UnityEvent OnCreate;
+
+    public int Value
+    {
+        get => value;
+        set => this.value = value;
+    }
+
+    public PurchaseType.Type ItemPurchaseType { get; set; }
+    
+    public string Name { get; set; }
+
+    public Sprite PreviewArt
+    {
+        get => previewArt;
+        set => previewArt = value;
+    }
 
     public void CreateItems()
     {
@@ -76,13 +93,36 @@ public class PurchasableObject : ScriptableObject
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
+        Name = name;
         if (GetInstanceLocation != null) GetInstanceLocation.Raise += RaiseHandler;
     }
 
-    private void RaiseHandler (object obj)
+    public void RaiseHandler (object obj)
     {
         location = obj as Transform;
+    }
+}
+
+public interface ICanBePurchased
+{
+    PurchaseType.Type ItemPurchaseType { get; set; }
+    Object Obj { get; set; }
+    string Name { get; set; }
+    Sprite PreviewArt { get; set; }
+    int Value { get; set; }
+    void OnEnable();
+    void RaiseHandler(object obj);
+}
+
+public struct PurchaseType
+{
+    public enum Type
+    {
+        Consumable,
+        NonConsumable,
+        AutoRenewAbleSubscription,
+        NonRenewingSubscription
     }
 }

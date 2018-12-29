@@ -20,7 +20,7 @@ public class PurchaseableObjectGenerator : MonoBehaviour
 	{
 		for (var i = 0; i < Purchased.ObjectList.Count; i++)
 		{
-			var obj = Purchased.ObjectList[i];
+			var obj = Purchased.ObjectList[i] as InGamePurchase;
 			switch (CreateOnState)
 			{
 				case States.CreateAllNow:
