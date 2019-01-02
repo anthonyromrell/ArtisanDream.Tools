@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [ExecuteInEditMode]
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : ScriptableObject, IDataVars
-{   
+{
     [SerializeField] protected float value;
     private float StartValue { get; set; }
 
@@ -15,29 +15,19 @@ public class FloatData : ScriptableObject, IDataVars
         get => value;
         set => this.value = value;
     }
-    
-    public bool CanReset;
 
-    [ContextMenu("Reset Start Data")]
-    public void OnEnable()
+    [ContextMenu("Reset Value")]
+    public void ResetValue()
+    {
+        Value = StartValue;
+    }
+
+    [ContextMenu("Reset Start Value")]
+    public void ResetStartValue()
     {
         StartValue = Value;
     }
 
-    public void OnDisable()
-    {
-        ResetValue();
-    }
-
-    public void ResetValue()
-    {
-        if (CanReset)
-        {
-            Value = StartValue;
-        }
-    }
-
-    
     public void UpdateValue(float i)
     {
         Value += i;
@@ -46,15 +36,15 @@ public class FloatData : ScriptableObject, IDataVars
     public void UpdateValue(Object data)
     {
         var newData = data as FloatData;
-        Value += newData.Value;
+        if (newData != null) Value += newData.Value;
     }
 
     public void SetValue(Object data)
     {
         var newData = data as FloatData;
-        Value = newData.Value;
+        if (newData != null) Value = newData.Value;
     }
-    
+
     public void SetValue(float number)
     {
         Value = number;
@@ -63,9 +53,8 @@ public class FloatData : ScriptableObject, IDataVars
 
 public interface IDataVars
 {
-    void OnEnable();
-    void OnDisable();
     void UpdateValue(Object data);
     void SetValue(Object data);
     void ResetValue();
+    void ResetStartValue();
 }

@@ -58,5 +58,6 @@ public class AiBehaviour : MonoBehaviour
     public void ChangeBase(AiBase ai)
     {
         Brain.Base = ai;
+        OnCall(coroutine);
     }
 }

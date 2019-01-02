@@ -11,6 +11,10 @@ public class DisableOrDestroy : MonoBehaviour
     private void Start()
     {
         StartEvent.Invoke();
+        if (CanSelfDestructOnStart)
+        {
+            StartCoroutine(OnCall());
+        }
     }
 
     private void OnDisable()
@@ -37,6 +41,7 @@ public class DisableOrDestroy : MonoBehaviour
         None
     }
 
+    public bool CanSelfDestructOnStart;
     public bool CanTrigger;
     public bool CanDestroy;
     public States State;
