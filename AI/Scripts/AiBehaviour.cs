@@ -5,6 +5,8 @@ using UnityEngine.AI;
 public class AiBehaviour : MonoBehaviour
 {   
     public AiBase OnStart, OnEnter, OnExit;
+    public GameAction ChangeBaseAction;
+    public GameAction SendTransformAction;
     
     [HideInInspector]
     public AiBrain Brain;
@@ -15,7 +17,8 @@ public class AiBehaviour : MonoBehaviour
     private NavMeshAgent agent;
 
     private void Start()
-    {  
+    {
+        if (ChangeBaseAction != null) ChangeBaseAction.Raise += ChangeBase;
         Brain = ScriptableObject.CreateInstance<AiBrain>();
         Patrol = OnStart as AiPatrol;
         if (Patrol != null)
@@ -37,6 +40,7 @@ public class AiBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Brain.Base = OnEnter;
+        
         OnCall(coroutine);
     }
 
@@ -55,9 +59,10 @@ public class AiBehaviour : MonoBehaviour
         }
     }
 
-    public void ChangeBase(AiBase ai)
+    public void ChangeBase(object ai)
     {
-        Brain.Base = ai;
+        var newAi = ai as AiBase;
+        Brain.Base = newAi;
         OnCall(coroutine);
     }
 }

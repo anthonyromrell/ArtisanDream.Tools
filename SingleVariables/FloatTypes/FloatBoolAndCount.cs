@@ -7,7 +7,7 @@ public class FloatBoolAndCount : FloatBool
 
     private new void OnEnable()
     {
-        Count.Value = 0;
+        if (Count != null) Count.Value = 0;
     }
 
     public override float Value

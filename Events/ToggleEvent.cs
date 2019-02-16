@@ -7,7 +7,7 @@ public class ToggleEvent : ScriptableObject
 {
     public UnityEvent OnEvent, OffEvent;
     public UnityAction Raise;
-
+    
     private void OnEnable()
     {
         Raise = TurnOn;
@@ -27,11 +27,5 @@ public class ToggleEvent : ScriptableObject
     private void TurnOff()
     {
         OffEvent.Invoke();
-        Raise = TurnOn;
-    }
-
-    private void DoWork () {
-     
     }
 }
-

@@ -18,7 +18,7 @@ public class IntData : ScriptableObject, IDataVars
         Value = StartValue;
     }
     
-    [ContextMenu("Reset Start Data")]
+    [ContextMenu("Reset Start Value")]
     public void ResetStartValue()
     {
         StartValue = Value;

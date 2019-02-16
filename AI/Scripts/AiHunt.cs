@@ -8,29 +8,28 @@ using UnityEngine.Events;
 
 public class AiHunt : AiBase
 {
-	public GameAction GameAction;
-	
-	private Transform destination;
+	public GameAction DestinationAction;
 
-	private void OnEnable()
+	public Transform Destination;
+
+	protected virtual void OnEnable()
 	{
-		GameAction.Raise += Call;
+		if (DestinationAction != null) DestinationAction.Raise += Raise;
 	}
 
-	private void Call(object obj)
+	protected void Raise(object obj)
 	{
-		destination = obj as Transform;
+		Destination = obj as Transform;
 	}
 
 	public override IEnumerator Nav(NavMeshAgent ai)
 	{
-		var canRun = true;
-		while (canRun)
+		while (true)
 		{
 			yield return new WaitForFixedUpdate();
 			ai.speed = Speed.Value;
 			ai.angularSpeed = AngularSpeed.Value;
-			ai.destination = (destination != null ? destination.position : ai.transform.position);
+			ai.destination = (Destination != null ? Destination.position : ai.transform.position);
 		}
 	}
 }

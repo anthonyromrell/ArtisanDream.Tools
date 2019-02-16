@@ -3,8 +3,6 @@ using UnityEngine.Events;
 
 public class DataVariableBase : ScriptableObject
 {
-    
-    //might not need
     public UnityEvent EnableEvent;
     public UnityEvent DisableEvent;
     
