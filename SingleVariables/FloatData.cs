@@ -5,32 +5,24 @@ using UnityEngine.Events;
 
 [ExecuteInEditMode]
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
-public class FloatData : ScriptableObject, IDataVars
+public class FloatData : ScriptableObject
 {
     [SerializeField] protected float value;
-    private float StartValue { get; set; }
 
     public virtual float Value
     {
         get => value;
         set => this.value = value;
     }
-
-    [ContextMenu("Reset Value")]
-    public void ResetValue()
+    
+    public void SetValue (float amount)
     {
-        Value = StartValue;
+        Value = amount;
     }
 
-    [ContextMenu("Reset Start Value")]
-    public void ResetStartValue()
+    public void UpdateValue(float amount)
     {
-        StartValue = Value;
-    }
-
-    public void UpdateValue(float i)
-    {
-        Value += i;
+        Value += amount;
     }
 
     public void UpdateValue(Object data)
@@ -44,17 +36,20 @@ public class FloatData : ScriptableObject, IDataVars
         var newData = data as FloatData;
         if (newData != null) Value = newData.Value;
     }
-
-    public void SetValue(float number)
+    
+    public void CheckMinValue(float minValue)
     {
-        Value = number;
+        if (Value <= minValue)
+        {
+            Value = minValue;
+        }
     }
-}
 
-public interface IDataVars
-{
-    void UpdateValue(Object data);
-    void SetValue(Object data);
-    void ResetValue();
-    void ResetStartValue();
+    public void CheckMaxValue(float maxValue)
+    {
+        if (Value >= maxValue)
+        {
+            Value = maxValue;
+        }
+    }
 }

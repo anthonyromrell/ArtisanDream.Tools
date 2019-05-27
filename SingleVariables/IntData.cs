@@ -1,32 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
-public class IntData : ScriptableObject, IDataVars
+public class IntData : ScriptableObject
 {
-    [SerializeField] private int value;
-    private int StartValue { get; set; }
-    
-    public int Value
+    public int Value { get; set; }
+
+    public void SetValue(int amount)
     {
-        get => value;
-        set => this.value = value;
+        Value = amount;
     }
 
-    public void ResetValue()
+    public void UpdateValue(int amount)
     {
-        Value = StartValue;
-    }
-    
-    [ContextMenu("Reset Start Value")]
-    public void ResetStartValue()
-    {
-        StartValue = Value;
-    }
-
-    public void UpdateValue(int i)
-    {
-        Value += i;
+        Value += amount;
     }
 
     public void UpdateValue(Object data)
