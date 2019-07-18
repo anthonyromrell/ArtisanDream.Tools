@@ -47,12 +47,14 @@ public class AiPatrol : AiBase
             if (i < PatrolPoints.Count - 1)
             {
                 i++;
+                Debug.Log(this+" "+i);
                 canRun = false;
                 NextPatrol.Invoke();
             }
             else
             {
                 i = 0;
+                Debug.Log("end");
                 canRun = false;
                 EndPatrol.Invoke();
             }

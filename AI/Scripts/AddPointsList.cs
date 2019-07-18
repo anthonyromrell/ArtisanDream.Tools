@@ -30,5 +30,6 @@ public class AddPointsList : MonoBehaviour
 	public void SendAction()
 	{
 		OnSendAction.Raise(points);
+		print(points);
 	}
 }
