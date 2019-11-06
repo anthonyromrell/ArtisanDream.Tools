@@ -2,8 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ArtisanDream.Tools.ActionHandlers
-{
+
     public class GameActionHandler : MonoBehaviour
     {
         public GameAction Action;
@@ -19,4 +18,3 @@ namespace ArtisanDream.Tools.ActionHandlers
             Event.Invoke();
         }
     }
-}
