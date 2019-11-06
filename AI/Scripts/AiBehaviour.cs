@@ -40,7 +40,6 @@ public class AiBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Brain.Base = OnEnter;
-        
         OnCall(coroutine);
     }
 
