@@ -3,10 +3,10 @@
 [CreateAssetMenu(menuName = "Single Variables/BoolData")]
 public class BoolData : ScriptableObject
 {
-  public bool Value;
+  public bool value;
 
   public void SetValue(bool valueChange)
   {
-    Value = valueChange;
+    value = valueChange;
   }
 }
