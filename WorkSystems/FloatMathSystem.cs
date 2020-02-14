@@ -5,15 +5,13 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Systems/Float Math")]
 public class FloatMathSystem : WorkSystem
 {
-    public FloatData dataObj; 
-    //public FloatData[] floatDataList;
-    public UnityEvent MathEvent;
+    public FloatData dataObj;
     private FloatData fromNameId;
     
     public override void Work()
     {
         fromNameId = NameIdObj as FloatData;
-        MathEvent.Invoke();
+        workEvent.Invoke();
     }
     
     public void UpdateValue ()
@@ -26,4 +24,8 @@ public class FloatMathSystem : WorkSystem
         dataObj.value = fromNameId.value;
     }
     
+    public void IncrementValue ()
+    {
+        dataObj.IncrementValue();
+    }
 }

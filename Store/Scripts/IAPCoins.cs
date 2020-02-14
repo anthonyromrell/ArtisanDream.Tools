@@ -8,6 +8,6 @@ public class IapCoins : InAppPurchaseBase
 
     public void BuyCoins()
     {
-        coin.Value = Value;
+        coin.value = Value;
     }
 }

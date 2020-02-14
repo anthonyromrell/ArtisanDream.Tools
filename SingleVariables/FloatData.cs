@@ -23,6 +23,11 @@ public class FloatData : NameId
         value += amount;
     }
 
+    public void IncrementValue()
+    {
+        value ++;
+    }
+    
     public void UpdateValue(FloatData data)
     {
         var newData = data as FloatData;

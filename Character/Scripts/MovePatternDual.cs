@@ -14,13 +14,13 @@ using UnityEngine.Serialization;
 			if (controller.isGrounded)
 			{
 				Move(transform);
-				count.Value = 2;
+				count.value = 2;
 			}
 		
-			if (Input.GetButtonDown("Jump") && count.Value > 0)
+			if (Input.GetButtonDown("Jump") && count.value > 0)
 			{
 				MoveDirection.y = 4;
-				count.Value--;
+				count.value--;
 			}
 		
 			//	moveDirection.y += MoveY.Value;

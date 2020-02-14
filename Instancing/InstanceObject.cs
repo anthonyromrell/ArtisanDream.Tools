@@ -4,7 +4,7 @@
 	//Made By Anthony Romrell
 	public class InstanceObject : ScriptableObject
 	{
-		public void OnCall(GameObject instance)
+		public void CreateInstance(GameObject instance)
 		{
 			Instantiate(instance);
 		}

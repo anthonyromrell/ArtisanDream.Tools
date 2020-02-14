@@ -81,8 +81,8 @@ public class Store : ScriptableObject, IRunCoroutine
         {
             var availableObject = available.purchasableList[i];
 
-            if (availableObject != obj || cash.Value < availableObject.Value) continue;
-            cash.Value -= availableObject.Value;
+            if (availableObject != obj || cash.value < availableObject.Value) continue;
+            cash.value -= availableObject.Value;
 
             if (!purchased.purchasableList.Contains(obj))
             {
@@ -118,9 +118,9 @@ public class Store : ScriptableObject, IRunCoroutine
 
     public void PurchaseAll()
     {
-        if (cash.Value >= totalValue)
+        if (cash.value >= totalValue)
         {
-            cash.Value -= totalValue;
+            cash.value -= totalValue;
             for (var i = 0; i < available.purchasableList.Count; i++)
             {
                 var item = available.purchasableList[i];
