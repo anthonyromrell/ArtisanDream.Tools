@@ -1,35 +1,38 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 //Made By Anthony Romrell
 public class AiBehaviour : MonoBehaviour
 {   
-    public AiBase OnStart, OnEnter, OnExit;
-    public GameAction ChangeBaseAction;
-    public GameAction SendTransformAction;
+    [FormerlySerializedAs("OnStart")] public AiBase onStart;
+    [FormerlySerializedAs("OnEnter")] public AiBase onEnter;
+    [FormerlySerializedAs("OnExit")] public AiBase onExit;
+    [FormerlySerializedAs("ChangeBaseAction")] public GameAction changeBaseAction;
+    [FormerlySerializedAs("SendTransformAction")] public GameAction sendTransformAction;
     
-    [HideInInspector]
-    public AiBrain Brain;
+    [FormerlySerializedAs("Brain")] [HideInInspector]
+    public AiBrain brain;
     
-    [HideInInspector]
-    public AiPatrol Patrol;
+    [FormerlySerializedAs("Patrol")] [HideInInspector]
+    public AiPatrol patrol;
     private Coroutine coroutine;
     private NavMeshAgent agent;
 
     private void Start()
     {
-        if (ChangeBaseAction != null) ChangeBaseAction.Raise += ChangeBase;
-        Brain = ScriptableObject.CreateInstance<AiBrain>();
-        Patrol = OnStart as AiPatrol;
-        if (Patrol != null)
+        if (changeBaseAction != null) changeBaseAction.raise += ChangeBase;
+        brain = ScriptableObject.CreateInstance<AiBrain>();
+        patrol = onStart as AiPatrol;
+        if (patrol != null)
         {
-            Patrol.SendCoroutine = ScriptableObject.CreateInstance<GameAction>();
-            Patrol.SendCoroutine.RaiseNoArgs += CallCoroutine;
+            patrol.sendCoroutine = ScriptableObject.CreateInstance<GameAction>();
+            patrol.sendCoroutine.raiseNoArgs += CallCoroutine;
         }
 
         agent = GetComponent<NavMeshAgent>();
-        Brain.Base = OnStart;
-        coroutine = StartCoroutine(Brain.Base.Nav(agent));
+        brain.Base = onStart;
+        coroutine = StartCoroutine(brain.Base.Nav(agent));
     }
 
     private void CallCoroutine()
@@ -39,13 +42,13 @@ public class AiBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Brain.Base = OnEnter;
+        brain.Base = onEnter;
         OnCall(coroutine);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Brain.Base = OnExit;
+        brain.Base = onExit;
         OnCall(coroutine);
     }
 
@@ -54,14 +57,14 @@ public class AiBehaviour : MonoBehaviour
         StopCoroutine(c);
         if (agent.isActiveAndEnabled)
         {
-            coroutine = StartCoroutine(Brain.Base.Nav(agent));
+            coroutine = StartCoroutine(brain.Base.Nav(agent));
         }
     }
 
     public void ChangeBase(object ai)
     {
         var newAi = ai as AiBase;
-        Brain.Base = newAi;
+        brain.Base = newAi;
         OnCall(coroutine);
     }
 }

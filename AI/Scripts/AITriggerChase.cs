@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Trigger Chase", menuName = "Ai/Function/Trigger Chase")]
 
-public class AITriggerChase : AiHunt
+public class AiTriggerChase : AiHunt
 {
-    public GameAction GetTransformAction;
+    [FormerlySerializedAs("GetTransformAction")] public GameAction getTransformAction;
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        GetTransformAction.Raise += Raise;
+        getTransformAction.raise += Raise;
     }
 }

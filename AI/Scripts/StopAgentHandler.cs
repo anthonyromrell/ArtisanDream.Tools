@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class StopAgentHandler : MonoBehaviour
 {
-    public FloatData HoldTime;
+    [FormerlySerializedAs("HoldTime")] public FloatData holdTime;
     private NavMeshAgent agent;
     
-    public GameAction StopAgentAction;
+    [FormerlySerializedAs("StopAgentAction")] public GameAction stopAgentAction;
     
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        StopAgentAction.RaiseNoArgs += AgentHandler;
+        stopAgentAction.raiseNoArgs += AgentHandler;
     }
 
     private void AgentHandler ()
     {
         agent.isStopped = true;
-        Invoke("RestartAgent", HoldTime.Value);
+        Invoke("RestartAgent", holdTime.value);
     }
 
     private void RestartAgent()
@@ -27,6 +28,6 @@ public class StopAgentHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopAgentAction.RaiseNoArgs -= AgentHandler;
+        stopAgentAction.raiseNoArgs -= AgentHandler;
     }
 }

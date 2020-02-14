@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-public abstract class IEventBehaviour
+public abstract class EventBehaviour
 {
 	private UnityEvent Event;
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-public class ObjectID : MonoBehaviour
+public class ObjectId : MonoBehaviour
 {
-	public NameID ID;
+	[FormerlySerializedAs("ID")] public NameId id;
 }

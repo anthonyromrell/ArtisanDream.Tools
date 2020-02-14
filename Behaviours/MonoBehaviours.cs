@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class MonoBehaviours : MonoBehaviour
 {
-    public UnityEvent AwakeEvent, StartEvent, QuitEvent;
-    
-    
+    [FormerlySerializedAs("AwakeEvent")] public UnityEvent awakeEvent;
+    [FormerlySerializedAs("StartEvent")] public UnityEvent startEvent;
+    [FormerlySerializedAs("QuitEvent")] public UnityEvent quitEvent;
+
+
     private void Awake()
     {
-        AwakeEvent.Invoke();
+        awakeEvent.Invoke();
     }
 
     private void Start()
@@ -20,6 +23,6 @@ public class MonoBehaviours : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        QuitEvent.Invoke();
+        quitEvent.Invoke();
     }
 }

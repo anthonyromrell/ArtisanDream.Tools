@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [CreateAssetMenu(menuName = "Single Variables/FloatBase")]
 public class FloatBase : ScriptableObject
 {
-    public float Value;
+    [FormerlySerializedAs("Value")] public float value;
 }

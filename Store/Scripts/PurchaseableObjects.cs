@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Objects", menuName = "Store/Objects")]
 public class PurchaseableObjects : ScriptableObject
 {
-	public List<Object> ObjectList;	
-	public List<ICanBePurchased> PurchasableList;
+	[FormerlySerializedAs("ObjectList")] public List<Object> objectList;	
+	[FormerlySerializedAs("PurchasableList")] public List<ICanBePurchased> purchasableList;
 
 	private void OnEnable()
 	{
-		PurchasableList = new List<ICanBePurchased>();
-		foreach (var item in ObjectList)
+		purchasableList = new List<ICanBePurchased>();
+		foreach (var item in objectList)
 		{
 			var newItem = item as ICanBePurchased;
-			PurchasableList.Add(newItem);
+			purchasableList.Add(newItem);
 		}
 	}
 }

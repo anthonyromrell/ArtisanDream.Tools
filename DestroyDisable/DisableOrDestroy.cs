@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class DisableOrDestroy : MonoBehaviour
 {
     
-    public UnityEvent StartEvent, BeginDestroy, EndDestroyEvent;
+    [FormerlySerializedAs("StartEvent")] public UnityEvent startEvent;
+    [FormerlySerializedAs("BeginDestroy")] public UnityEvent beginDestroy;
+    [FormerlySerializedAs("EndDestroyEvent")] public UnityEvent endDestroyEvent;
     private GameObject otherObj;
 
     private void Start()
     {
-        StartEvent.Invoke();
-        if (CanSelfDestructOnStart)
+        startEvent.Invoke();
+        if (canSelfDestructOnStart)
         {
             StartCoroutine(OnCall());
         }
@@ -29,7 +32,7 @@ public class DisableOrDestroy : MonoBehaviour
 
     private void EndAll()
     {
-        EndDestroyEvent.Invoke();
+        endDestroyEvent.Invoke();
         StopAllCoroutines();
     }
     
@@ -41,16 +44,16 @@ public class DisableOrDestroy : MonoBehaviour
         None
     }
 
-    public bool CanSelfDestructOnStart;
-    public bool CanTrigger;
-    public bool CanDestroy;
-    public States State;
-    public float Seconds = 0.1f;
+    [FormerlySerializedAs("CanSelfDestructOnStart")] public bool canSelfDestructOnStart;
+    [FormerlySerializedAs("CanTrigger")] public bool canTrigger;
+    [FormerlySerializedAs("CanDestroy")] public bool canDestroy;
+    [FormerlySerializedAs("State")] public States state;
+    [FormerlySerializedAs("Seconds")] public float seconds = 0.1f;
 
     private void OnTriggerEnter(Collider other)
     {
         otherObj = other.gameObject;
-        if (CanTrigger)    
+        if (canTrigger)    
         {
             StartCoroutine(OnCall());
         }
@@ -68,10 +71,10 @@ public class DisableOrDestroy : MonoBehaviour
 
     private IEnumerator OnCall ()
     {
-        BeginDestroy.Invoke();
-        yield return new WaitForSeconds(Seconds);
+        beginDestroy.Invoke();
+        yield return new WaitForSeconds(seconds);
         
-        switch (State)
+        switch (state)
         {
             case States.This:
                 EndCall(gameObject);
@@ -92,7 +95,7 @@ public class DisableOrDestroy : MonoBehaviour
 
     private void EndCall(GameObject obj)
     {
-        if (CanDestroy)
+        if (canDestroy)
         {
             Destroy(obj);
         }

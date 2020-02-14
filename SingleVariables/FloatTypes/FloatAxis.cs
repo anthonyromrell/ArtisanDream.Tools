@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Floats/Float Axis")]
 public class FloatAxis : FloatData
 {
-    public string Axis = "Horizontal";
+    [FormerlySerializedAs("Axis")] public string axis = "Horizontal";
 
-    public override float Value => value * Input.GetAxis(Axis);
+    public  float Value => Value * Input.GetAxis(axis);
 }

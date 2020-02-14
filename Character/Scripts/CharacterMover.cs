@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ArtisanDream.Experimental
 {
@@ -7,8 +8,15 @@ namespace ArtisanDream.Experimental
     {
         private CharacterController controller;
         private Vector3 position, rotation;
-        public float Speed = 3.0f, JumpSpeed = 4.0f, Gravity = 9.81f;
-        public FloatData X, Y, Z, Rx, Ry, Rz;
+        [FormerlySerializedAs("Speed")] public float speed = 3.0f;
+        [FormerlySerializedAs("JumpSpeed")] public float jumpSpeed = 4.0f;
+        [FormerlySerializedAs("Gravity")] public float gravity = 9.81f;
+        [FormerlySerializedAs("X")] public FloatData x;
+        [FormerlySerializedAs("Y")] public FloatData y;
+        [FormerlySerializedAs("Z")] public FloatData z;
+        [FormerlySerializedAs("Rx")] public FloatData rx;
+        [FormerlySerializedAs("Ry")] public FloatData ry;
+        [FormerlySerializedAs("Rz")] public FloatData rz;
 
         void Start()
         {
@@ -19,18 +27,18 @@ namespace ArtisanDream.Experimental
         {
             if (controller.isGrounded)
             {
-                rotation.Set(Rx.Value, Ry.Value, Rz.Value);
+                rotation.Set(rx.value, ry.value, rz.value);
                 transform.Rotate(rotation);
-                position.Set(X.Value, Y.Value, Z.Value);
+                position.Set(x.value, y.value, z.value);
                 position = transform.TransformDirection(position);
 
                 if (Input.GetButton("Jump"))
                 {
-                    position.y = JumpSpeed;
+                    position.y = jumpSpeed;
                 }
             }
 
-            position.y -= Gravity * Time.deltaTime;
+            position.y -= gravity * Time.deltaTime;
         
             controller.Move(position * Time.deltaTime);
         }

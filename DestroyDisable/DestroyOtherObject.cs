@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DestroyOtherObject : MonoBehaviour
 {
-	public bool UseOtherCaller;
+	[FormerlySerializedAs("UseOtherCaller")] public bool useOtherCaller;
 	private GameObject otherObj;
 
 	public void Call () {
@@ -11,7 +12,7 @@ public class DestroyOtherObject : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (UseOtherCaller)
+		if (useOtherCaller)
 		{
 			otherObj = other.gameObject;
 		}

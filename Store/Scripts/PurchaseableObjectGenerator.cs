@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PurchaseableObjectGenerator : MonoBehaviour
 {
-	public PurchaseableObjects Purchased;
+	[FormerlySerializedAs("Purchased")] public PurchaseableObjects purchased;
 
 	public enum States
 	{
@@ -14,39 +15,39 @@ public class PurchaseableObjectGenerator : MonoBehaviour
 		CreateOnceAndParent
 	}
 
-	public States CreateOnState = States.CreateOnceAndParent;
+	[FormerlySerializedAs("CreateOnState")] public States createOnState = States.CreateOnceAndParent;
 	
 	void Start ()
 	{
-		for (var i = 0; i < Purchased.ObjectList.Count; i++)
+		for (var i = 0; i < purchased.objectList.Count; i++)
 		{
-			var obj = Purchased.ObjectList[i] as InGamePurchase;
-			switch (CreateOnState)
+			var obj = purchased.objectList[i] as InGamePurchase;
+			switch (createOnState)
 			{
 				case States.CreateAllNow:
-					obj.OnCreate.AddListener(obj.CreateItems);
+					obj.onCreate.AddListener(obj.CreateItems);
 					break;
 				case States.CreateAllAtLocation:
-					obj.OnCreate.AddListener(obj.CreateItemsAtLocation);
+					obj.onCreate.AddListener(obj.CreateItemsAtLocation);
 					break;
 				case States.CreateAllAndParent:
-					obj.OnCreate.AddListener(obj.CreateItemsOnParent);
+					obj.onCreate.AddListener(obj.CreateItemsOnParent);
 					break;
 				case States.CreateOnceAtLocation:
-					obj.OnCreate.AddListener(obj.CreateOnceAtLocation);
+					obj.onCreate.AddListener(obj.CreateOnceAtLocation);
 					break;
 				case States.CreateOnceAndParent:
-					obj.OnCreate.AddListener(obj.CreateOnceAndParent);
+					obj.onCreate.AddListener(obj.CreateOnceAndParent);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
 			
-			obj.OnCreate.Invoke();
+			obj.onCreate.Invoke();
 			
-			if (!obj.Perpetual && obj.UsageCount == 0)
+			if (!obj.perpetual && obj.usageCount == 0)
 			{
-				Purchased.ObjectList.Remove(obj);
+				purchased.objectList.Remove(obj);
 			}
 		}
 	}

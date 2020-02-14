@@ -1,41 +1,42 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Actions/Game Action")]
 public class GameAction : ScriptableObject
 {
-    public UnityAction<object> Raise;
-    public UnityAction<Coroutine> RaiseCoroutine;
-    public UnityAction RaiseNoArgs;
+    [FormerlySerializedAs("Raise")] public UnityAction<object> raise;
+    [FormerlySerializedAs("RaiseCoroutine")] public UnityAction<Coroutine> raiseCoroutine;
+    [FormerlySerializedAs("RaiseNoArgs")] public UnityAction raiseNoArgs;
 
     //Overloading
     public void RaiseAction()
     {
-        RaiseNoArgs();
+        raiseNoArgs();
     }
 
     public void RaiseAction(Object obj)
     {
-        Raise(obj);
+        raise(obj);
     }
 
     public void RaiseAction(float obj)
     {
-        Raise(obj);
+        raise(obj);
     }
     
     public void RaiseAction(int obj)
     {
-        Raise(obj);
+        raise(obj);
     }
 
     public void RaiseAction(Transform obj)
     {
-        Raise(obj);
+        raise(obj);
     }
 
     public void RaiseAction(Coroutine obj)
     {
-        RaiseCoroutine(obj);
+        raiseCoroutine(obj);
     }
 }

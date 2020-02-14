@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 
-	[CreateAssetMenu(menuName = "Character/MovePattern Dual")]
+[CreateAssetMenu(menuName = "Character/MovePattern Dual")]
 	public class MovePatternDual : MovePattern
 	{
-		public IntData Count;
+		[FormerlySerializedAs("Count")] public IntData count;
 		private int canJump;
 		//public bool doubleJump = true;
 	
@@ -13,13 +14,13 @@
 			if (controller.isGrounded)
 			{
 				Move(transform);
-				Count.Value = 2;
+				count.Value = 2;
 			}
 		
-			if (Input.GetButtonDown("Jump") && Count.Value > 0)
+			if (Input.GetButtonDown("Jump") && count.Value > 0)
 			{
 				MoveDirection.y = 4;
-				Count.Value--;
+				count.Value--;
 			}
 		
 			//	moveDirection.y += MoveY.Value;

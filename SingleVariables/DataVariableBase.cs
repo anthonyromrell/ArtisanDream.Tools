@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class DataVariableBase : ScriptableObject
 {
-    public UnityEvent EnableEvent;
-    public UnityEvent DisableEvent;
+    [FormerlySerializedAs("EnableEvent")] public UnityEvent enableEvent;
+    [FormerlySerializedAs("DisableEvent")] public UnityEvent disableEvent;
     
     public void OnEnable()
     {
-        EnableEvent.Invoke();
+        enableEvent.Invoke();
     }
 
     public void OnDisable()
     {
-        DisableEvent.Invoke();
+        disableEvent.Invoke();
     }
 }

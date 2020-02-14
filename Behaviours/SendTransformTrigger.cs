@@ -1,25 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SendTransformTrigger : MonoBehaviour
 {
     private GameAction sendTransformAction;
     private AiBehaviour ai;
-    public AITriggerChase AiChaseObj;
-    private AITriggerChase newChaseObj;
+    [FormerlySerializedAs("AiChaseObj")] public AiTriggerChase aiChaseObj;
+    private AiTriggerChase newChaseObj;
 
     private void OnEnable()
     {
         ai = GetComponentInParent<AiBehaviour>();
-        newChaseObj = Instantiate(AiChaseObj);  
-        ai.OnStart = newChaseObj;
-        ai.OnExit = newChaseObj;
+        newChaseObj = Instantiate(aiChaseObj);  
+        ai.onStart = newChaseObj;
+        ai.onExit = newChaseObj;
       //  ai.ChangeBase(newChaseObj);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        newChaseObj.Destination = other.transform;
+        newChaseObj.destination = other.transform;
     }
 }

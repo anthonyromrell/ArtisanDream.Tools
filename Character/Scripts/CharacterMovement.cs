@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 //Made By Anthony Romrell
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
     private CharacterController controller;
-    public MovePattern Pattern;
+    [FormerlySerializedAs("Pattern")] public MovePattern pattern;
 
     public void SetPattern(MovePattern pattern)
     {
-        Pattern = pattern;
+        this.pattern = pattern;
     }
 
     private void Start()
@@ -19,6 +20,6 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        Pattern.Call(controller, transform);
+        pattern.Call(controller, transform);
     }
 }

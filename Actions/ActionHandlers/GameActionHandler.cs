@@ -1,16 +1,17 @@
 ﻿using ArtisanDream.Tools.Actions;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
-    public class GameActionHandler : MonoBehaviour
+public class GameActionHandler : MonoBehaviour
     {
-        public GameAction Action;
+        [FormerlySerializedAs("Action")] public GameAction action;
         public UnityEvent Event;
 
         private void OnEnable()
         {
-            Action.RaiseNoArgs += Respond;
+            action.raiseNoArgs += Respond;
         }
 
         private void Respond()

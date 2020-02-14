@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Ai/Point")]
 public class Point : ScriptableObject
 {
-	public GameAction SendPoint;
-	public UnityEvent UpdateData;
+	[FormerlySerializedAs("SendPoint")] public GameAction sendPoint;
+	[FormerlySerializedAs("UpdateData")] public UnityEvent updateData;
 
 	private void OnEnable()
 	{
-		UpdateData.Invoke();
+		updateData.Invoke();
 	}
 
 	public void OnUpdateData(Transform t)
 	{
-		SendPoint.Raise(t);
+		sendPoint.raise(t);
 	}
 }

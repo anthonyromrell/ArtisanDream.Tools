@@ -1,25 +1,27 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class MatchID : MonoBehaviour
+public class MatchId : MonoBehaviour
 {
-    public NameID ID;
-    public UnityEvent OnMatch, NoMatch;
+    [FormerlySerializedAs("ID")] public NameId id;
+    [FormerlySerializedAs("OnMatch")] public UnityEvent onMatch;
+    [FormerlySerializedAs("NoMatch")] public UnityEvent noMatch;
     public bool MatchMade { private get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
-        var otherId = other.GetComponent<MatchID>();
+        var otherId = other.GetComponent<MatchId>();
         if (otherId == null) return;
         
-        if (otherId.ID == ID || otherId.MatchMade)
+        if (otherId.id == id || otherId.MatchMade)
         {
-            OnMatch.Invoke();
+            onMatch.Invoke();
         }
         else
         {
-            NoMatch.Invoke();
+            noMatch.Invoke();
         }
     }
 }

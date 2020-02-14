@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
-    public class DraggableObject : MonoBehaviour
+public class DraggableObject : MonoBehaviour
     {
         private Vector3 offsetPosition;
         private Vector3 newPosition;
         private Camera cam;
 
         public bool CanDrag { get; set; }
-        public UnityEvent OnDrag;
-        public UnityEvent OnUp;
+        [FormerlySerializedAs("OnDrag")] public UnityEvent onDrag;
+        [FormerlySerializedAs("OnUp")] public UnityEvent onUp;
         public bool Draggable { get; set; }
 
         private void Start()
@@ -22,7 +23,7 @@ using UnityEngine.Events;
 
         public IEnumerator OnMouseDown()
         {
-            OnDrag.Invoke();
+            onDrag.Invoke();
             offsetPosition = transform.position - cam.ScreenToWorldPoint(Input.mousePosition);
             yield return new WaitForFixedUpdate();
             CanDrag = true;
@@ -39,7 +40,7 @@ using UnityEngine.Events;
             CanDrag = false;
             if (Draggable)
             {
-                OnUp.Invoke();
+                onUp.Invoke();
             }
         }
     }

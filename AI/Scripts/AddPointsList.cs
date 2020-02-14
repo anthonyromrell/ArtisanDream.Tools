@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Made By Anthony Romrell
 public class AddPointsList : MonoBehaviour
 {
 
 	private List<Vector3Data> points;
-	public List<Transform> PointObjects;
+	[FormerlySerializedAs("PointObjects")] public List<Transform> pointObjects;
 	
-	public GameAction OnSendAction;
+	[FormerlySerializedAs("OnSendAction")] public GameAction onSendAction;
 
 	private void Start()
 	{
 		points = new List<Vector3Data>();
-		foreach (var obj in PointObjects)
+		foreach (var obj in pointObjects)
 		{
 			UpdateInfo(obj);
 		}
@@ -23,13 +24,13 @@ public class AddPointsList : MonoBehaviour
 	public void UpdateInfo(Transform t)
 	{
 		Vector3Data temp = ScriptableObject.CreateInstance<Vector3Data>();
-		temp.Value = t.position;
+		temp.value = t.position;
 		points.Add(temp);
 	}
 
 	public void SendAction()
 	{
-		OnSendAction.Raise(points);
+		onSendAction.raise(points);
 		print(points);
 	}
 }

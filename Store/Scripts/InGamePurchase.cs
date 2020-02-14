@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "InGamePurchase", menuName = "Store/In Game Purchasable")]
 public class InGamePurchase : ScriptableObject, ICanBePurchased
 {
-    public Object Item;
+    [FormerlySerializedAs("Item")] public Object item;
     public Object Obj { get; set; }
     [SerializeField] private Sprite previewArt;
-    public int UsageCount = 3;
-    public int UsagePurchase = 10;
-    public bool UnlimitedUse;
+    [FormerlySerializedAs("UsageCount")] public int usageCount = 3;
+    [FormerlySerializedAs("UsagePurchase")] public int usagePurchase = 10;
+    [FormerlySerializedAs("UnlimitedUse")] public bool unlimitedUse;
     [SerializeField] private int value;
-    public bool Upgrade;
-    public InGamePurchase UpgradeFrom;
-    public GameAction GetInstanceLocation;
+    [FormerlySerializedAs("Upgrade")] public bool upgrade;
+    [FormerlySerializedAs("UpgradeFrom")] public InGamePurchase upgradeFrom;
+    [FormerlySerializedAs("GetInstanceLocation")] public GameAction getInstanceLocation;
     private Transform location;
 
-    public bool Perpetual;
-    public bool Instanciatable;
-    public UnityEvent OnCreate;
+    [FormerlySerializedAs("Perpetual")] public bool perpetual;
+    [FormerlySerializedAs("Instanciatable")] public bool instanciatable;
+    [FormerlySerializedAs("OnCreate")] public UnityEvent onCreate;
 
     public int Value
     {
@@ -38,65 +39,65 @@ public class InGamePurchase : ScriptableObject, ICanBePurchased
 
     public void CreateItems()
     {
-        for (var i = 0; i < UsageCount; i++)
+        for (var i = 0; i < usageCount; i++)
         {
-            if (Instanciatable && Item is GameObject)
+            if (instanciatable && item is GameObject)
             {
-                Instantiate(Item);
+                Instantiate(item);
             }
         }
     }
     
     public void CreateItemsOnParent()
     {
-        for (var i = 0; i < UsageCount; i++)
+        for (var i = 0; i < usageCount; i++)
         {
-            if (Instanciatable && Item is GameObject)
+            if (instanciatable && item is GameObject)
             {
-                Instantiate(Item, location);
+                Instantiate(item, location);
             }
         }
     }
     
     public void CreateItemsAtLocation()
     {
-        for (var i = 0; i < UsageCount; i++)
+        for (var i = 0; i < usageCount; i++)
         {
-            if (Instanciatable && Item is GameObject)
+            if (instanciatable && item is GameObject)
             {
-                Instantiate(Item, location.position, Quaternion.identity);
+                Instantiate(item, location.position, Quaternion.identity);
             }
         }
     }
 
     public void CreateOnceAtLocation()
     {
-        if (UsageCount > 0 || UnlimitedUse)
+        if (usageCount > 0 || unlimitedUse)
         {
-            Instantiate(Item, location.position, Quaternion.identity);
+            Instantiate(item, location.position, Quaternion.identity);
         } 
     }
     
     public void CreateOnceAndParent()
     {
-        if (UsageCount > 0 || UnlimitedUse)
+        if (usageCount > 0 || unlimitedUse)
         {
-            Instantiate(Item, location);
+            Instantiate(item, location);
         } 
     }
 
     public void Used()
     {
-        if (!UnlimitedUse && UsageCount > 0)
+        if (!unlimitedUse && usageCount > 0)
         {
-            UsageCount--;
+            usageCount--;
         }
     }
 
     public void OnEnable()
     {
         Name = name;
-        if (GetInstanceLocation != null) GetInstanceLocation.Raise += RaiseHandler;
+        if (getInstanceLocation != null) getInstanceLocation.raise += RaiseHandler;
     }
 
     public void RaiseHandler (object obj)

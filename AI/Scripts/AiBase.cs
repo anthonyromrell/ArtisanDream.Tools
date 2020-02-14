@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public abstract class AiBase : ScriptableObject
 {
-	public FloatData Speed;
-	public FloatData AngularSpeed;
+	[FormerlySerializedAs("Speed")] public FloatData speed;
+	[FormerlySerializedAs("AngularSpeed")] public FloatData angularSpeed;
 	public abstract IEnumerator Nav(NavMeshAgent ai);
 }

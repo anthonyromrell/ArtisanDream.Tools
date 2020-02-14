@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class SwapAgentValueHandler: MonoBehaviour, IRunCoroutine
 {
-    public GameAction SwapAction;
-    public AiBase AiObj;
-    public FloatData Data;
+    [FormerlySerializedAs("SwapAction")] public GameAction swapAction;
+    [FormerlySerializedAs("AiObj")] public AiBase aiObj;
+    [FormerlySerializedAs("Data")] public FloatData data;
     public FloatData oldSpeed;
     [SerializeField] private Object waitObj;
     private NavMeshAgent agent;
@@ -19,33 +20,33 @@ public class SwapAgentValueHandler: MonoBehaviour, IRunCoroutine
 
     private void Awake()
     {
-        SwapAction.RaiseNoArgs += Raise;
+        swapAction.raiseNoArgs += Raise;
     }
 
     public void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
         WaitObj = waitObj as IWait;
-        oldSpeed = AiObj.Speed;
+        oldSpeed = aiObj.speed;
     }
 
     private void Raise()
     {
         print("hit");
-        AiObj.Speed = Data;
-        agent.speed = Data.Value;
+        aiObj.speed = data;
+        agent.speed = data.value;
         StartCoroutine(RunCoroutine());
     }
     
     public IEnumerator RunCoroutine()
     {
         yield return waitObj;
-        AiObj.Speed = oldSpeed;
-        agent.speed = Data.Value;
+        aiObj.speed = oldSpeed;
+        agent.speed = data.value;
     }
 
     private void OnDestroy()
     {
-        SwapAction.RaiseNoArgs -= Raise;
+        swapAction.raiseNoArgs -= Raise;
     }
 }

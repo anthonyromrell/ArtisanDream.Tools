@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Store/Coins")]
-public class IAPCoins : InAppPurchaseBase
+public class IapCoins : InAppPurchaseBase
 {
-    public IntData Coin;
+    [FormerlySerializedAs("Coin")] public IntData coin;
 
     public void BuyCoins()
     {
-        Coin.Value = Value;
+        coin.Value = Value;
     }
 }

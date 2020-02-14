@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ArtisanDream.Experimental
 {
 	public class SnapOn : MonoBehaviour
 	{
-		public FloatData Speed;
-		public FloatData HoldTime;
+		[FormerlySerializedAs("Speed")] public FloatData speed;
+		[FormerlySerializedAs("HoldTime")] public FloatData holdTime;
 		private Transform parent;
 		private bool canRun = true;
 		
@@ -23,7 +24,7 @@ namespace ArtisanDream.Experimental
 
 		private IEnumerator Stop()
 		{
-			yield return new WaitForSeconds(HoldTime.Value);
+			yield return new WaitForSeconds(holdTime.value);
 			canRun = false;
 		}
 
@@ -34,7 +35,7 @@ namespace ArtisanDream.Experimental
 			while (canRun)
 			{
 				yield return new WaitForFixedUpdate();
-				transform.position = Vector3.Lerp(transform.position, parent.position, Speed.Value);
+				transform.position = Vector3.Lerp(transform.position, parent.position, speed.value);
 			}			
 		}
 	}

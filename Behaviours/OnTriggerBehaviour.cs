@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
 public class OnTriggerBehaviour : MonoBehaviour
 {
     public UnityEvent Event;
-    public UnityEvent<Collider> ColliderEvent;
+    [FormerlySerializedAs("ColliderEvent")] public UnityEvent<Collider> colliderEvent;
 
     private void OnTriggerEnter(Collider other)
     {

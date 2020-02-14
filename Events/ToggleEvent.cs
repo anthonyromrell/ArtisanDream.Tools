@@ -1,31 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu]
 public class ToggleEvent : ScriptableObject
 {
-    public UnityEvent OnEvent, OffEvent;
-    public UnityAction Raise;
+    [FormerlySerializedAs("OnEvent")] public UnityEvent onEvent;
+    [FormerlySerializedAs("OffEvent")] public UnityEvent offEvent;
+    [FormerlySerializedAs("Raise")] public UnityAction raise;
     
     private void OnEnable()
     {
-        Raise = TurnOn;
+        raise = TurnOn;
     }
 
     public void OnRaise()
     {
-        Raise();
+        raise();
     }
     
     private void TurnOn()
     {
-        OnEvent.Invoke();
-        Raise = TurnOff;
+        onEvent.Invoke();
+        raise = TurnOff;
     }
 
     private void TurnOff()
     {
-        OffEvent.Invoke();
+        offEvent.Invoke();
     }
 }

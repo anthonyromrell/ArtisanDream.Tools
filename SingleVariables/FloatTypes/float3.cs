@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Floats/Float3")]
 public class Float3: ScriptableObject
 {
-    public float X, Y, Z;
+    [FormerlySerializedAs("X")] public float x;
+    [FormerlySerializedAs("Y")] public float y;
+    [FormerlySerializedAs("Z")] public float z;
 
     public Float3(float x, float y, float z)
     {
-        this.X = x;
-        this.Y = y;
-        this.Z = z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    public Vector3 V3;
+    [FormerlySerializedAs("V3")] public Vector3 v3;
 }

@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class PerpetualCounter : MonoBehaviour
 {
-    public UnityEvent OnCount;
-    public FloatData Seconds;
-    public float HoldTime = 0.3f;
+    [FormerlySerializedAs("OnCount")] public UnityEvent onCount;
+    [FormerlySerializedAs("Seconds")] public FloatData seconds;
+    [FormerlySerializedAs("HoldTime")] public float holdTime = 0.3f;
 
     private IEnumerator OnStart()
     {
-        yield return new WaitForSeconds(HoldTime);
+        yield return new WaitForSeconds(holdTime);
         while (true)
         {
-            OnCount.Invoke();
-            yield return new WaitForSeconds(Seconds.Value);
+            onCount.Invoke();
+            yield return new WaitForSeconds(seconds.value);
         }
     }
 

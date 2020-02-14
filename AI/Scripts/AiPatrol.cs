@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Patrol", menuName = "Ai/Function/Patrol")]
 public class AiPatrol : AiBase
 {
-    public UnityEvent NextPatrol, EndPatrol;
-    [HideInInspector] public GameAction SendCoroutine;
-    public GameAction AddPointList;
-    public FloatData Distance, HoldTime;
+    [FormerlySerializedAs("NextPatrol")] public UnityEvent nextPatrol;
+    [FormerlySerializedAs("EndPatrol")] public UnityEvent endPatrol;
+    [FormerlySerializedAs("SendCoroutine")] [HideInInspector] public GameAction sendCoroutine;
+    [FormerlySerializedAs("AddPointList")] public GameAction addPointList;
+    [FormerlySerializedAs("Distance")] public FloatData distance;
+    [FormerlySerializedAs("HoldTime")] public FloatData holdTime;
 
     public List<Vector3Data> PatrolPoints { private get; set; }
 
@@ -19,7 +22,7 @@ public class AiPatrol : AiBase
     private void OnEnable()
     {
         PatrolPoints?.Clear();
-        if (AddPointList != null) AddPointList.Raise += AddPatrolPointList;
+        if (addPointList != null) addPointList.raise += AddPatrolPointList;
         i = 0;
     }
 
@@ -30,33 +33,33 @@ public class AiPatrol : AiBase
 
     public void RestartPatrol()
     {
-        SendCoroutine.RaiseNoArgs();
+        sendCoroutine.raiseNoArgs();
     }
 
     public override IEnumerator Nav(NavMeshAgent ai)
     {
-        yield return new WaitForSeconds(HoldTime.Value);
-        ai.SetDestination(PatrolPoints[i].Value);
+        yield return new WaitForSeconds(holdTime.value);
+        ai.SetDestination(PatrolPoints[i].value);
         var canRun = true;
         while (canRun)
         {
             yield return new WaitForFixedUpdate();
             
-            if ((!(ai.remainingDistance <= Distance.Value))) continue;
+            if ((!(ai.remainingDistance <= distance.value))) continue;
             
             if (i < PatrolPoints.Count - 1)
             {
                 i++;
                 Debug.Log(this+" "+i);
                 canRun = false;
-                NextPatrol.Invoke();
+                nextPatrol.Invoke();
             }
             else
             {
                 i = 0;
                 Debug.Log("end");
                 canRun = false;
-                EndPatrol.Invoke();
+                endPatrol.Invoke();
             }
         }
     }

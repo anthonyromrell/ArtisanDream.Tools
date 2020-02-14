@@ -3,22 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 [CreateAssetMenu(fileName = "Store", menuName = "Store/StoreFront")]
 public class Store : ScriptableObject, IRunCoroutine
 {
-    public PurchaseableObjects Available;
-    public PurchaseableObjects Purchased;
-    public GameObject Canvas;
-    public GameObject Button;
-    public IntData Cash;
-    public int TotalValue = 3000;
-    public float HoldTime = 0.25f;
-    public GameAction SendThisCoroutine;
-    public GameAction RunBuildButtonsCoroutine;
-    public UnityEvent EnableEvent;
+    [FormerlySerializedAs("Available")] public PurchaseableObjects available;
+    [FormerlySerializedAs("Purchased")] public PurchaseableObjects purchased;
+    [FormerlySerializedAs("Canvas")] public GameObject canvas;
+    [FormerlySerializedAs("Button")] public GameObject button;
+    [FormerlySerializedAs("Cash")] public IntData cash;
+    [FormerlySerializedAs("TotalValue")] public int totalValue = 3000;
+    [FormerlySerializedAs("HoldTime")] public float holdTime = 0.25f;
+    [FormerlySerializedAs("SendThisCoroutine")] public GameAction sendThisCoroutine;
+    [FormerlySerializedAs("RunBuildButtonsCoroutine")] public GameAction runBuildButtonsCoroutine;
+    [FormerlySerializedAs("EnableEvent")] public UnityEvent enableEvent;
     public WaitForSeconds Wait { get; set; }
     public Object WaitObject { get; set; }
     public IWait WaitObj { get; set; }
@@ -30,28 +31,28 @@ public class Store : ScriptableObject, IRunCoroutine
         Vertical
     }
 
-    public LayoutTypes CurrentLayout;
+    [FormerlySerializedAs("CurrentLayout")] public LayoutTypes currentLayout;
 
     public void OnEnable()
     {
-        Wait = new WaitForSeconds(HoldTime);
-        EnableEvent.Invoke();
+        Wait = new WaitForSeconds(holdTime);
+        enableEvent.Invoke();
     }
 
     public void BuildUi()
     {
-        SendThisCoroutine.Raise(this);
-        RunBuildButtonsCoroutine.RaiseNoArgs();
+        sendThisCoroutine.raise(this);
+        runBuildButtonsCoroutine.raiseNoArgs();
     }
 
     public IEnumerator RunCoroutine()
     {
-        var newCanvas = Instantiate(Canvas);
+        var newCanvas = Instantiate(canvas);
 
-        foreach (var obj in Available.PurchasableList)
+        foreach (var obj in available.purchasableList)
         {
             yield return Wait;
-            var newButton = Instantiate(Button, newCanvas.GetComponentInChildren<LayoutGroup>().transform);
+            var newButton = Instantiate(button, newCanvas.GetComponentInChildren<LayoutGroup>().transform);
             var buttonComponent = newButton.GetComponent<Button>();
             var imageComponent = newButton.GetComponent<Image>();
             imageComponent.sprite = obj.PreviewArt;
@@ -76,16 +77,16 @@ public class Store : ScriptableObject, IRunCoroutine
 
     public void MakePurchase(ICanBePurchased obj)
     {
-        for (var i = 0; i < Available.ObjectList.Count; i++)
+        for (var i = 0; i < available.objectList.Count; i++)
         {
-            var availableObject = Available.PurchasableList[i];
+            var availableObject = available.purchasableList[i];
 
-            if (availableObject != obj || Cash.Value < availableObject.Value) continue;
-            Cash.Value -= availableObject.Value;
+            if (availableObject != obj || cash.Value < availableObject.Value) continue;
+            cash.Value -= availableObject.Value;
 
-            if (!Purchased.PurchasableList.Contains(obj))
+            if (!purchased.purchasableList.Contains(obj))
             {
-                Purchased.PurchasableList.Add(obj);
+                purchased.purchasableList.Add(obj);
             }
 
             switch (obj.ItemPurchaseType)
@@ -117,28 +118,28 @@ public class Store : ScriptableObject, IRunCoroutine
 
     public void PurchaseAll()
     {
-        if (Cash.Value >= TotalValue)
+        if (cash.Value >= totalValue)
         {
-            Cash.Value -= TotalValue;
-            for (var i = 0; i < Available.PurchasableList.Count; i++)
+            cash.Value -= totalValue;
+            for (var i = 0; i < available.purchasableList.Count; i++)
             {
-                var item = Available.PurchasableList[i];
-                Purchased.PurchasableList.Add(item);
+                var item = available.purchasableList[i];
+                purchased.purchasableList.Add(item);
             }
 
-            Available.ObjectList.Clear();
+            available.objectList.Clear();
         }
     }
 
     public void CalculateAllValues()
     {
-        TotalValue = 0;
-        foreach (var item in Available.PurchasableList)
+        totalValue = 0;
+        foreach (var item in available.purchasableList)
         {
             var newItem = item;
-            TotalValue += newItem.Value;
+            totalValue += newItem.Value;
         }
 
-        TotalValue %= 75;
+        totalValue %= 75;
     }
 }

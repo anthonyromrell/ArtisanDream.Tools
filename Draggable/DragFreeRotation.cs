@@ -8,7 +8,7 @@ namespace ArtisanDream.Experimental
 
 		public override void OnMouseDrag()
 		{
-			distance = Input.GetAxis(AxisName) * Speed;
+			distance = Input.GetAxis(axisName) * speed;
 		}
 	}
 }

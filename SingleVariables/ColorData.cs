@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-	[CreateAssetMenu(menuName = "Single Variables/ColorData")]
+[CreateAssetMenu(menuName = "Single Variables/ColorData")]
 	public class ColorData : ScriptableObject {
 
-		public Color Value = Color.blue;
+		[FormerlySerializedAs("Value")] public Color value = Color.blue;
 	}

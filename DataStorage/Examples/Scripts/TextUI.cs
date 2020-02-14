@@ -1,27 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 //Made By Anthony Romrell
 
     public class TextUi : MonoBehaviour
     {
-        public InputField DataField;
-        public Text DataOutputText;
+        [FormerlySerializedAs("DataField")] public InputField dataField;
+        [FormerlySerializedAs("DataOutputText")] public Text dataOutputText;
 
-        public DataStorage NameDataStorage;
+        [FormerlySerializedAs("NameDataStorage")] public DataStorage nameDataStorage;
 
-        public StringData SoData;
+        [FormerlySerializedAs("SoData")] public StringData soData;
 
         private void Start()
         {
-            NameDataStorage.GetData();
-            DataOutputText.text = SoData.SingleName;
+            nameDataStorage.GetData();
+            dataOutputText.text = soData.SingleName;
         }
 
         public void UpdateText()
         {
-            SoData.SingleName = DataField.text;
-            DataOutputText.text = SoData.SingleName;
-            NameDataStorage.SetData();
+            soData.SingleName = dataField.text;
+            dataOutputText.text = soData.SingleName;
+            nameDataStorage.SetData();
         }
     }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
-    [CreateAssetMenu(fileName = "DataStorage", menuName = "Objects/String List")]
+[CreateAssetMenu(fileName = "DataStorage", menuName = "Objects/String List")]
     public class StringList : ScriptableObject
     {
-        public List<string> NameList;
-        public string SingleName;
+        [FormerlySerializedAs("NameList")] public List<string> nameList;
+        [FormerlySerializedAs("SingleName")] public string singleName;
     }

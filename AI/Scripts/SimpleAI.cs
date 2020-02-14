@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-public class SimpleAI : MonoBehaviour
+public class SimpleAi : MonoBehaviour
 {
-	public Transform Destination;
+	[FormerlySerializedAs("Destination")] public Transform destination;
 	private NavMeshAgent agent;
 
 	private IEnumerator Start ()
@@ -13,7 +14,7 @@ public class SimpleAI : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForFixedUpdate();
-			agent.destination = Destination.position;
+			agent.destination = destination.position;
 		}
 	}
 
