@@ -1,12 +1,11 @@
-﻿using ArtisanDream.Tools.Actions;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 
 public class GameActionHandler : MonoBehaviour
     {
-        [FormerlySerializedAs("Action")] public GameAction action;
+        public GameAction action;
         public UnityEvent Event;
 
         private void OnEnable()
