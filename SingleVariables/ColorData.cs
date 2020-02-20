@@ -2,7 +2,7 @@
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Single Variables/ColorData")]
-	public class ColorData : ScriptableObject {
-
-		[FormerlySerializedAs("Value")] public Color value = Color.blue;
-	}
+public class ColorData : NameId
+{
+	public Color value = Color.blue;
+}

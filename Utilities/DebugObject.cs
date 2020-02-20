@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "DebugObject", menuName = "Objects/Debug Object")]
-public class DebugObject : ScriptableObject, ICall
+public class DebugObject : WorkSystem, ICall
 {
     [SerializeField] private string value;
 
@@ -13,6 +13,11 @@ public class DebugObject : ScriptableObject, ICall
 
     public void Call()
     {
-        Debug.Log(Value);
+        Debug.Log("It worked");
+    }
+
+    public override void Work()
+    {
+        Call();
     }
 }
