@@ -20,6 +20,7 @@ public class MatchIdBehaviour : IdBehaviour
          if (otherIdObj == obj.nameIdObj)
          {
             obj.workSystemObj.Work();
+            obj.workEvent.Invoke();
          }
       }
    }
