@@ -4,15 +4,14 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 
-public class DraggableObject : MonoBehaviour
+public class DraggableBehaviour : MonoBehaviour
     {
         private Vector3 offsetPosition;
         private Vector3 newPosition;
         private Camera cam;
 
-        public bool CanDrag { get; set; }
-        [FormerlySerializedAs("OnDrag")] public UnityEvent onDrag;
-        [FormerlySerializedAs("OnUp")] public UnityEvent onUp;
+        private bool CanDrag { get; set; }
+        public UnityEvent onDrag, onUp;
         public bool Draggable { get; set; }
 
         private void Start()
