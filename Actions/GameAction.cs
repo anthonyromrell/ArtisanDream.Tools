@@ -5,11 +5,10 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(menuName = "Actions/Game Action")]
 public class GameAction : ScriptableObject
 {
-    [FormerlySerializedAs("Raise")] public UnityAction<object> raise;
-    [FormerlySerializedAs("RaiseCoroutine")] public UnityAction<Coroutine> raiseCoroutine;
-    [FormerlySerializedAs("RaiseNoArgs")] public UnityAction raiseNoArgs;
-
-    //Overloading
+    public UnityAction<object> raise;
+    public UnityAction<Coroutine> raiseCoroutine;
+    public UnityAction raiseNoArgs;
+    
     public void RaiseAction()
     {
         raiseNoArgs();
