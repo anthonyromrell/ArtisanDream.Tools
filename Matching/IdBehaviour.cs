@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
 public class IdBehaviour : MonoBehaviour
 {
-    public NameId nameIdObj;
+    [CanBeNull] public NameId nameIdObj;
 }
