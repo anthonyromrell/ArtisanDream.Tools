@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
 public class IntData : NameId
 {
-    [FormerlySerializedAs("Value")] public int value;
+    public int value;
 
     public void SetValue(int amount)
     {
