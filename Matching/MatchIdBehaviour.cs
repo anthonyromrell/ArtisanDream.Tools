@@ -14,8 +14,6 @@ public class MatchIdBehaviour : IdBehaviour
    }
 
    public List<possibleMatch> nameIdList;
-   [SerializeField]
-   public Dictionary<NameId, UnityEvent> nameIdDictionary;
    
    
    private NameId otherIdObj;
