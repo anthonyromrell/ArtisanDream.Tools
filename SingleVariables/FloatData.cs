@@ -1,8 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
+﻿using UnityEngine;
 
 //Made By Anthony Romrell
 
@@ -10,9 +6,8 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : NameId
 {
-    [FormerlySerializedAs("Value")] public float value;
+    public float value;
 
-    
     public void SetValue (float amount)
     {
         value = amount;

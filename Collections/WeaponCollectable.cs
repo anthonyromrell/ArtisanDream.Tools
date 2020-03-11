@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Collections/Weapon Collectible")]
 public class WeaponCollectable : Collectable
 {
     public UnityEvent useEvent;

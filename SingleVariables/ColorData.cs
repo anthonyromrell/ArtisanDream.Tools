@@ -10,9 +10,4 @@ public class ColorData : NameId
 	{
 		spriteRendererOjb.color = value;
 	}
-	
-	public void ChangeSpriteRenderColor(SpriteRenderController spriteRendererController)
-	{
-		spriteRendererController.spriteRendererObj.color = value;
-	}
 }
