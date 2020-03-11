@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 [CreateAssetMenu(fileName = "Store", menuName = "Store/StoreFront")]
-public class Store : ScriptableObject, IRunCoroutine
+public class Store : ScriptableObject
 {
     [FormerlySerializedAs("Available")] public PurchaseableObjects available;
     [FormerlySerializedAs("Purchased")] public PurchaseableObjects purchased;
@@ -22,7 +22,7 @@ public class Store : ScriptableObject, IRunCoroutine
     [FormerlySerializedAs("EnableEvent")] public UnityEvent enableEvent;
     public WaitForSeconds Wait { get; set; }
     public Object WaitObject { get; set; }
-    public IWait WaitObj { get; set; }
+    //public IWait WaitObj { get; set; }
 
     public enum LayoutTypes
     {

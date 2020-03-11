@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Collections/Collection")]
 public class Collection : ScriptableObject
 {
   public List<Collectable> collectablesList;

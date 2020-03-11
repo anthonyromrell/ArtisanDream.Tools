@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Vector3/Data")]
+[CreateAssetMenu(menuName = "Single Variables/Vector3Data")]
 public class Vector3Data : ScriptableObject
 {
-    [FormerlySerializedAs("Value")] public Vector3 value;
+    public Vector3 value;
        
     public void UpdateValue(Transform obj)
     {

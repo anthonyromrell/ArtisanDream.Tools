@@ -3,47 +3,48 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-public class SwapAgentValueHandler: MonoBehaviour, IRunCoroutine
+public class SwapAgentValueHandler: MonoBehaviour
 {
-    [FormerlySerializedAs("SwapAction")] public GameAction swapAction;
-    [FormerlySerializedAs("AiObj")] public AiBase aiObj;
-    [FormerlySerializedAs("Data")] public FloatData data;
+    public GameAction swapAction;
+    public AiBase aiObj;
+    public FloatData data;
     public FloatData oldSpeed;
-    [SerializeField] private Object waitObj;
+//    private Object waitObj;
     private NavMeshAgent agent;
 
-    public IWait WaitObj
-    {
-        get => null;
-        set {}
-    }
+//    public IWait WaitObj
+//    {
+//        get => null;
+//        set {}
+//    }
 
     private void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         swapAction.raiseNoArgs += Raise;
     }
 
-    public void OnEnable()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        WaitObj = waitObj as IWait;
-        oldSpeed = aiObj.speed;
-    }
+//    public void OnEnable()
+//    {
+//        agent = GetComponent<NavMeshAgent>();
+//        WaitObj = waitObj as IWait;
+//        oldSpeed = aiObj.speed;
+//    }
 
     private void Raise()
     {
         print("hit");
         aiObj.speed = data;
         agent.speed = data.value;
-        StartCoroutine(RunCoroutine());
+        //StartCoroutine(RunCoroutine());
     }
     
-    public IEnumerator RunCoroutine()
-    {
-        yield return waitObj;
-        aiObj.speed = oldSpeed;
-        agent.speed = data.value;
-    }
+//    public IEnumerator RunCoroutine()
+//    {
+//   //     yield return waitObj;
+//        aiObj.speed = oldSpeed;
+//        agent.speed = data.value;
+//    }
 
     private void OnDestroy()
     {
