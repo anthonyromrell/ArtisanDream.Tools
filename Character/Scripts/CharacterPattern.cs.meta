@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: baa9c46e527fa4ec1a2bcc5272ccbfeb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - jumpSpeed: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - gravity: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - MoveX: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - MoveY: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - MoveZ: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - RotX: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - RotY: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  - RotZ: {fileID: 11400000, guid: ebd70b5a08ff849ab88ace34d7fd48a8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
