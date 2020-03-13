@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-public class CharacterMover : CharacterBehaviour
+[CreateAssetMenu(menuName = "Character Patterns/Mover")]
+public class CharacterMover : CharacterPattern
 {
-    void Update()
+    public override void Call(CharacterController controller)
     {
         positionDirection.x = Input.GetAxis("Horizontal")*speed;
         

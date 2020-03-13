@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
-public class CharacterMoveAndRotate : CharacterBehaviour
+[CreateAssetMenu(menuName = "Character Patterns/Move And Rotate")]
+public class CharacterMoveAndRotate : CharacterPattern
 {
 
     public Vector3 rotateDirection;
     public float rotateSpeed = 10;
-    
-    void Update()
+
+    public override void Call(CharacterController controller)
     {
         positionDirection.Set(0,0,speed*Input.GetAxis(vAxis));
         rotateDirection.y = rotateSpeed * Input.GetAxis(hAxis);
-        transform.Rotate(rotateDirection);
-        positionDirection = transform.TransformDirection(positionDirection);
+        controller.transform.Rotate(rotateDirection);
+        positionDirection = controller.transform.TransformDirection(positionDirection);
 
         if (controller.isGrounded)
         {
