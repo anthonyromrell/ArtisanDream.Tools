@@ -4,10 +4,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class StringListManager : ScriptableObject
 {
-    public List<StringListData> stringListDatas;
+    public List<StringList> stringListDatas;
     public int currentListNum;
     
-    public StringListData ReturnCurrentData()
+    public StringList ReturnCurrentData()
     {
         return stringListDatas[currentListNum];
     }
