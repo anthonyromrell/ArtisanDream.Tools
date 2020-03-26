@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 //Made By Anthony Romrell
 public class AddPointsList : MonoBehaviour
 {
-
 	private List<Vector3Data> points;
 	public List<Transform> pointObjects;
 	public GameAction onSendAction;
@@ -20,10 +19,10 @@ public class AddPointsList : MonoBehaviour
 		SendAction();
 	}
 
-	public void UpdateInfo(Transform t)
+	public void UpdateInfo(Transform obj)
 	{
 		Vector3Data temp = ScriptableObject.CreateInstance<Vector3Data>();
-		temp.value = t.position;
+		temp.value = obj.position;
 		points.Add(temp);
 	}
 

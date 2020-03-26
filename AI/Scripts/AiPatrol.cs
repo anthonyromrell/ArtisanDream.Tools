@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Patrol", menuName = "Ai/Function/Patrol")]
 public class AiPatrol : AiBase
 {
-    [HideInInspector] public GameAction sendCoroutine;
     public GameAction addPointList;
-    public FloatData distance;
-    public List<Vector3Data> patrolPoints;
-
+    [HideInInspector] public List<Vector3Data> patrolPoints;
     private int i;
     
     private void OnEnable()
@@ -20,6 +14,11 @@ public class AiPatrol : AiBase
         patrolPoints?.Clear();
         if (addPointList != null) addPointList.raise += AddPatrolPointList;
         i = 0;
+    }
+
+    private void OnDisable()
+    {
+        patrolPoints?.Clear();
     }
 
     private void AddPatrolPointList(object obj)
