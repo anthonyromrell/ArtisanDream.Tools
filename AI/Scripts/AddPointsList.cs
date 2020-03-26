@@ -2,33 +2,22 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-//Made By Anthony Romrell
 public class AddPointsList : MonoBehaviour
 {
 	private List<Vector3Data> points;
-	public List<Transform> pointObjects;
 	public GameAction onSendAction;
 
 	private void Awake()
 	{
 		points = new List<Vector3Data>();
-		foreach (var obj in pointObjects)
+		var addPoints = GetComponentsInChildren<Transform>();
+		foreach (var obj in addPoints)
 		{
-			UpdateInfo(obj);
+			Vector3Data temp = ScriptableObject.CreateInstance<Vector3Data>();
+			temp.value = obj.position;
+			points.Add(temp);
 		}
-		SendAction();
-	}
-
-	public void UpdateInfo(Transform obj)
-	{
-		Vector3Data temp = ScriptableObject.CreateInstance<Vector3Data>();
-		temp.value = obj.position;
-		points.Add(temp);
-	}
-
-	public void SendAction()
-	{
+		points.RemoveAt(0);
 		onSendAction.raise(points);
-		print(points);
 	}
 }
