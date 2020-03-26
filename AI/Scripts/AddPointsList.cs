@@ -7,11 +7,10 @@ public class AddPointsList : MonoBehaviour
 {
 
 	private List<Vector3Data> points;
-	[FormerlySerializedAs("PointObjects")] public List<Transform> pointObjects;
-	
-	[FormerlySerializedAs("OnSendAction")] public GameAction onSendAction;
+	public List<Transform> pointObjects;
+	public GameAction onSendAction;
 
-	private void Start()
+	private void Awake()
 	{
 		points = new List<Vector3Data>();
 		foreach (var obj in pointObjects)

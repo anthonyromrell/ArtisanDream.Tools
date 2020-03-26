@@ -34,8 +34,8 @@ public class SwapAgentValueHandler: MonoBehaviour
     private void Raise()
     {
         print("hit");
-        aiObj.speed = data;
-        agent.speed = data.value;
+     //   aiObj.speed = data;
+     //   agent.speed = data.value;
         //StartCoroutine(RunCoroutine());
     }
     

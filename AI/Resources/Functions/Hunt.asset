@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efffa1b3b035e499aa80f0044fa75132, type: 3}
   m_Name: Hunt
   m_EditorClassIdentifier: 
-  Speed: {fileID: 11400000, guid: 4932e8e03dde745e8a1abe41576ce2d0, type: 2}
-  AngularSpeed: {fileID: 11400000, guid: cbd8bfa4f50e341f988fa3e9243e98a4, type: 2}
-  DestinationAction: {fileID: 11400000, guid: 82c28f6542d964faf811ec67b3e4a350, type: 2}
-  Destination: {fileID: 0}
+  speed: {fileID: 11400000, guid: 3553cd516c81146b895f1366718a30d0, type: 2}
+  angularSpeed: {fileID: 11400000, guid: 5e44956d099fc41f0802407afb97d316, type: 2}
+  destinationAction: {fileID: 11400000, guid: 09433046f13134509beb0106343d64b1, type: 2}
+  destination: {fileID: 0}

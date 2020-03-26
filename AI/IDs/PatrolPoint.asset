@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f82618a67104859938f53e61dbf07b, type: 3}
-  m_Name: AiBrain
+  m_Script: {fileID: 11500000, guid: 02b3c80a7900a4c289ec83d498b813fc, type: 3}
+  m_Name: PatrolPoint
   m_EditorClassIdentifier: 
-  aiBaseObj: {fileID: 11400000, guid: fa7bad835181744e7864f027e12cb57e, type: 2}

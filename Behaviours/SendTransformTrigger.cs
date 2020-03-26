@@ -14,8 +14,8 @@ public class SendTransformTrigger : MonoBehaviour
     {
         ai = GetComponentInParent<AiBehaviour>();
         newChaseObj = Instantiate(aiChaseObj);  
-        ai.onStart = newChaseObj;
-        ai.onExit = newChaseObj;
+//        ai.onStart = newChaseObj;
+ //       ai.onExit = newChaseObj;
       //  ai.ChangeBase(newChaseObj);
     }
 

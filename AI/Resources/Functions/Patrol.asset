@@ -4,48 +4,17 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edc79c88228e340ae94f9104e7ad7473, type: 3}
   m_Name: Patrol
   m_EditorClassIdentifier: 
-  Speed: {fileID: 11400000, guid: dc7994fdf65be49ff8e4032c384d48a4, type: 2}
-  AngularSpeed: {fileID: 11400000, guid: cbd8bfa4f50e341f988fa3e9243e98a4, type: 2}
-  NextPatrol:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000}
-        m_MethodName: RestartPatrol
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  EndPatrol:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000}
-        m_MethodName: RestartPatrol
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  SendCoroutine: {fileID: 0}
-  AddPointList: {fileID: 11400000, guid: 5469c199940c34043b5d7e4e873ae6bb, type: 2}
-  Distance: {fileID: 11400000, guid: 5159358ce66f944fda4373cabd53af1e, type: 2}
-  HoldTime: {fileID: 11400000, guid: 4932e8e03dde745e8a1abe41576ce2d0, type: 2}
+  speed: {fileID: 11400000, guid: dc7994fdf65be49ff8e4032c384d48a4, type: 2}
+  angularSpeed: {fileID: 11400000, guid: cbd8bfa4f50e341f988fa3e9243e98a4, type: 2}
+  sendCoroutine: {fileID: 0}
+  addPointList: {fileID: 11400000, guid: 5469c199940c34043b5d7e4e873ae6bb, type: 2}
+  distance: {fileID: 11400000, guid: 9988943a4a46b4847a9263d31499738b, type: 2}
+  patrolPoints: []

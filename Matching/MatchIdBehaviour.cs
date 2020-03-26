@@ -13,23 +13,30 @@ public class MatchIdBehaviour : IdBehaviour
       public UnityEvent workEvent;
    }
 
-   public List<possibleMatch> nameIdList;
+   public List<possibleMatch> triggerEnterMatches, triggerExitMatches;
    
    
    private NameId otherIdObj;
    
    private void OnTriggerEnter(Collider other)
    {
-      var nameId = other.GetComponent<IdBehaviour>().nameIdObj;
+      otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
+      CheckId(otherIdObj, triggerEnterMatches);
+   }
+   
+   private void OnTriggerExit(Collider other)
+   {
+      otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
+      CheckId(otherIdObj, triggerExitMatches);
+   }
+
+   private void CheckId(NameId nameId, List<possibleMatch> possibleMatches)
+   {
+      
       if (nameId == null) return;
       
       otherIdObj = nameId;
-      CheckId();
-   }
-
-   private void CheckId()
-   {
-      foreach (var obj in nameIdList)
+      foreach (var obj in possibleMatches)
       {
          if (otherIdObj == obj.nameIdObj)
          {
@@ -38,4 +45,3 @@ public class MatchIdBehaviour : IdBehaviour
       }
    }
 }
-

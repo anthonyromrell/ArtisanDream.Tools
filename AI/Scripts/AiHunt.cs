@@ -9,9 +9,9 @@ using UnityEngine.Serialization;
 
 public class AiHunt : AiBase
 {
-	[FormerlySerializedAs("DestinationAction")] public GameAction destinationAction;
-
-	[FormerlySerializedAs("Destination")] public Transform destination;
+	public GameAction destinationAction;
+	[HideInInspector]
+	public Transform destination;
 
 	protected virtual void OnEnable()
 	{
@@ -22,15 +22,10 @@ public class AiHunt : AiBase
 	{
 		destination = obj as Transform;
 	}
+	
 
-	public override IEnumerator Nav(NavMeshAgent ai)
+	public override void RunAgent(NavMeshAgent agent)
 	{
-		while (true)
-		{
-			yield return new WaitForFixedUpdate();
-			ai.speed = speed.value;
-			ai.angularSpeed = angularSpeed.value;
-			ai.destination = (destination != null ? destination.position : ai.transform.position);
-		}
+		agent.destination = (destination != null ? destination.position : agent.transform.position);
 	}
 }
