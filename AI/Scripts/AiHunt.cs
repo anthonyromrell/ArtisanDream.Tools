@@ -18,12 +18,11 @@ public class AiHunt : AiBase
 		if (destinationAction != null) destinationAction.raise += Raise;
 	}
 
-	protected void Raise(object obj)
+	private void Raise(object obj)
 	{
 		destination = obj as Transform;
 	}
 	
-
 	public override void RunAgent(NavMeshAgent agent)
 	{
 		agent.destination = (destination != null ? destination.position : agent.transform.position);

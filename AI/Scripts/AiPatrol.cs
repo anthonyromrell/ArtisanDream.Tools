@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class AiPatrol : AiBase
 {
     public GameAction addPointList;
-    [HideInInspector] public List<Vector3Data> patrolPoints;
+    [HideInInspector]
+    public List<Vector3Data> patrolPoints;
     private int i;
     
     private void OnEnable()

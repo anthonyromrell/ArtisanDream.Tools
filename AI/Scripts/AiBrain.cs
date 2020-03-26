@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class AiBrain : ScriptableObject
 {
 	public AiBase aiBaseObj;
-
+	public NavMeshAgent agentObj;
 	public void ChangeBase(AiBase obj)
 	{
 		aiBaseObj = obj;

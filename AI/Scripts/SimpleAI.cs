@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 public class SimpleAi : MonoBehaviour
 {
-	[FormerlySerializedAs("Destination")] public Transform destination;
+	public Transform destination;
 	private NavMeshAgent agent;
+	private WaitForFixedUpdate waitObj = new WaitForFixedUpdate();
 
 	private IEnumerator Start ()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		while (true)
 		{
-			yield return new WaitForFixedUpdate();
+			yield return waitObj;
 			agent.destination = destination.position;
 		}
 	}
