@@ -16,6 +16,11 @@ public class AiBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    public void Stop(bool stopped)
+    {
+        agent.isStopped = stopped;
+    }
+    
     private IEnumerator Start()
     {
         canRun = true;
