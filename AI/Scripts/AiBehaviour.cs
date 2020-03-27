@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 
@@ -6,15 +7,22 @@ using UnityEngine.AI;
 public class AiBehaviour : MonoBehaviour
 {
     public AiBrain aiBrainObj;
+    public bool canRun = true;
     private NavMeshAgent agent;
+    private WaitForFixedUpdate waitFor = new WaitForFixedUpdate();
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-
     }
 
-    private void Update()
+    private IEnumerator Start()
     {
-        aiBrainObj.Navigate(agent);
+        canRun = true;
+        while (canRun)
+        {
+            aiBrainObj.Navigate(agent);
+            yield return waitFor;
+        }
     }
 }
