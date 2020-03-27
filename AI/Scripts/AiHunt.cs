@@ -11,10 +11,10 @@ public class AiHunt : AiBase
 
 	protected virtual void OnEnable()
 	{
-		if (destinationAction != null) destinationAction.raise += Raise;
+		if (destinationAction != null) destinationAction.raise += OnRaise;
 	}
 
-	private void Raise(object obj)
+	private void OnRaise(object obj)
 	{
 		destination = obj as Transform;
 	}

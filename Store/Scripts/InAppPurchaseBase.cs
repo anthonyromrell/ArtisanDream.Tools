@@ -29,6 +29,6 @@ public class InAppPurchaseBase : ScriptableObject, ICanBePurchased
 
     public void RaiseHandler(object obj)
     {
-        throw new System.NotImplementedException();
+       
     }
 }
