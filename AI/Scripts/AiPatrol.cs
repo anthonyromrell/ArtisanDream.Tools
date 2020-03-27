@@ -6,8 +6,7 @@ using UnityEngine.AI;
 public class AiPatrol : AiBase
 {
     public GameAction addPointList;
-    [HideInInspector]
-    public List<Vector3Data> patrolPoints;
+    [HideInInspector] public List<Vector3Data> patrolPoints;
     private int i;
     
     private void OnEnable()
@@ -29,18 +28,10 @@ public class AiPatrol : AiBase
     
     public override void RunAgent(NavMeshAgent agent)
     {
-        agent.destination = patrolPoints[i].value;
-    }
-
-    public void ChangePoint()
-    {
-        if (i < patrolPoints.Count - 1)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            i++;
-        }
-        else
-        {
-            i = 0;
+            agent.destination = patrolPoints[i].value;
+            i = (i + 1) % patrolPoints.Count;
         }
     }
 }

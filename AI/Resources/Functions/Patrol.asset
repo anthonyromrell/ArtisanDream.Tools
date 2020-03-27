@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc79c88228e340ae94f9104e7ad7473, type: 3}
   m_Name: Patrol
   m_EditorClassIdentifier: 
-  speed: {fileID: 11400000, guid: dc7994fdf65be49ff8e4032c384d48a4, type: 2}
-  angularSpeed: {fileID: 11400000, guid: cbd8bfa4f50e341f988fa3e9243e98a4, type: 2}
-  sendCoroutine: {fileID: 0}
+  speed: 3.5
+  angularSpeed: 120
   addPointList: {fileID: 11400000, guid: 5469c199940c34043b5d7e4e873ae6bb, type: 2}
-  distance: {fileID: 11400000, guid: 9988943a4a46b4847a9263d31499738b, type: 2}
   patrolPoints: []
+  patrolPointsHold: []
