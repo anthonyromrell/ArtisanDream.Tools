@@ -21,6 +21,10 @@ public class AiBehaviour : MonoBehaviour
         agent.isStopped = stopped;
     }
     
+    public void Restart()
+    {
+        StartCoroutine(Start());
+    }
     private IEnumerator Start()
     {
         canRun = true;
