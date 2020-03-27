@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
+
 
 [CreateAssetMenu(fileName = "Hunt", menuName = "Ai/Function/Hunt")]
 
 public class AiHunt : AiBase
 {
 	public GameAction destinationAction;
-	[HideInInspector]
-	public Transform destination;
+	[HideInInspector] public Transform destination;
 
 	protected virtual void OnEnable()
 	{
