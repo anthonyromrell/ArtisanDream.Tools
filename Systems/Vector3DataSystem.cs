@@ -44,7 +44,6 @@ public class Vector3DataSystem : ScriptableObject
     {
         RandomizeNum();
         var obj = ReturnCurrentVector3();
-        //MoveToHoldList();
         return obj;
     }
 

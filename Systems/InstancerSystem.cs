@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "System/Generator")]
-public class GeneratorSystem : ScriptableObject
+public class InstancerSystem : ScriptableObject
 {
     public Vector3DataSystem vector3DataSystem;
     public GameObject prefab;
-
-    public void Generate()
+    
+    public void InstanceToRandomStartPoint()
     {
         Instantiate(prefab, vector3DataSystem.ReturnRandomVector3(), Quaternion.identity);
     }
