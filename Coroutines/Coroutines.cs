@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Coroutines : CoroutinesBase
+public class Coroutines : MonoBehaviour
 {
     
     
