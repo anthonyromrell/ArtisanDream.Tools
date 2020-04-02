@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Coroutines/Base")]
 public class Coroutines : CoroutinesBase
 {
     

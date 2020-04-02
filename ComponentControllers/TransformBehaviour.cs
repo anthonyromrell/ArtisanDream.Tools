@@ -4,8 +4,13 @@ public class TransformBehaviour : MonoBehaviour
 {
     public GameAction sendTransformAction;
 
-    public void SentTransform()
+    public void SendTransform()
     {
         sendTransformAction.raise(transform);
+    }
+
+    public void GetPosition(Vector3Data obj)
+    {
+        transform.position = obj.value;
     }
 }

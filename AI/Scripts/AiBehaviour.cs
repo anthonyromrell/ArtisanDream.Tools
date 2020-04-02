@@ -7,10 +7,10 @@ using UnityEngine.AI;
 public class AiBehaviour : MonoBehaviour
 {
     public AiBrain aiBrainObj;
-    public bool canRun = true;
     private NavMeshAgent agent;
-    private WaitForFixedUpdate waitFor = new WaitForFixedUpdate();
-
+    private WaitForFixedUpdate waitObj = new WaitForFixedUpdate();
+    public bool CanRun { get; set; } = true;
+    
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,11 +27,11 @@ public class AiBehaviour : MonoBehaviour
     }
     private IEnumerator Start()
     {
-        canRun = true;
-        while (canRun)
+        CanRun = true;
+        while (CanRun)
         {
             aiBrainObj.Navigate(agent);
-            yield return waitFor;
+            yield return waitObj;
         }
     }
 }
