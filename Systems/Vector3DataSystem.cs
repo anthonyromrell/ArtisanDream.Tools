@@ -7,7 +7,6 @@ public class Vector3DataSystem : ScriptableObject
     public Vector3DataList holdList;
     public int currentInUseNum;
 
-    
     public void RandomizeNum()
     {
         var newNum = Random.Range(0, currentList.vector3Datas.Count - 1);
@@ -27,12 +26,24 @@ public class Vector3DataSystem : ScriptableObject
         currentList.vector3Datas.Add(currentObj);
         holdList.vector3Datas.RemoveAt(currentInUseNum);
     }
+    
+    public void MoveToCurrentList(Vector3Data currentObj)
+    {
+        currentList.vector3Datas.Add(currentObj);
+    }
 
     public void MoveToHoldList()
     {
         var currentObj = currentList.vector3Datas[currentInUseNum];
         holdList.vector3Datas.Add(currentObj);
         currentList.vector3Datas.RemoveAt(currentInUseNum);
+    }
+    
+    public Vector3Data MoveFromCurrentList()
+    {
+        var currentObj = currentList.vector3Datas[currentInUseNum];
+        currentList.vector3Datas.RemoveAt(currentInUseNum);
+        return currentObj;
     }
 
     public Vector3 ReturnCurrentVector3()

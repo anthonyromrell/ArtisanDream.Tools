@@ -10,4 +10,11 @@ public class InstancerSystem : ScriptableObject
     {
         Instantiate(prefab, vector3DataSystem.ReturnRandomVector3(), Quaternion.identity);
     }
+    
+    public void InstanceToRandomStartPointWithStartPointData()
+    {
+        if (vector3DataSystem.currentList.vector3Datas.Count <= 0) return;
+        var newPrefab = Instantiate(prefab, vector3DataSystem.ReturnRandomVector3(), Quaternion.identity);
+        newPrefab.GetComponent<Vector3DataBehaviour>().vector3DataObj = vector3DataSystem.MoveFromCurrentList();
+    }
 }
