@@ -3,28 +3,27 @@
 [CreateAssetMenu(menuName = "System/Vector3DataSystem")]
 public class Vector3DataSystem : ScriptableObject
 {
-    public Vector3DataList currentList;
-    public Vector3DataList holdList;
-    public int currentInUseNum;
+    public Vector3DataCollection currentList;
+    public Vector3DataCollection holdList;
+    public int index;
 
     public void RandomizeNum()
     {
-        var newNum = Random.Range(0, currentList.vector3Datas.Count - 1);
-        currentInUseNum = newNum;
+        index = Random.Range(0, currentList.vector3Datas.Count - 1);
     }
 
-    public void MoveListItem(Vector3DataList listA, Vector3DataList listB)
+    public void MoveListItem(Vector3DataCollection listA, Vector3DataCollection listB)
     {
-        var currentObj = listA.vector3Datas[currentInUseNum];
+        var currentObj = listA.vector3Datas[index];
         listB.vector3Datas.Add(currentObj);
-        listA.vector3Datas.RemoveAt(currentInUseNum);
+        listA.vector3Datas.RemoveAt(index);
     }
     
     public void MoveToCurrentList()
     {
-        var currentObj = currentList.vector3Datas[currentInUseNum];
+        var currentObj = currentList.vector3Datas[index];
         currentList.vector3Datas.Add(currentObj);
-        holdList.vector3Datas.RemoveAt(currentInUseNum);
+        holdList.vector3Datas.RemoveAt(index);
     }
     
     public void MoveToCurrentList(Vector3Data currentObj)
@@ -34,21 +33,21 @@ public class Vector3DataSystem : ScriptableObject
 
     public void MoveToHoldList()
     {
-        var currentObj = currentList.vector3Datas[currentInUseNum];
+        var currentObj = currentList.vector3Datas[index];
         holdList.vector3Datas.Add(currentObj);
-        currentList.vector3Datas.RemoveAt(currentInUseNum);
+        currentList.vector3Datas.RemoveAt(index);
     }
     
     public Vector3Data MoveFromCurrentList()
     {
-        var currentObj = currentList.vector3Datas[currentInUseNum];
-        currentList.vector3Datas.RemoveAt(currentInUseNum);
+        var currentObj = currentList.vector3Datas[index];
+        currentList.vector3Datas.RemoveAt(index);
         return currentObj;
     }
 
     public Vector3 ReturnCurrentVector3()
     {
-        return currentList.vector3Datas[currentInUseNum].value;
+        return currentList.vector3Datas[index].value;
     }
 
     public Vector3 ReturnRandomVector3()

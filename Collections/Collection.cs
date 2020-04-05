@@ -1,53 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Collections/Collection")]
-public class Collection : ScriptableObject
+public class Collection : CollectionBase
 {
-  public List<Collectable> collectablesList;
-  public int currentCollectableNum;
-  
   public void AddToCollection(Collectable collectableObj)
   {
-    if (collectablesList.Contains(collectableObj))
+    if (collectibles.Contains(collectableObj))
       return;
-    collectablesList.Add(collectableObj);
+    collectibles.Add(collectableObj);
   }
 
   public void RemoveFromCollection(Collectable collectableObj)
   {
-    for (var index = collectablesList.Count - 1; index >= 0; index--)
+    for (var index = collectibles.Count - 1; index >= 0; index--)
     {
-      var obj = collectablesList[index];
+      var obj = collectibles[index];
       if (obj == collectableObj)
       {
-        collectablesList.Remove(collectableObj);
+        collectibles.Remove(collectableObj);
       }
     }
   }
 
   public void ClearCollection()
   {
-    collectablesList.Clear();
+    collectibles.Clear();
   }
 
   public void UseCurrentItem()
   {
-    if (collectablesList.Capacity > 0)
+    if (collectibles.Capacity > 0)
     {
-      collectablesList[currentCollectableNum].Use();
+      collectibles[index].Use();
     }
   }
 
   public void IncrementCurrentNum()
   {
-    if (currentCollectableNum < collectablesList.Count -1)
+    if (index < collectibles.Count -1)
     {
-      currentCollectableNum++;
+      index++;
     }
     else
     {
-      currentCollectableNum = 0;
+      index = 0;
     }
   }
 }
