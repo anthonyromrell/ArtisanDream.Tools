@@ -28,14 +28,12 @@ public class MatchIdBehaviour : IdBehaviour
    {
       otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
       StartCoroutine(CheckId(otherIdObj, triggerEnterMatches));
-      //CheckId(otherIdObj, triggerEnterMatches);
    }
    
    private void OnTriggerExit(Collider other)
    {
       otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
       StartCoroutine(CheckId(otherIdObj, triggerExitMatches));
-      //CheckId(otherIdObj, );
    }
 
    private IEnumerator CheckId(NameId nameId, List<possibleMatch> possibleMatches)
