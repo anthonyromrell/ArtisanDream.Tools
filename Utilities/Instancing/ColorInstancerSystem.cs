@@ -11,7 +11,13 @@ public class ColorInstancerSystem : InstancerSystemBase
     }
     public override void ConfigureInstance(GameObject instance)
     {
+        var data = collection.ReturnColorData();
         var spriteRenderer = instance.GetComponent<SpriteRenderer>();
-        spriteRenderer.color = collection.ReturnColorData().value;
+        spriteRenderer.color = data.value;
+
+        var id = (NameId) data;
+        var idComponent = instance.GetComponent<IdBehaviour>();
+        idComponent.nameIdObj = id;
+        instance.name += id.name;
     }
 }
