@@ -4,9 +4,13 @@
 public class ColorInstancerSystem : InstancerSystemBase
 {
     public ColorDataCollection collection;
-    public override void ConfigureInstance(GameObject instance)
+
+    public void RadomizeCollectionIndex()
     {
         collection.RandomizeIndex();
+    }
+    public override void ConfigureInstance(GameObject instance)
+    {
         var spriteRenderer = instance.GetComponent<SpriteRenderer>();
         spriteRenderer.color = collection.ReturnColorData().value;
     }
