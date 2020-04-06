@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Patterns/Mover")]
-public class CharacterMoveJump : CharacterPattern
+[CreateAssetMenu(menuName = "Character Patterns/SideScroller")]
+public class SideScrollerMoveJump : CharacterPattern
 {
     public override void Call(CharacterController controller)
     {

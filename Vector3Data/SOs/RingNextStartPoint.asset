@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9613951031fcc4f5e8490cfd3fc2ff76, type: 3}
-  m_Name: CharacterMove
+  m_Script: {fileID: 11500000, guid: ec7cee51729734507b9b3405c3d7dadd, type: 3}
+  m_Name: RingNextStartPoint
   m_EditorClassIdentifier: 
-  hAxis: Horizontal
-  vAxis: Vertical
-  speed: 10
-  gravity: 3
-  jumpForce: 30
-  jumpCount: 0
-  jumpCountMax: 2
+  currentList: {fileID: 11400000, guid: 7403088417bca4ae19d09ff7471d87e4, type: 2}
+  holdList: {fileID: 11400000, guid: 75b2f73e828294d6c9223e8fcd3ad141, type: 2}
+  index: 0
