@@ -31,11 +31,17 @@ public class ColorDataCollection : InstanceConfigBase, ICollectList
         if (idComponent == null) return;
         idComponent.nameIdObj = id;
         instance.name += id.name;
-        
-        var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
-        if (spriteRenderer != null) spriteRenderer.color = colorDataList[Index].value;
 
-        var material = instance.GetComponent<Renderer>().material;
-        if (material != null) material.color = colorDataList[Index].value;
+        // if (instance.GetComponentInChildren<SpriteRenderer>() != null)
+        // {
+        var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.color = colorDataList[Index].value;
+        //}
+
+        // if (instance.GetComponent<Renderer>().material != null)
+        // {
+        //     var material = instance.GetComponent<Renderer>().material;
+        //     material.color = colorDataList[Index].value;
+        // }
     }
 }

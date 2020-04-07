@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 public class InstancingBehaviour : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class InstancingBehaviour : MonoBehaviour
     
     public void InstanceFromCollection(GameObject prefab)
     {
+        //collectList.CollectionList.ForEach(print);
         collectList.Index = 0;
         while (collectList.Index < collectList.CollectionList.Count)
         {
