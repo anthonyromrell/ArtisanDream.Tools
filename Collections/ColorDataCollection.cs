@@ -26,11 +26,16 @@ public class ColorDataCollection : InstanceConfigBase, ICollectList
 
     public override void ConfigureInstance(GameObject instance)
     {
-        var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.color = colorDataList[Index].value;
         var id = (NameId) colorDataList[Index];
         var idComponent = instance.GetComponent<IdBehaviour>();
+        if (idComponent == null) return;
         idComponent.nameIdObj = id;
         instance.name += id.name;
+        
+        var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null) spriteRenderer.color = colorDataList[Index].value;
+
+        var material = instance.GetComponent<Renderer>().material;
+        if (material != null) material.color = colorDataList[Index].value;
     }
 }
