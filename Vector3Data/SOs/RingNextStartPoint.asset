@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7cee51729734507b9b3405c3d7dadd, type: 3}
   m_Name: RingNextStartPoint
   m_EditorClassIdentifier: 
+  ReturnAction: {fileID: 0}
   currentList: {fileID: 11400000, guid: 7403088417bca4ae19d09ff7471d87e4, type: 2}
   holdList: {fileID: 11400000, guid: 75b2f73e828294d6c9223e8fcd3ad141, type: 2}
   index: 0

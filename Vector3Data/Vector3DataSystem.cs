@@ -1,11 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "System/Vector3DataSystem")]
 public class Vector3DataSystem : ScriptableObject
 {
+   // public GameAction ReturnAction;
     public Vector3DataCollection currentList;
     public Vector3DataCollection holdList;
     public int index;
+
+    // private void OnEnable()
+    // {
+    //     if (ReturnAction != null) ReturnAction.raise += AddBack;
+    // }
 
     public void RandomizeNum()
     {
@@ -17,6 +25,12 @@ public class Vector3DataSystem : ScriptableObject
         var currentObj = listA.vector3Datas[index];
         listB.vector3Datas.Add(currentObj);
         listA.vector3Datas.RemoveAt(index);
+    }
+
+    public void AddBack(object obj)
+    {
+        var vector3Obj = (Vector3Data) obj;
+        currentList.vector3Datas.Add(vector3Obj);
     }
     
     public void MoveToCurrentList()
@@ -55,6 +69,11 @@ public class Vector3DataSystem : ScriptableObject
         RandomizeNum();
         var obj = ReturnCurrentVector3();
         return obj;
+    }
+
+    private void OnEnable()
+    {
+        ClearAll();
     }
 
     public void ClearAll()

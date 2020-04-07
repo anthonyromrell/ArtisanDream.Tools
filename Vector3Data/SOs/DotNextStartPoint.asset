@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7cee51729734507b9b3405c3d7dadd, type: 3}
   m_Name: DotNextStartPoint
   m_EditorClassIdentifier: 
+  ReturnAction: {fileID: 11400000, guid: 1c9e8991898354855b058099e1bf62ec, type: 2}
   currentList: {fileID: 11400000, guid: dfeb423226282429cbe239e1d6a0a572, type: 2}
   holdList: {fileID: 11400000, guid: dfc68ada6946a42bbaffeea8dde3a7ae, type: 2}
-  index: 0
+  index: 6
