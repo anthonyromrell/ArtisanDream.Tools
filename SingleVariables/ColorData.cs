@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Single Variables/ColorData")]
-public class ColorData : Collectable
+public class ColorData : NameId
 {
 	public Color value = Color.blue;
 
-	public void ChangeSpriteRenderColor(SpriteRenderer spriteRendererOjb)
+	public void ChangeColor(SpriteRenderer spriteRenderer)
 	{
-		spriteRendererOjb.color = value;
+		spriteRenderer.color = value;
 	}
-
-	public override void Use()
+	
+	public void ChangeColor(Material material)
 	{
-		
+		material.color = value;
+	}
+	
+	public void ChangeColor(Image image)
+	{
+		image.color = value;
 	}
 }

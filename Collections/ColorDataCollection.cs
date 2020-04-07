@@ -1,26 +1,36 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Collections/ColorDataList")]
-public class ColorDataCollection : ScriptableObject
+public class ColorDataCollection : InstanceConfigBase, ICollectList
 {
-    public List<ColorData> ColorDatas;
-    public int index;
+    public List<ColorData> colorDataList;
+    public int Index { get; set; }
+    public List<Object> CollectionList { get; set; }
+
+    private void OnEnable()
+    {
+        CollectionList.Clear();
+        foreach (var obj in colorDataList)
+        {
+            CollectionList.Add(obj);
+        }
+    }
 
     public void RandomizeIndex()
     {
-        index = Random.Range(0, ColorDatas.Count);
-        Debug.Log(index);
+        Index = Random.Range(0, colorDataList.Count);
     }
 
-    public ColorData ReturnColorData()
+    public override void ConfigureInstance(GameObject instance)
     {
-        return ColorDatas[index];
-    }
-    
-    public ColorData ReturnRandomColorData()
-    {
-        RandomizeIndex();
-        return ColorDatas[index];
+        var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.color = colorDataList[Index].value;
+        var id = (NameId) colorDataList[Index];
+        var idComponent = instance.GetComponent<IdBehaviour>();
+        idComponent.nameIdObj = id;
+        instance.name += id.name;
     }
 }

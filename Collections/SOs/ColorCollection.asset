@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72f7651c6c5045bca2fa1b73c146462, type: 3}
   m_Name: ColorCollection
   m_EditorClassIdentifier: 
-  ColorDatas:
+  colorDataList:
   - {fileID: 11400000, guid: fc8b312913e6844a1a5fb00a2f9a0bac, type: 2}
   - {fileID: 11400000, guid: 42014312bf6e6470c85a583a5325ffa6, type: 2}
   - {fileID: 11400000, guid: d92891703d71d4633ae5d2ba9ea71649, type: 2}
-  index: 0
+  index: 1

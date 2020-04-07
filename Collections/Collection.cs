@@ -5,21 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Collections/Collection")]
 public class Collection : CollectionBase
 {
-  public void AddToCollection(Collectable collectableObj)
+  public void AddToCollection(Collectible collectibleObj)
   {
-    if (collectibles.Contains(collectableObj))
+    if (collectibles.Contains(collectibleObj))
       return;
-    collectibles.Add(collectableObj);
+    collectibles.Add(collectibleObj);
   }
 
-  public void RemoveFromCollection(Collectable collectableObj)
+  public void RemoveFromCollection(Collectible collectibleObj)
   {
     for (var index = collectibles.Count - 1; index >= 0; index--)
     {
       var obj = collectibles[index];
-      if (obj == collectableObj)
+      if (obj == collectibleObj)
       {
-        collectibles.Remove(collectableObj);
+        collectibles.Remove(collectibleObj);
       }
     }
   }

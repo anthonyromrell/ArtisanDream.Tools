@@ -4,7 +4,7 @@ using UnityEngine;
 public class CollectionBase : ScriptableObject
 {
     public int index;
-    public List<Collectable> collectibles;
+    public List<Collectible> collectibles;
 
     public void RandomizeIndex()
     {
