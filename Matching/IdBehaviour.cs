@@ -5,7 +5,7 @@ public class IdBehaviour : MonoBehaviour
 {
     [CanBeNull] public NameId nameIdObj;
 
-    public void ChangeID(NameId id)
+    public void ChangeId(NameId id)
     {
         nameIdObj = id;
     }
