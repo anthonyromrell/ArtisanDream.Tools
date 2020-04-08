@@ -18,7 +18,7 @@ public class AiPatrol : AiBase
 
     private void OnDisable()
     {
-        patrolPoints.vector3Datas?.Clear();
+        if (patrolPoints != null) patrolPoints.vector3Datas?.Clear();
     }
 
 //    private void AddPatrolPointList(object obj)

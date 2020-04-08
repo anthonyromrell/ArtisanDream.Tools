@@ -5,9 +5,9 @@ using UnityEngine.Serialization;
 
 public class PerpetualCounter : MonoBehaviour
 {
-    [FormerlySerializedAs("OnCount")] public UnityEvent onCount;
-    [FormerlySerializedAs("Seconds")] public FloatData seconds;
-    [FormerlySerializedAs("HoldTime")] public float holdTime = 0.3f;
+    public UnityEvent onCount;
+    public FloatData seconds;
+    public float holdTime = 0.3f;
 
     private IEnumerator OnStart()
     {

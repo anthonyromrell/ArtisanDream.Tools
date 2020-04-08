@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
 public class IntData : NameId
 {
     public int value;
-
+    public UnityEvent decrementEvent, atZeroEvent;
+    
     public void SetValue(int amount)
     {
         value = amount;
@@ -18,7 +19,19 @@ public class IntData : NameId
     
     public void IncrementValue()
     {
-        value ++;
+        value++;
+    }
+
+    public void DecrementToZero()
+    {
+        if (value > 0)
+        {
+            value--;
+            decrementEvent.Invoke();
+        }
+        if (value == 0){
+            atZeroEvent.Invoke();
+        }
     }
 
     public void UpdateValue(Object data)
@@ -31,6 +44,6 @@ public class IntData : NameId
     {
         var newData = data as IntData;
         if (newData == null) return;
-            value = newData.value;
+        value = newData.value;
     }
 }
