@@ -5,13 +5,23 @@ using UnityEngine.Events;
 public class IntData : NameId
 {
     public int value;
+    private int currentValue;
     public UnityEvent decrementEvent, atZeroEvent;
     
     public void SetValue(int amount)
     {
         value = amount;
     }
+    public void UpdateFromCurrentValue()
+    {
+        value = currentValue;
+    }
 
+    public void UpdateCurrentValue()
+    {
+        currentValue = value;
+    }
+    
     public void UpdateValue(int amount)
     {
         value += amount;
