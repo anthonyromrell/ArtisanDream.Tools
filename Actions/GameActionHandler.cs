@@ -33,19 +33,53 @@ public class GameActionHandler : MonoBehaviour
         yield return waitObj;
         LateEvent.Invoke();
     }
-    
+
+    [Serializable]
     public struct Handlers
     {
         public GameAction action;
-        public UnityEvent actionEvent, actionLateEvent;
-        public float holdTime;
-        
-        
+        public UnityEvent actionEvent;
+        //, actionLateEvent;
+
+        private void OnEnable()
+        {
+            action.raiseNoArgs += Respond;
+        }
+
         private void Respond()
         {
             actionEvent.Invoke();
         }
+
+        // private IEnumerator RespondLate(WaitForSeconds waitObj)
+        // {
+        //     yield return waitObj;
+        //     actionLateEvent.Invoke();
+        // }
     }
 
-    [SerializeField] public List<Handlers> hanlderList;
+    public List<Handlers> handlerList;
+}
+
+[Serializable]
+public class Handlerss
+{
+    public GameAction action;
+    public UnityEvent actionEvent, actionLateEvent;
+
+    private void OnEnable()
+    {
+        action.raiseNoArgs += Respond;
+    }
+
+    private void Respond()
+    {
+        actionEvent.Invoke();
+    }
+
+    private IEnumerator RespondLate(WaitForSeconds waitObj)
+    {
+        yield return waitObj;
+        actionLateEvent.Invoke();
+    }
 }
