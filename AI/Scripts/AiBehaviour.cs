@@ -27,10 +27,11 @@ public class AiBehaviour : MonoBehaviour
     
     public void Restart()
     {
-        StartCoroutine(Start());
+        StartCoroutine(OnStart());
     }
-    private IEnumerator Start()
+    private IEnumerator OnStart()
     {
+        agent.isStopped = false;
         CanRun = true;
         while (CanRun)
         {

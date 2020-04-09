@@ -28,7 +28,7 @@ public class InstancerSystemBase : ScriptableObject
     {
         if (vector3DataSystem.currentList.vector3Datas.Count <= 0) return;
         var newInstance = Instantiate(prefab, vector3DataSystem.ReturnRandomVector3(), Quaternion.identity);
-        newInstance.GetComponent<Vector3DataBehaviour>().vector3DataObj = vector3DataSystem.MoveFromCurrentList();
+        newInstance.GetComponent<Vector3DataSystemBehaviour>().vector3DataObj = vector3DataSystem.MoveFromCurrentList();
         instanceConfig.ConfigureInstance(newInstance);
     }
 

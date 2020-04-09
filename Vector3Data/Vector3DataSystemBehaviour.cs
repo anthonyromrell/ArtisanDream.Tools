@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Vector3DataBehaviour : MonoBehaviour
+public class Vector3DataSystemBehaviour : MonoBehaviour
 {
-    public Vector3Data vector3DataObj;
+    public Vector3DataSystem vector3DataSystem;
     public float snapSpeed = 2f;
-    //public GameAction sendBackVector3;
-    public Vector3DataSystem Vector3DataSystem;
+    public Vector3Data vector3DataObj;
     private bool canRun = true;
     private WaitForFixedUpdate waitForFixedUpdateObj;
 
@@ -36,7 +35,6 @@ public class Vector3DataBehaviour : MonoBehaviour
 
     private void OnDestroy()
     {
-        Vector3DataSystem.AddBack(vector3DataObj);
-        //sendBackVector3.raise(vector3DataObj);
+        vector3DataSystem.AddBack(vector3DataObj);
     }
 }
