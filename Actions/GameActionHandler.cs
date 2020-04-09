@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -33,22 +31,4 @@ public class GameActionHandler : MonoBehaviour
         yield return waitObj;
         LateEvent.Invoke();
     }
-    [Serializable]
-    public struct Handlers
-    {
-        public GameAction action;
-        public UnityEvent actionEvent;
-
-        private void OnEnable()
-        {
-            action.raiseNoArgs += Respond;
-        }
-
-        private void Respond()
-        {
-            actionEvent.Invoke();
-        }
-    }
-
-    public List<Handlers> handlerList;
 }
