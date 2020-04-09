@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hunt2D
   m_EditorClassIdentifier: 
   speed: 3.5
-  angularSpeed: 120
+  angularSpeed: 0
   destinationAction: {fileID: 11400000, guid: 82c28f6542d964faf811ec67b3e4a350, type: 2}
   destination: {fileID: 0}
