@@ -33,13 +33,11 @@ public class GameActionHandler : MonoBehaviour
         yield return waitObj;
         LateEvent.Invoke();
     }
-
     [Serializable]
     public struct Handlers
     {
         public GameAction action;
         public UnityEvent actionEvent;
-        //, actionLateEvent;
 
         private void OnEnable()
         {
@@ -50,36 +48,7 @@ public class GameActionHandler : MonoBehaviour
         {
             actionEvent.Invoke();
         }
-
-        // private IEnumerator RespondLate(WaitForSeconds waitObj)
-        // {
-        //     yield return waitObj;
-        //     actionLateEvent.Invoke();
-        // }
     }
 
     public List<Handlers> handlerList;
-}
-
-[Serializable]
-public class Handlerss
-{
-    public GameAction action;
-    public UnityEvent actionEvent, actionLateEvent;
-
-    private void OnEnable()
-    {
-        action.raiseNoArgs += Respond;
-    }
-
-    private void Respond()
-    {
-        actionEvent.Invoke();
-    }
-
-    private IEnumerator RespondLate(WaitForSeconds waitObj)
-    {
-        yield return waitObj;
-        actionLateEvent.Invoke();
-    }
 }
