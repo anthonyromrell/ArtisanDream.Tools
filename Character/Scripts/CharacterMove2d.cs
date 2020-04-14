@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = ("Character Patterns/Character Move"))]
-public class CharacterMove : CharacterPattern
+public class CharacterMove2d : CharacterPattern
 {
     public override void Call( CharacterController controller)
     {

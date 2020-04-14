@@ -13,11 +13,16 @@ public class AiBehaviour : MonoBehaviour
     private NavMeshAgent agent;
     private WaitForFixedUpdate waitObj = new WaitForFixedUpdate();
     public bool CanRun { get; set; } = true;
-    public UnityEvent triggerEnterEvent, triggerExitEvent;
+    public UnityEvent startEvent, triggerEnterEvent, triggerExitEvent;
     
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        startEvent.Invoke();
     }
 
     public void Stop(bool stopped)

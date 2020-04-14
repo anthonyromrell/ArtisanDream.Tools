@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Character Patterns/Move And Rotate")]
-public class CharacterMoveAndRotate : CharacterPattern
+public class CharacterMoveAndRotate3d : CharacterPattern
 {
 
     public Vector3 rotateDirection;
