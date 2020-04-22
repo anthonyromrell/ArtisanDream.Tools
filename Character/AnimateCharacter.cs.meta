@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6001687ee1184446f949a3e8876b3103
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - jumpAction: {fileID: 11400000, guid: 03d40139d3251420e901b7bb86f95686, type: 2}
+  - moveSpeedAction: {fileID: 11400000, guid: a6295336f4d4940e7a0dcf866bdf40ac, type: 2}
+  - fireWeapon: {fileID: 11400000, guid: b5534fad5407c4836a939334829ebae2, type: 2}
+  executionOrder: 400
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

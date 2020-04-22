@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: adf943a1578854d20aa90cda002f1b35
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - speed: {fileID: 11400000, guid: a6295336f4d4940e7a0dcf866bdf40ac, type: 2}
+  - jump: {fileID: 11400000, guid: 03d40139d3251420e901b7bb86f95686, type: 2}
+  - direction: {fileID: 11400000, guid: 3131b327c9b0d43bc89bc1a059f4ea48, type: 2}
+  - endGame: {fileID: 11400000, guid: ef3757c0264e34a7eaad1c322b06a54f, type: 2}
+  executionOrder: 500
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
