@@ -17,7 +17,7 @@ MonoBehaviour:
   vAxis: Vertical
   speed: 2
   gravity: 5
-  jumpForce: 2
+  jumpForce: 3
   jumpCount: 0
-  jumpCountSet: 0
+  jumpCountMax: 2
   axis: Horizontal
