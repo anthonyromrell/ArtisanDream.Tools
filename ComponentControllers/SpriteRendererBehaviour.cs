@@ -17,4 +17,10 @@ public class SpriteRendererBehaviour : MonoBehaviour
     {
         spriteRendererObj.color = colorDataObj.value;
     }
+
+    public void MatchCameraSize(Camera cam)
+    {
+        var dimensions = cam.rect;
+        spriteRendererObj.size = dimensions.size;
+    }
 }

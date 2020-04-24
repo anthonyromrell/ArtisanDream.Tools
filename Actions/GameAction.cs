@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Actions/Game Action")]
 public class GameAction : ScriptableObject
