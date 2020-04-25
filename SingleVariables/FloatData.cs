@@ -38,19 +38,15 @@ public class FloatData : NameId
     
     public void CheckMinValue(float minValue)
     {
-        if (value < minValue)
-        {
-            minValueEvent.Invoke();
-            value = minValue;
-        }
+        if (!(value < minValue)) return;
+        minValueEvent.Invoke();
+        value = minValue;
     }
 
     public void CheckMaxValue(float maxValue)
     {
-        if (value >= maxValue)
-        {
-            maxValueEvent.Invoke();
-            value = maxValue;
-        }
+        if (!(value >= maxValue)) return;
+        maxValueEvent.Invoke();
+        value = maxValue;
     }
 }
