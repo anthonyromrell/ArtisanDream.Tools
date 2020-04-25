@@ -30,19 +30,24 @@ public class AiBehaviour : MonoBehaviour
         agent.isStopped = stopped;
     }
     
-    public void Restart()
+    // public void Restart()
+    // {
+    //     StartCoroutine(OnStart());
+    // }
+    // private IEnumerator OnStart()
+    // {
+    //     agent.isStopped = false;
+    //     CanRun = true;
+    //     while (CanRun)
+    //     {
+    //         aiBrainObj.Navigate(agent);
+    //         yield return waitObj;
+    //     }
+    // }
+
+    private void FixedUpdate()
     {
-        StartCoroutine(OnStart());
-    }
-    private IEnumerator OnStart()
-    {
-        agent.isStopped = false;
-        CanRun = true;
-        while (CanRun)
-        {
-            aiBrainObj.Navigate(agent);
-            yield return waitObj;
-        }
+        aiBrainObj.Navigate(agent);
     }
 
     private void OnTriggerEnter(Collider other)
