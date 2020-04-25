@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,30 +27,27 @@ public class MatchIdBehaviour : IdBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
+      if (other.GetComponent<IdBehaviour>() == null) return;
       otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
       StartCoroutine(CheckId(otherIdObj, triggerEnterMatches));
+      print(other.name);
    }
    
    private void OnTriggerExit(Collider other)
    {
+      if (other.GetComponent<IdBehaviour>() == null) return;
       otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
       StartCoroutine(CheckId(otherIdObj, triggerExitMatches));
    }
 
    private IEnumerator CheckId(NameId nameId, List<possibleMatch> possibleMatches)
    {
-      
-      if (nameId == null) yield break;
-      
       otherIdObj = nameId;
-      foreach (var obj in possibleMatches)
+      foreach (var obj in possibleMatches.Where(obj => otherIdObj == obj.nameIdObj))
       {
-         if (otherIdObj == obj.nameIdObj)
-         {
-            obj.workEvent.Invoke();
-            yield return waitObj;
-            obj.delayedEvent.Invoke();
-         }
+         obj.workEvent.Invoke();
+         yield return waitObj;
+         obj.delayedEvent.Invoke();
       }
    }
 }

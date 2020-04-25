@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 
-//Made By Anthony Romrell
-
-[ExecuteInEditMode]
-[CreateAssetMenu(menuName = "Single Variables/FloatData")]
+[ExecuteInEditMode, CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : NameId
 {
     public float value;
