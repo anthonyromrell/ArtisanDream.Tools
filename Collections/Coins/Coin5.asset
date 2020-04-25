@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4389066f94a47b09ca6d4bb84f725d, type: 3}
-  m_Name: CurrentPosition
+  m_Script: {fileID: 11500000, guid: 265199a95c9f1404590a3659d5f0970e, type: 3}
+  m_Name: Coin5
   m_EditorClassIdentifier: 
-  value: {x: -3, y: 0.4, z: -2.5}
+  value: 5

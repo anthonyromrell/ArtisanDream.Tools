@@ -3,19 +3,20 @@
 [CreateAssetMenu(menuName = "Character Patterns/SideScroller")]
 public class SideScrollerMoveJump : CharacterPattern
 {
-    public override void Call(CharacterController controller)
+    public string axis = "Horizontal";
+    public override void Move(CharacterController controller)
     {
-        positionDirection.x = Input.GetAxis("Horizontal")*speed;
+        PositionDirection.x = Input.GetAxis(axis)*speed;
         
         if (controller.isGrounded)
         {
-            positionDirection.y = 0;
+            PositionDirection.y = 0;
             jumpCount = 0;
         }
         
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax)
+        if (jumpCount < jumpCountMax && Input.GetButtonDown("Jump"))
         {
-            positionDirection.y = jumpForce;
+            PositionDirection.y = jumpForce;
             jumpCount++;
         }
         

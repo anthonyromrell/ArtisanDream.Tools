@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56a131eb4e1604dfca3b9e36cdc66b9c, type: 3}
-  m_Name: Character Hold
+  m_Script: {fileID: 11500000, guid: 069d1a90f55c04e88a63bbb9918087ad, type: 3}
+  m_Name: Coins
   m_EditorClassIdentifier: 
-  hAxis: Horizontal
-  vAxis: Vertical
-  speed: 10
-  gravity: 3
-  jumpForce: 30
-  jumpCount: 0
-  jumpCountMax: 2
+  coinList: []

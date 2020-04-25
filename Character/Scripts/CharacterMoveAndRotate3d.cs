@@ -7,28 +7,28 @@ public class CharacterMoveAndRotate3d : CharacterPattern
     public Vector3 rotateDirection;
     public float rotateSpeed = 10;
 
-    public override void Call(CharacterController controller)
+    public override void Move(CharacterController controller)
     {
-        positionDirection.Set(0,0,speed*Input.GetAxis(vAxis));
+        PositionDirection.Set(0,0,speed*Input.GetAxis(vAxis));
         rotateDirection.y = rotateSpeed * Input.GetAxis(hAxis);
         controller.transform.Rotate(rotateDirection);
-        positionDirection = controller.transform.TransformDirection(positionDirection);
+        PositionDirection = controller.transform.TransformDirection(PositionDirection);
 
         if (controller.isGrounded)
         {
-            positionDirection.y = 0;
+            PositionDirection.y = 0;
             jumpCount = 0;
         }
         
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax)
+        if (jumpCount < jumpCountMax && Input.GetButtonDown("Jump"))
         {
-            positionDirection.y = jumpForce;
+            PositionDirection.y = jumpForce;
             jumpCount++;
         }
         
-        positionDirection.y -= gravity;
+        PositionDirection.y -= gravity;
         
         
-        controller.Move(positionDirection * Time.deltaTime);
+        controller.Move(PositionDirection * Time.deltaTime);
     }
 }
