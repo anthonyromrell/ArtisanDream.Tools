@@ -20,7 +20,7 @@ public class SideScrollerMoveJump : CharacterPattern
             jumpCount++;
         }
         
-        positionDirection.y -= gravity*Time.deltaTime;
-        controller.Move(positionDirection*Time.deltaTime);
+        PositionDirection.y -= gravity*Time.deltaTime;
+        controller.Move(PositionDirection*Time.deltaTime);
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
@@ -45,10 +42,10 @@ public class CharacterBehaviour : MonoBehaviour
         characterPattern.Move(controller);
     }
 
-    public void Move(InputAction.CallbackContext context)
-    { 
-        characterPattern.inputs = context.ReadValue<Vector2>();
-    }
+    // public void Move(InputAction.CallbackContext context)
+    // { 
+    //     characterPattern.inputs = context.ReadValue<Vector2>();
+    // }
 
     private void OnTriggerEnter(Collider other)
     {
