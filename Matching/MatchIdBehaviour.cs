@@ -9,20 +9,34 @@ public class MatchIdBehaviour : IdBehaviour
 {
   
    [Serializable]
-   public struct possibleMatch
+   public struct PossibleMatch
    {
       public NameId nameIdObj;
-      public UnityEvent workEvent, delayedEvent;
+      public bool canRepeat;
+      public float repeatTime;
+      public UnityEvent workEvent, repeatEvent, delayedEvent;
+      internal WaitForSeconds RepeatWaitObj;
    }
 
    public float holdTime = 0.1f;
    public WaitForSeconds waitObj;
-   public List<possibleMatch> triggerEnterMatches, triggerExitMatches;
+   public List<PossibleMatch> triggerEnterMatches, triggerExitMatches;
    private NameId otherIdObj;
 
    private void Awake()
    {
       waitObj = new WaitForSeconds(holdTime);
+      foreach (var obj in triggerEnterMatches)
+      {
+         var possibleMatch = obj;
+         possibleMatch.RepeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
+      }
+      
+      foreach (var obj in triggerExitMatches)
+      {
+         var possibleMatch = obj;
+         possibleMatch.RepeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
+      }
    }
 
    private void OnTriggerEnter(Collider other)
@@ -39,12 +53,31 @@ public class MatchIdBehaviour : IdBehaviour
       StartCoroutine(CheckId(otherIdObj, triggerExitMatches));
    }
 
-   private IEnumerator CheckId(NameId nameId, List<possibleMatch> possibleMatches)
+   public void StopIdCoroutine()
+   {
+      foreach (var obj in triggerEnterMatches)
+      {
+         var possibleMatch = obj;
+         if (possibleMatch.nameIdObj == otherIdObj)
+         {
+            possibleMatch.canRepeat = false;
+         }
+      }
+   }
+   
+   private IEnumerator CheckId(NameId nameId, List<PossibleMatch> possibleMatches)
    {
       otherIdObj = nameId;
       foreach (var obj in possibleMatches.Where(obj => otherIdObj == obj.nameIdObj))
       {
          obj.workEvent.Invoke();
+
+         while (obj.canRepeat)
+         {
+            yield return obj.RepeatWaitObj;
+            obj.repeatEvent.Invoke();
+         }
+         
          yield return waitObj;
          obj.delayedEvent.Invoke();
       }
