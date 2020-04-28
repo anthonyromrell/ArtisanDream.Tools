@@ -30,7 +30,6 @@ public class MatchIdBehaviour : IdBehaviour
       if (other.GetComponent<IdBehaviour>() == null) return;
       otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
       StartCoroutine(CheckId(otherIdObj, triggerEnterMatches));
-      print(other.name);
    }
    
    private void OnTriggerExit(Collider other)

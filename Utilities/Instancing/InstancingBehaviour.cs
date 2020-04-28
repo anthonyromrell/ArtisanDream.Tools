@@ -10,6 +10,7 @@ public class InstancingBehaviour : MonoBehaviour
     public UnityEvent startEvent;
     private ICollectList collectList;
     public Transform startPoint, targetPoint, prefabObj;
+    public float force = 10f;
     private void Start()
     {
         if (collectionObj != null) collectList = (ICollectList) collectionObj;
@@ -31,6 +32,7 @@ public class InstancingBehaviour : MonoBehaviour
     {
         var newInstance = Instantiate(prefabObj, startPoint.position, Quaternion.identity);
         newInstance.transform.LookAt(targetPoint.position);
+        //newInstance.GetComponent<Rigidbody>().AddForce(newInstance.transform.forward * force); //Set the speed of the projectile by applying force to the rigidbody
     }
     
     public void InstanceAddToSelfCount(GameObject prefab)
