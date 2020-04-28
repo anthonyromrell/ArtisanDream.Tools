@@ -50,7 +50,6 @@ public class CoroutinesBehaviour : MonoBehaviour
         startEvent.Invoke();
         while (CanRun) 
         {
-            print("repeat");
             yield return waitForSecondsObj;
             repeatEvent.Invoke();
         }
