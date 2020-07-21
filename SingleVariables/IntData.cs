@@ -6,7 +6,7 @@ public class IntData : NameId
 {
     public int value;
     private int currentValue;
-    public UnityEvent decrementEvent, atZeroEvent;
+    public UnityEvent decrementEvent, atZeroEvent, compareTrueEvent;
     
     public void SetValue(int amount)
     {
@@ -55,5 +55,21 @@ public class IntData : NameId
         var newData = data as IntData;
         if (newData == null) return;
         value = newData.value;
+    }
+
+    public void CompareValue(IntData data)
+    {
+        if (value == data.value)
+        {
+            compareTrueEvent.Invoke();
+        }
+    }
+    
+    public void CompareValue(int data)
+    {
+        if (value == data)
+        {
+            compareTrueEvent.Invoke();
+        }
     }
 }
