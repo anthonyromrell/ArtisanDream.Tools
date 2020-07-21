@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class GameActionHandler : MonoBehaviour
 {
     public GameAction action;
-    public UnityEvent startEvent, Event, LateEvent;
+    public UnityEvent startEvent, respondEvent, respondLateEvent;
     public float holdTime = 0.1f;
     private WaitForSeconds waitObj;
 
@@ -22,13 +22,13 @@ public class GameActionHandler : MonoBehaviour
 
     private void Respond()
     {
-        Event.Invoke();
+        respondEvent.Invoke();
         StartCoroutine(RespondLate());
     }
 
     private IEnumerator RespondLate()
     {
         yield return waitObj;
-        LateEvent.Invoke();
+        respondLateEvent.Invoke();
     }
 }

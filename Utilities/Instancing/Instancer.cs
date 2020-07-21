@@ -4,18 +4,22 @@
 public class Instancer : ScriptableObject
 {
     private Transform parentObj;
-    
-    public void CreateInstance(GameObject instance)
+    public GameObject prefab;
+    public IntData indexer;
+    public void CreateInstance()
     {
-        Instantiate(instance);
+        Instantiate(prefab);
     }
     public void SetParent(Transform parent)
     {
         parentObj = parent;
     }
-    
     public void InstanceAddToParent(GameObject instance)
     {
         Instantiate(instance, parentObj);
+    }
+    public void InstanceFromV3Collection (Vector3DataCollection collection)
+    {
+        Instantiate(prefab, collection.vector3Datas[indexer.value].value, Quaternion.identity);
     }
 }
