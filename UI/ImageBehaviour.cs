@@ -22,7 +22,6 @@ public class ImageBehaviour : MonoBehaviour
 
     public void UpdateWithFloatData(FloatData dataObj)
     {
-        print("Image");
         imageObj.fillAmount = dataObj.value;
     }
 }
