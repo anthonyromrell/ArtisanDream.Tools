@@ -11,6 +11,7 @@ public class FloatData : NameId
     public void SetValue (float amount)
     {
         value = amount;
+        updateValueEvent.Invoke();
     }
 
     public void UpdateValue(float amount)

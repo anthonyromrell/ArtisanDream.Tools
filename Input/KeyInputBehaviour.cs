@@ -4,12 +4,12 @@ using UnityEngine.Events;
 public class KeyInputBehaviour : MonoBehaviour
 {
     public KeyCode keyCode;
-    public UnityEvent onKeyEvent;
+    public GameAction onKeyEvent;
     void Update()
     {
         if (Input.GetKeyDown(keyCode))
         {
-            onKeyEvent.Invoke();
+            onKeyEvent.RaiseAction();
         }
     }
 }
