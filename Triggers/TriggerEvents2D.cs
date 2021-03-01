@@ -6,19 +6,21 @@ using UnityEngine.Events;
 public class TriggerEvents2D : MonoBehaviour
 {
     public UnityEvent triggerEnterEvent, triggerEnterRepeatEvent, triggerEnterEndEvent, triggerExitEvent;
-    public float delayTime = 0.01f;
-    private WaitForSeconds waitObj;
+    public float delayTimeStart = 0.01f, delayTimeHold = 0.01f, delayTimeEnd = 0.01f;
+    private WaitForSeconds waitObjStart, waitObjHold, waitObjEnd;
     public bool canRepeat;
     public int repeatTimes = 10;
 
     private void Start()
     {
-        waitObj = new WaitForSeconds(delayTime);
+        waitObjStart = new WaitForSeconds(delayTimeStart);
+        waitObjHold = new WaitForSeconds(delayTimeHold);
+        waitObjEnd = new WaitForSeconds(delayTimeEnd);
     }
      
     private IEnumerator OnTriggerEnter2D(Collider2D other)
     {
-        yield return waitObj;
+        yield return waitObjStart;
         triggerEnterEvent.Invoke();
 
         if (canRepeat)
@@ -26,12 +28,13 @@ public class TriggerEvents2D : MonoBehaviour
             var i = 0;
             while (i < repeatTimes)
             {
-                yield return waitObj;
+                yield return waitObjHold;
                 triggerEnterRepeatEvent.Invoke();
                 i++;
             }
         }
 
+        yield return waitObjEnd;
         triggerEnterEndEvent.Invoke();
     }
 

@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CoroutinesBehaviour : MonoBehaviour
 {
     public float seconds = 1f;
-    public UnityEvent startEvent, delayEvent, repeatEvent, endEvent;
+    public UnityEvent startCoroutineEvent, startEvent, delayEvent, repeatEvent, endEvent;
+    public bool canRun;
+    public IntData counterNum;
+    public int maxCounterNum = 3;
+    
     private WaitForSeconds waitForSecondsObj;
     private WaitForFixedUpdate waitForFixedUpdate;
-    public bool canRun;
 
     public float Seconds
     {
@@ -22,10 +26,15 @@ public class CoroutinesBehaviour : MonoBehaviour
         set => canRun = value;
     }
 
-    public void Awake ()
+    private void Awake ()
     {
         waitForSecondsObj = new WaitForSeconds(Seconds);
         waitForFixedUpdate = new WaitForFixedUpdate();
+    }
+
+    private void Start()
+    {
+        startCoroutineEvent.Invoke();
     }
 
     public void StartDelayCoroutine()
@@ -56,11 +65,28 @@ public class CoroutinesBehaviour : MonoBehaviour
         endEvent.Invoke();
     }
     
+    public void StartRepeatCountDownCoroutine()
+    {
+        StartCoroutine(RepeatCountDownCoroutine());
+    }
+
+    private IEnumerator RepeatCountDownCoroutine()
+    {
+        counterNum.value = maxCounterNum;
+        startEvent.Invoke();
+        while (counterNum.value >= 0) 
+        {
+            yield return waitForSecondsObj;
+            repeatEvent.Invoke();
+            counterNum.value--;
+        }
+        endEvent.Invoke();
+    }
+    
     public void StartRepeatFixedCoroutine()
     {
         StartCoroutine(RepeatFixedCoroutine());
     }
-
     
     private IEnumerator RepeatFixedCoroutine()
     {
