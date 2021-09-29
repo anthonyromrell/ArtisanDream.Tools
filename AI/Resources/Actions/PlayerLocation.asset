@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f0e883462926410080ca442a989bd53, type: 3}
-  m_Name: Hunt2D
+  m_Script: {fileID: 11500000, guid: f97b1ffafe804442886d0b5e1a42f095, type: 3}
+  m_Name: PlayerLocation
   m_EditorClassIdentifier: 
-  speed: 3.5
-  angularSpeed: 0
-  destinationAction: {fileID: 11400000, guid: 151334248b6bf43d7a51b6d3ed99ca8c, type: 2}
-  destination: {fileID: 0}

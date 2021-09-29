@@ -6,7 +6,7 @@ public class Vector3DataCollection : ScriptableObject
 {
     public List<Vector3Data> vector3Datas;
     public int index;
-
+    
     public void RandomizeIndex()
     {
         index = Random.Range(0, vector3Datas.Count - 1);

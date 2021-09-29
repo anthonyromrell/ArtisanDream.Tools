@@ -45,6 +45,11 @@ public class AiBehaviour : MonoBehaviour
     //     }
     // }
 
+    public void SwapAIFunction(AiBase aiBaseObj)
+    {
+        aiBrainObj.aiBaseObj = aiBaseObj;
+    }
+
     private void FixedUpdate()
     {
         aiBrainObj.Navigate(agent);
