@@ -7,12 +7,13 @@ public class ImageBehaviour : MonoBehaviour
 {
     private Image imageObj;
     public GameAction updateAction;
-    public UnityEvent updateImageEvent;
+    public UnityEvent startEvent, updateImageEvent;
     
     private void Start()
     {
         imageObj = GetComponent<Image>();
         updateAction.raiseNoArgs += OnUpdate;
+        startEvent.Invoke();
     }
 
     public void OnUpdate()
