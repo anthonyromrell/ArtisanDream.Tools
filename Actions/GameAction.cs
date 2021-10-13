@@ -11,7 +11,7 @@ public class GameAction : ScriptableObject
     
     public void RaiseAction()
     {
-        raiseNoArgs();
+        raiseNoArgs?.Invoke();
     }
 
     public void RaiseAction(Object obj)
