@@ -13,11 +13,16 @@ public class AiBehaviour : MonoBehaviour
     private NavMeshAgent agent;
     private WaitForFixedUpdate waitObj = new WaitForFixedUpdate();
     public bool CanRun { get; set; } = true;
-    public UnityEvent triggerEnterEvent, triggerExitEvent;
+    public UnityEvent startEvent, triggerEnterEvent, triggerExitEvent;
     
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        startEvent.Invoke();
     }
 
     public void Stop(bool stopped)
@@ -25,19 +30,29 @@ public class AiBehaviour : MonoBehaviour
         agent.isStopped = stopped;
     }
     
-    public void Restart()
+    // public void Restart()
+    // {
+    //     StartCoroutine(OnStart());
+    // }
+    // private IEnumerator OnStart()
+    // {
+    //     agent.isStopped = false;
+    //     CanRun = true;
+    //     while (CanRun)
+    //     {
+    //         aiBrainObj.Navigate(agent);
+    //         yield return waitObj;
+    //     }
+    // }
+
+    public void SwapAIFunction(AiBase aiBaseObj)
     {
-        StartCoroutine(OnStart());
+        aiBrainObj.aiBaseObj = aiBaseObj;
     }
-    private IEnumerator OnStart()
+
+    private void FixedUpdate()
     {
-        agent.isStopped = false;
-        CanRun = true;
-        while (CanRun)
-        {
-            aiBrainObj.Navigate(agent);
-            yield return waitObj;
-        }
+        aiBrainObj.Navigate(agent);
     }
 
     private void OnTriggerEnter(Collider other)

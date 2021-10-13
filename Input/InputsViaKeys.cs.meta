@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: adf943a1578854d20aa90cda002f1b35
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - arrowKeyAction: {fileID: 11400000, guid: b14927de08bd64850936c2923bbb2cb6, type: 2}
+  - horizontalAction: {fileID: 11400000, guid: 931e0cbeb9549420fa900688fdce98b1, type: 2}
+  - jumpAction: {fileID: 11400000, guid: 9a449e437de5e4799b690bef03dce948, type: 2}
+  - endGameAction: {fileID: 11400000, guid: cd7c935b292a74f6e8d84318041fa5b2, type: 2}
+  executionOrder: 500
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

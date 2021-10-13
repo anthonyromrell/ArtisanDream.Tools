@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = ("Character Patterns/ Hold"))]
 public class CharacterHold : CharacterPattern
 {
-    public override void Call(CharacterController controller)
+    public override void Move(CharacterController controller)
     {
         
     }

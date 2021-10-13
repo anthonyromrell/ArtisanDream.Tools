@@ -9,6 +9,8 @@ public class InstancingBehaviour : MonoBehaviour
     public Object collectionObj;
     public UnityEvent startEvent;
     private ICollectList collectList;
+    public Transform startPoint, targetPoint, prefabObj;
+    //MUST SPLIT AND REFACTOR
     private void Start()
     {
         if (collectionObj != null) collectList = (ICollectList) collectionObj;
@@ -18,6 +20,18 @@ public class InstancingBehaviour : MonoBehaviour
     public void InstanceAddToSelf(GameObject prefab)
     {
         var newInstance = Instantiate(prefab, transform);
+    }
+    
+    public void InstanceAtThisTransform(GameObject prefab)
+    {
+        var newInstance = Instantiate(prefab, transform.position, Quaternion.identity);
+        newInstance.transform.LookAt(targetPoint.position);
+    }
+
+    public void InstanceUsingVars()
+    {
+        var newInstance = Instantiate(prefabObj, startPoint.position, Quaternion.identity);
+        newInstance.transform.LookAt(targetPoint.position);
     }
     
     public void InstanceAddToSelfCount(GameObject prefab)

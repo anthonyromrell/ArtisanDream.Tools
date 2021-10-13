@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f862c9335c7e143988bf004b710d9c09, type: 3}
+  m_Script: {fileID: 11500000, guid: f9f69600619194773b1196df63f2b828, type: 3}
   m_Name: RingGenerator
   m_EditorClassIdentifier: 
-  vector3DataSystem: {fileID: 11400000, guid: 038ed574411df479285d1eb98cad1b43, type: 2}
-  prefab: {fileID: 6324995793293734930, guid: 78fce6c683a7c4bcb9d801f1123572a3, type: 3}
-  location: {x: 0, y: 0, z: 0}
-  instanceConfig: {fileID: 11400000, guid: 66a36dd448ec9424f8866f8ed8a2a703, type: 2}
+  prefab: {fileID: 7120471282374188061, guid: 7599cfc55e36e4566b7b7f659d855ebf, type: 3}
+  indexer: {fileID: 0}

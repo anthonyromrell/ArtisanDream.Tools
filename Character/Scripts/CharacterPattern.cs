@@ -2,10 +2,11 @@
 
 public abstract class CharacterPattern : ScriptableObject
 {
-    protected Vector3 positionDirection;
+    [HideInInspector] public Vector3 inputs;
+    protected Vector3 PositionDirection;
     public string hAxis = "Horizontal", vAxis = "Vertical";
     public float speed = 10f, gravity = 3f, jumpForce = 30f;
     public int jumpCount = 0, jumpCountMax = 2;
-   
-    public abstract void Call(CharacterController controller);
+    
+    public abstract void Move(CharacterController controller);
 }

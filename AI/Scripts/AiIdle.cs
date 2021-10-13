@@ -7,6 +7,6 @@ public class AiIdle : AiBase {
 
 	public override void RunAgent(NavMeshAgent agent)
 	{
-		
+		agent.destination = agent.transform.position;
 	}
 }

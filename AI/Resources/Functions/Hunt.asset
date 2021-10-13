@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efffa1b3b035e499aa80f0044fa75132, type: 3}
+  m_Script: {fileID: 11500000, guid: 10ea1262935ec4609a988bcb6bc9cee2, type: 3}
   m_Name: Hunt
   m_EditorClassIdentifier: 
-  speed: {fileID: 11400000, guid: 3553cd516c81146b895f1366718a30d0, type: 2}
-  angularSpeed: {fileID: 11400000, guid: 5e44956d099fc41f0802407afb97d316, type: 2}
-  destinationAction: {fileID: 11400000, guid: 09433046f13134509beb0106343d64b1, type: 2}
+  speed: 3.5
+  angularSpeed: 120
+  destinationAction: {fileID: 11400000, guid: 510a970dfbac74db2950d0d92ff66874, type: 2}
   destination: {fileID: 0}

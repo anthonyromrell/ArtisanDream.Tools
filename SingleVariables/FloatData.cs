@@ -1,21 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 
-//Made By Anthony Romrell
-
-[ExecuteInEditMode]
-[CreateAssetMenu(menuName = "Single Variables/FloatData")]
+[ExecuteInEditMode, CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : NameId
 {
     public float value;
-
+    public UnityEvent minValueEvent, maxValueEvent, updateValueEvent;
+    
     public void SetValue (float amount)
     {
         value = amount;
+        updateValueEvent.Invoke();
     }
 
     public void UpdateValue(float amount)
     {
         value += amount;
+        updateValueEvent.Invoke();
     }
 
     public void IncrementValue()
@@ -37,17 +39,15 @@ public class FloatData : NameId
     
     public void CheckMinValue(float minValue)
     {
-        if (value <= minValue)
-        {
-            value = minValue;
-        }
+        if (!(value < minValue)) return;
+        minValueEvent.Invoke();
+        value = minValue;
     }
 
     public void CheckMaxValue(float maxValue)
     {
-        if (value >= maxValue)
-        {
-            value = maxValue;
-        }
+        if (!(value >= maxValue)) return;
+        maxValueEvent.Invoke();
+        value = maxValue;
     }
 }

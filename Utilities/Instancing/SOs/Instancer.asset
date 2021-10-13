@@ -4,10 +4,13 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178c6e2b619b640898ca023f449ab5d4, type: 3}
+  m_Script: {fileID: 11500000, guid: f9f69600619194773b1196df63f2b828, type: 3}
   m_Name: Instancer
   m_EditorClassIdentifier: 
+  prefab: {fileID: 436346052208353680, guid: aea8cc38738dd4e68bc71a22cb9ac4fb, type: 3}
+  indexer: {fileID: 11400000, guid: 7391d916a230c49999eb46442b72a1c6, type: 2}
