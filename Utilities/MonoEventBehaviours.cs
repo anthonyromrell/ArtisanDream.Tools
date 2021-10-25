@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class MonoEventBehaviours : MonoBehaviour
 {
-    public UnityEvent awakeEvent, startEvent, runEvent, disableEvent;
+    public UnityEvent awakeEvent, startEvent, runEvent, disableEvent, destroyEvent, applicationQuitEvent;
 
     private void Awake()
     {
@@ -18,10 +18,20 @@ public class MonoEventBehaviours : MonoBehaviour
     public void Run()
     {
         runEvent.Invoke();
-    }
+    }   
 
     private void OnDisable()
     {
         disableEvent.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        destroyEvent.Invoke();
+    }
+
+    private void OnApplicationQuit()
+    {
+        applicationQuitEvent.Invoke();
     }
 }
