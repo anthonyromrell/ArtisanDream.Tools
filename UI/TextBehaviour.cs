@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Globalization;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -14,13 +15,23 @@ public class TextBehaviour : MonoBehaviour
         awakeEvent.Invoke();
     }
 
-    public void UpdateText (StringList stringListDataObj)
+    public void UpdateText(StringList stringListDataObj)
     {
         textObj.text = stringListDataObj.ReturnCurrentLine();
     }
     
-    public void UpdateText (IntData intDataObj)
+    public void UpdateText(IntData intDataObj)
     {
         textObj.text = intDataObj.value.ToString();
+    }
+
+    public void UpdateText(string obj)
+    {
+        textObj.text = obj;
+    }
+
+    public void UpdateText(FloatData obj)
+    {
+        textObj.text = obj.value.ToString(CultureInfo.CurrentCulture);
     }
 }
