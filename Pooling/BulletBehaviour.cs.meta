@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 19bdfb2d144d04cc4973f6108fd28dd5
+guid: cefa8c4ebdd6749069d50adf78153d8b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - getPoolObjects: {fileID: 11400000, guid: d7f63e4747baa436aa7aaf615ad726eb, type: 2}
-  executionOrder: 600
+  - sendToPool: {fileID: 11400000, guid: d7f63e4747baa436aa7aaf615ad726eb, type: 2}
+  - startPoint: {instanceID: 0}
+  executionOrder: 700
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

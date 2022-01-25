@@ -30,20 +30,6 @@ public class AiBehaviour : MonoBehaviour
         agent.isStopped = stopped;
     }
     
-    // public void Restart()
-    // {
-    //     StartCoroutine(OnStart());
-    // }
-    // private IEnumerator OnStart()
-    // {
-    //     agent.isStopped = false;
-    //     CanRun = true;
-    //     while (CanRun)
-    //     {
-    //         aiBrainObj.Navigate(agent);
-    //         yield return waitObj;
-    //     }
-    // }
 
     public void SwapAIFunction(AiBase aiBaseObj)
     {

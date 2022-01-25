@@ -1,30 +1,37 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolingBehaviour : MonoBehaviour
 {
-    //public static UnityAction<Vector3> ActivateEnemyEvent; //invokes the delegate
-    private bool canSpawn;
-    public float randomSpawningTime = 10; 
-    public PoolControl poolControlObj;
-
-    private void OnTriggerEnter(Collider other)
+    public GameAction getPoolObjects;
+    public KeyCode keyCodeOption;
+    
+    private List<GameObject> objList;
+    private int i;
+    
+    private void Awake()
     {
-        canSpawn = true;
-        StartCoroutine(ActivatePooling()); 
+        objList = new List<GameObject>();
+        getPoolObjects.raise += Raise;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void Raise(object obj)
     {
-        canSpawn = false;
+        var newObj = obj as GameObject;
+        objList.Add(newObj);
     }
 
-    private IEnumerator ActivatePooling()
+    private void OnDisable()
     {
-        while (canSpawn)
-        {
-            yield return new WaitForSeconds(Random.Range(0, randomSpawningTime));
-            poolControlObj.ActivateObj(transform.position);
-        }
+        objList.Clear();
+    }
+
+    void Update()
+    {
+        if (!Input.GetKeyDown(keyCodeOption)) return;
+        objList[i].SetActive(true);
+        i++;
+        if (i >= objList.Count)
+            i = 0;
     }
 }

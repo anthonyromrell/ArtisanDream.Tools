@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9f9f08598a14e7780f3bf2873b98bb, type: 3}
-  m_Name: Run
+  m_Script: {fileID: 11500000, guid: f97b1ffafe804442886d0b5e1a42f095, type: 3}
+  m_Name: OnAnimCall
   m_EditorClassIdentifier: 

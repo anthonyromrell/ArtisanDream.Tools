@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[ExecuteInEditMode, CreateAssetMenu(menuName = "Single Variables/FloatData")]
+[ExecuteInEditMode]
+[CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : NameId
 {
     public float value;
@@ -27,14 +28,12 @@ public class FloatData : NameId
     
     public void UpdateValue(FloatData data)
     {
-        var newData = data as FloatData;
-        if (newData != null) value += newData.value;
+        if (data != null) value += data.value;
     }
 
     public void SetValue(FloatData data)
     {
-        var newData = data as FloatData;
-        if (newData != null) value = newData.value;
+        if (data != null) value = data.value;
     }
     
     public void CheckMinValue(float minValue)
