@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PoolingBehaviour : MonoBehaviour
+public class AutoPoolingBehaviour : MonoBehaviour
 {
     //public static UnityAction<Vector3> ActivateEnemyEvent; //invokes the delegate
     private bool canSpawn;
