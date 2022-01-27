@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class AttachToParent : MonoBehaviour
 {
-    public NameId parentId;
+    public NameID parentId;
     private void OnTriggerEnter(Collider other)
     {
         var nameIdObj = other.GetComponent<IdBehaviour>().nameIdObj;

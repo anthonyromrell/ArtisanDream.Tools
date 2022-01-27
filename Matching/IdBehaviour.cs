@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class IdBehaviour : MonoBehaviour
 {
-    [CanBeNull] public NameId nameIdObj;
+    [CanBeNull] public NameID nameIdObj;
 
-    public void ChangeId(NameId id)
+    public void ChangeId(NameID id)
     {
         nameIdObj = id;
     }

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 [ExecuteInEditMode]
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
-public class FloatData : NameId
+public class FloatData : NameID
 {
     public float value;
     public UnityEvent minValueEvent, maxValueEvent, updateValueEvent;

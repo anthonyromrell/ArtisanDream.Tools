@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class SimpleMatchID : IdBehaviour
 {
-    protected NameId OtherIdObj;
+    protected NameID OtherIdObj;
     public UnityEvent matchEvent, noMatchEvent;
     public virtual void OnTriggerEnter(Collider other)
     {

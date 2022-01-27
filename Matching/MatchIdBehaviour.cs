@@ -11,7 +11,7 @@ public class MatchIdBehaviour : IdBehaviour
    [Serializable]
    public struct PossibleMatch
    {
-      public NameId nameIdObj;
+      public NameID nameIdObj;
       public bool canRepeat;
       public float repeatTime;
       public UnityEvent workEvent, repeatEvent, delayedEvent;
@@ -21,7 +21,7 @@ public class MatchIdBehaviour : IdBehaviour
    public float holdTime = 0.1f;
    public WaitForSeconds waitObj;
    public List<PossibleMatch> triggerEnterMatches, triggerExitMatches;
-   private NameId otherIdObj;
+   private NameID otherIdObj;
 
    private void Awake()
    {
@@ -65,7 +65,7 @@ public class MatchIdBehaviour : IdBehaviour
       }
    }
    
-   private IEnumerator CheckId(NameId nameId, List<PossibleMatch> possibleMatches)
+   private IEnumerator CheckId(NameID nameId, List<PossibleMatch> possibleMatches)
    {
       otherIdObj = nameId;
       foreach (var obj in possibleMatches.Where(obj => otherIdObj == obj.nameIdObj))

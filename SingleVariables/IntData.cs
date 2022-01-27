@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
-public class IntData : NameId
+public class IntData : NameID
 {
     public int value;
     private int currentValue;
