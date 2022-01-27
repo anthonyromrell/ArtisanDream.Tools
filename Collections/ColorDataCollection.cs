@@ -27,7 +27,7 @@ public class ColorDataCollection : InstanceConfigBase, ICollectList
 
     public override void ConfigureInstance(GameObject instance)
     {
-        var id = (NameId) colorDataList[Index];
+        var id = (NameID) colorDataList[Index];
         var idComponent = instance.GetComponentInChildren<IdBehaviour>();
         if (idComponent == null) return;
         idComponent.nameIdObj = id;

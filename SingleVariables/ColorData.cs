@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Single Variables/ColorData")]
-public class ColorData : NameId
+public class ColorData : NameID
 {
 	public Color value = Color.blue;
 
