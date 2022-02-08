@@ -15,6 +15,12 @@ public class DataStorage : ScriptableObject
         }
     }
 
+    public ScriptableObject ReturnObject(ScriptableObject obj)
+    {
+        GetData(obj);
+        return obj;
+    }
+    
     public void GetListData()
     {
         foreach (var obj in listData)

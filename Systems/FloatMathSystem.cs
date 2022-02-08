@@ -10,7 +10,7 @@ public class FloatMathSystem : WorkSystem
     
     public override void Work()
     {
-        fromNameId = NameIdObj as FloatData;
+        fromNameId = nameIdObj as FloatData;
         workEvent.Invoke();
     }
     

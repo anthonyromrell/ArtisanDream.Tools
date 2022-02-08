@@ -7,12 +7,19 @@ using UnityEngine.UI;
 public class TextBehaviour : MonoBehaviour
 {
     private Text textObj;
-    public UnityEvent awakeEvent;
+    public GameAction gameActionObj;
+    public UnityEvent awakeEvent, raiseEvent;
     
     void Start()
     {
+        gameActionObj.raiseNoArgs += Raise;
         textObj = GetComponent<Text>();
         awakeEvent.Invoke();
+    }
+
+    private void Raise()
+    {
+        raiseEvent.Invoke();
     }
 
     public void UpdateText(StringList stringListDataObj)
