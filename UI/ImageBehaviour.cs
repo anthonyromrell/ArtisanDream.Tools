@@ -23,6 +23,6 @@ public class ImageBehaviour : MonoBehaviour
 
     public void UpdateWithFloatData(FloatData dataObj)
     {
-        imageObj.fillAmount = dataObj.value;
+        imageObj.fillAmount = dataObj.Value;
     }
 }

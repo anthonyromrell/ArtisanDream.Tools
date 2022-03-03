@@ -21,7 +21,7 @@ public class SnapBehaviour : MonoBehaviour
 
 		private IEnumerator Stop()
 		{
-			yield return new WaitForSeconds(holdTime.value);
+			yield return new WaitForSeconds(holdTime.Value);
 			canRun = false;
 		}
 
@@ -32,7 +32,7 @@ public class SnapBehaviour : MonoBehaviour
 			while (canRun)
 			{
 				yield return new WaitForFixedUpdate();
-				transform.position = Vector3.Lerp(transform.position, parent.position, speed.value);
+				transform.position = Vector3.Lerp(transform.position, parent.position, speed.Value);
 			}			
 		}
 	}

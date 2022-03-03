@@ -32,6 +32,6 @@ public class TextBehaviour : MonoBehaviour
 
     public void UpdateText(FloatData obj)
     {
-        textObj.text = obj.value.ToString(CultureInfo.CurrentCulture);
+        textObj.text = obj.Value.ToString(CultureInfo.CurrentCulture);
     }
 }
