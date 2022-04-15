@@ -37,6 +37,13 @@ public class IntData : NameId
         valueChangeEvent.Invoke();
     }
 
+    public void UpdateValue(Object data)
+    {
+        var newData = data as IntData;
+        if (newData != null) Value += newData.Value;
+        valueChangeEvent.Invoke();
+    }
+    
     public void UpdateValueZeroCheck(int num)
     {
         UpdateValue(num);
@@ -69,12 +76,7 @@ public class IntData : NameId
         }
     }
 
-    public void UpdateValue(Object data)
-    {
-        var newData = data as IntData;
-        if (newData != null) Value += newData.Value;
-        valueChangeEvent.Invoke();
-    }
+    
     
     public void SetValue(Object data)
     {
