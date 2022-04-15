@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76dacb67a3ac4ae3a47214d1b7821e3, type: 3}
+  m_Name: Club
+  m_EditorClassIdentifier: 
+  art: {fileID: -9095717837082945937, guid: fa4bf3c8f27f84d428ef56723cbf6742, type: 3}
+  price: 9
+  collected: 0

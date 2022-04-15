@@ -72,13 +72,13 @@ public class CoroutinesBehaviour : MonoBehaviour
 
     private IEnumerator RepeatCountDownCoroutine()
     {
-        counterNum.value = maxCounterNum;
+        counterNum.Value = maxCounterNum;
         startEvent.Invoke();
-        while (counterNum.value >= 0) 
+        while (counterNum.Value >= 0) 
         {
             yield return waitForSecondsObj;
             repeatEvent.Invoke();
-            counterNum.value--;
+            counterNum.Value--;
         }
         endEvent.Invoke();
     }

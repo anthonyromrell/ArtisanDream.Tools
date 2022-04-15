@@ -25,9 +25,9 @@ public class AvaliableButtonBehaviour : MonoBehaviour
     {
         buttonObj = GetComponent<Button>();
         buttonObj.interactable = false;
-        sendavaliable.raise += GetavaliableHandler;
+        sendavaliable.Raise += GetavaliableHandler;
         buttonImage = GetComponent<Image>();
-        endGame.raiseNoArgs += EndGameHandler;
+        endGame.RaiseNoArgs += EndGameHandler;
     }
 
     private void EndGameHandler()
@@ -38,7 +38,7 @@ public class AvaliableButtonBehaviour : MonoBehaviour
     private void GetavaliableHandler(object obj)
     {
         buttonObj.interactable = true;
-        if (avaliableNumData.value != avaliableNum) return;
+        if (avaliableNumData.Value != avaliableNum) return;
         avaliableDataObject = obj as AvailableData;
         buttonImage.color = avaliableDataObject.activeColor;
         avaliableBar.color = avaliableDataObject.activeColor;

@@ -36,7 +36,7 @@ public class InstancingBehaviour : MonoBehaviour
     
     public void InstanceAddToSelfCount(GameObject prefab)
     {
-        for (var i = 0; i < indexer.value; i++)
+        for (var i = 0; i < indexer.Value; i++)
         {
             var newInstance = Instantiate(prefab, transform);
             newInstance.name = i.ToString();

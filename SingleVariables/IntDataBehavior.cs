@@ -8,7 +8,7 @@ public class IntDataBehavior : MonoBehaviour
 
     public void CompareNameToInt()
     {
-        if (name == dataObj.value.ToString())
+        if (name == dataObj.Value.ToString())
         {
             nameTrueEvent.Invoke();
         }

@@ -11,7 +11,7 @@ public class AiHunt : AiBase
 
 	protected virtual void OnEnable()
 	{
-		if (destinationAction != null) destinationAction.raise += OnRaise;
+		if (destinationAction != null) destinationAction.Raise += OnRaise;
 	}
 
 	private void OnRaise(object obj)

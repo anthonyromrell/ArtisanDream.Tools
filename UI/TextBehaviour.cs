@@ -22,7 +22,7 @@ public class TextBehaviour : MonoBehaviour
     
     public void UpdateText(IntData intDataObj)
     {
-        textObj.text = intDataObj.value.ToString();
+        textObj.text = intDataObj.Value.ToString();
     }
 
     public void UpdateText(string obj)

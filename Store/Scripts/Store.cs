@@ -41,8 +41,8 @@ public class Store : ScriptableObject
 
     public void BuildUi()
     {
-        sendThisCoroutine.raise(this);
-        runBuildButtonsCoroutine.raiseNoArgs();
+        sendThisCoroutine.Raise(this);
+        runBuildButtonsCoroutine.RaiseNoArgs();
     }
 
     public IEnumerator RunCoroutine()
@@ -81,8 +81,8 @@ public class Store : ScriptableObject
         {
             var availableObject = available.purchasableList[i];
 
-            if (availableObject != obj || cash.value < availableObject.Value) continue;
-            cash.value -= availableObject.Value;
+            if (availableObject != obj || cash.Value < availableObject.Value) continue;
+            cash.Value -= availableObject.Value;
 
             if (!purchased.purchasableList.Contains(obj))
             {
@@ -118,9 +118,9 @@ public class Store : ScriptableObject
 
     public void PurchaseAll()
     {
-        if (cash.value >= totalValue)
+        if (cash.Value >= totalValue)
         {
-            cash.value -= totalValue;
+            cash.Value -= totalValue;
             for (var i = 0; i < available.purchasableList.Count; i++)
             {
                 var item = available.purchasableList[i];

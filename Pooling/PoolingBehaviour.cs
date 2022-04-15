@@ -12,7 +12,7 @@ public class PoolingBehaviour : MonoBehaviour
     private void Awake()
     {
         objList = new List<GameObject>();
-        getPoolObjects.raise += Raise;
+        getPoolObjects.Raise += Raise;
     }
 
     private void Raise(object obj)

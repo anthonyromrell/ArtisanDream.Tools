@@ -20,6 +20,6 @@ public class Instancer : ScriptableObject
     }
     public void InstanceFromV3Collection (Vector3DataCollection collection)
     {
-        Instantiate(prefab, collection.vector3Datas[indexer.value].value, Quaternion.identity);
+        Instantiate(prefab, collection.vector3Datas[indexer.Value].value, Quaternion.identity);
     }
 }

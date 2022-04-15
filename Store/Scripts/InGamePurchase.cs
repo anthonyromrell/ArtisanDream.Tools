@@ -97,7 +97,7 @@ public class InGamePurchase : ScriptableObject, ICanBePurchased
     public void OnEnable()
     {
         Name = name;
-        if (getInstanceLocation != null) getInstanceLocation.raise += RaiseHandler;
+        if (getInstanceLocation != null) getInstanceLocation.Raise += RaiseHandler;
     }
 
     public void RaiseHandler (object obj)

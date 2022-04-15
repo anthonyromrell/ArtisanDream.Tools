@@ -6,7 +6,7 @@ public class InputsViaKeys : MonoBehaviour
 
     private void Start()
     {
-        endGameAction.raiseNoArgs += DisableScript;
+        endGameAction.RaiseNoArgs += DisableScript;
     }
 
     private void DisableScript()
@@ -16,9 +16,9 @@ public class InputsViaKeys : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow)) arrowKeyAction.raise?.Invoke(180);
-        if (Input.GetKey(KeyCode.RightArrow)) arrowKeyAction.raise?.Invoke(0);
-        horizontalAction.raise?.Invoke(Input.GetAxis("Horizontal"));
-        if (Input.GetButtonDown("Jump")) jumpAction.raiseNoArgs?.Invoke();
+        if (Input.GetKey(KeyCode.LeftArrow)) arrowKeyAction.Raise?.Invoke(180);
+        if (Input.GetKey(KeyCode.RightArrow)) arrowKeyAction.Raise?.Invoke(0);
+        horizontalAction.Raise?.Invoke(Input.GetAxis("Horizontal"));
+        if (Input.GetButtonDown("Jump")) jumpAction.RaiseNoArgs?.Invoke();
     }
 }
