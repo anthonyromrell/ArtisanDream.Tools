@@ -52,7 +52,7 @@ public class IntData : NameId
 
     public void ZeroCheck()
     {
-        if (Value >= 0)
+        if (Value <= 0)
         {
             value = 0;
         }

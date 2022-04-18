@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   art: {fileID: 2747690628134850419, guid: 0441668665bc744dc9661c86e8d8e769, type: 3}
   price: 9
-  collected: 0
+  collected: 1
