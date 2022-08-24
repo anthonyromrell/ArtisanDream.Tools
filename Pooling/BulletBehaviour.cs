@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-public class BulletBehaviour : MonoBehaviour, IPool
+public class BulletBehaviour : MonoBehaviour
 {
     private Rigidbody rbObj;
     private WaitForSeconds wfsObj;
