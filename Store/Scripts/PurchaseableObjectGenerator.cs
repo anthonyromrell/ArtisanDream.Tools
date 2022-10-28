@@ -16,8 +16,8 @@ public class PurchaseableObjectGenerator : MonoBehaviour
 	}
 
 	[FormerlySerializedAs("CreateOnState")] public States createOnState = States.CreateOnceAndParent;
-	
-	void Start ()
+
+	private void Start ()
 	{
 		for (var i = 0; i < purchased.objectList.Count; i++)
 		{

@@ -9,13 +9,13 @@ public class Pickup : MonoBehaviour
     private bool canPickup;
 
     //Why is causing Player's Health? When I press K. It sets up and why is that?
-    void Start()
+    private void Start()
     {
         rigidbodyObj = GetComponent<Rigidbody>();
         rigidbodyObj.useGravity = false;
     }
 
-    void Update()
+    private void Update()
     {
         if (canPickup && Input.GetKeyDown(KeyCode.K))
         {

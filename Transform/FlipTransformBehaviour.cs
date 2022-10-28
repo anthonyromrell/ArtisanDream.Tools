@@ -4,7 +4,8 @@ public class FlipTransformBehaviour : MonoBehaviour
 {
     public KeyCode key1 = KeyCode.LeftArrow, key2 = KeyCode.RightArrow;
     public float direction1 = 0, direction2 = 180;
-    void Update()
+
+    private void Update()
     {
         if (Input.GetKeyDown(key1))
         {

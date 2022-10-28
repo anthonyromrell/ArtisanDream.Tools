@@ -22,7 +22,7 @@ public class TriggerEvents2D : MonoBehaviour
     {
         yield return waitObjStart;
         triggerEnterEvent.Invoke();
-
+       
         if (canRepeat)
         {
             var i = 0;

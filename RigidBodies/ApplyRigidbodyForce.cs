@@ -5,7 +5,8 @@ using UnityEngine;
 public class ApplyRigidbodyForce : MonoBehaviour
 {
     public float forceValue = 30f;
-    void Start()
+
+    private void Start()
     {
         GetComponent<Rigidbody>().AddForce(transform.forward *-1f * forceValue);   
     }

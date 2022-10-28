@@ -6,8 +6,8 @@ public class SpriteRendererBehaviour : MonoBehaviour
 {
     private SpriteRenderer spriteRendererObj;
     public UnityEvent startEvent;
-    
-    void Start()
+
+    private void Start()
     {
         spriteRendererObj = GetComponent<SpriteRenderer>();
         startEvent.Invoke();

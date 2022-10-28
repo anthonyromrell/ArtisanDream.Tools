@@ -7,7 +7,8 @@ public class KeyInputBehaviour : MonoBehaviour
     public KeyCode keyCode;
     public List<KeyCode> keyCodes;
     public GameAction onKeyEvent;
-    void Update()
+
+    private void Update()
     {
         if (Input.GetKeyDown(keyCode))
         {

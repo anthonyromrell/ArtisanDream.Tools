@@ -26,7 +26,7 @@ public class PoolingBehaviour : MonoBehaviour
         objList.Clear();
     }
 
-    void Update()
+    private void Update()
     {
         if (!Input.GetKeyDown(keyCodeOption)) return;
         objList[i].SetActive(true);

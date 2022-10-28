@@ -7,8 +7,8 @@ public class DestroyBehaviour : MonoBehaviour
 {
 	[FormerlySerializedAs("Seconds")] public float seconds = 2;
 	[FormerlySerializedAs("UseTrigger")] public bool useTrigger = true;
-	
-	IEnumerator Start () {
+
+	private IEnumerator Start () {
 		yield return new WaitForSeconds(seconds);
 		Destroy(gameObject);
 	}

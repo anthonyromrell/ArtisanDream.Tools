@@ -9,8 +9,8 @@ public class TextBehaviour : MonoBehaviour
     private Text textObj;
     public GameAction gameActionObj;
     public UnityEvent awakeEvent, raiseEvent;
-    
-    void Start()
+
+    private void Start()
     {
         gameActionObj.raiseNoArgs += Raise;
         textObj = GetComponent<Text>();
