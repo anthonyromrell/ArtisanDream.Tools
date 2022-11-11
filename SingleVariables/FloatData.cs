@@ -49,4 +49,9 @@ public class FloatData : NameID
         maxValueEvent.Invoke();
         value = maxValue;
     }
+
+    public void UpdateWithTime(float num)
+    {
+        value += (Time.deltaTime * num);
+    }
 }

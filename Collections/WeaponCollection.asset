@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069d1a90f55c04e88a63bbb9918087ad, type: 3}
-  m_Name: Coins
+  m_Script: {fileID: 11500000, guid: 936c65a0427d8427997d4c4b8a511d0f, type: 3}
+  m_Name: WeaponCollection
   m_EditorClassIdentifier: 
-  coinList: []
+  index: 0
+  collectibles:
+  - {fileID: 0}
