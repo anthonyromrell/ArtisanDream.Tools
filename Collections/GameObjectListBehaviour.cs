@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameObjectListBehaviour : MonoBehaviour
 {
     public GameAction getFromAddAction;
+    public List<GameObject> objects;
+    
     private void Start()
     {
         getFromAddAction.raise += AddObj;
@@ -14,9 +15,7 @@ public class GameObjectListBehaviour : MonoBehaviour
     {
         AddToLIst(obj as GameObject);
     }
-
-    public List<GameObject> objects;
-
+    
     public void AddToLIst(GameObject obj)
     {
         objects.Add(obj);

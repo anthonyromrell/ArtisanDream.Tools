@@ -5,14 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DataStorage", menuName = "Utilities/Data Storage Object")]
 public class DataStorage : ScriptableObject
 {
-    public GameAction getGameActionObj, setGameActionObj;
+    //public GameAction getGameActionObj, setGameActionObj;
     public ScriptableObject data;
     public List<ScriptableObject> listData;
 
     private void OnEnable()
     {
-        if (getGameActionObj != null) getGameActionObj.raiseNoArgs += GetOnRaise;
-        if (setGameActionObj != null) setGameActionObj.raiseNoArgs += SetOnRaise;
+        // if (getGameActionObj != null) getGameActionObj.raiseNoArgs += GetOnRaise;
+        //if (setGameActionObj != null) setGameActionObj.raiseNoArgs += SetOnRaise;
     }
 
     private void GetOnRaise()
