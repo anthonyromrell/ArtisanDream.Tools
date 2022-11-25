@@ -6,7 +6,7 @@ public class SideScrollerMoveJump : CharacterPattern
     public string axis = "Horizontal";
     public override void Move(CharacterController controller)
     {
-        PositionDirection.x = Input.GetAxis(axis)*speed;
+        PositionDirection.x = Input.GetAxis(axis)*Speed;
         
         if (controller.isGrounded)
         {

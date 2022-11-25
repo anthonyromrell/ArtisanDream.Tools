@@ -18,7 +18,7 @@ public class TriggerEventsBehaviour : MonoBehaviour
      
      private IEnumerator OnTriggerEnter(Collider other)
      {
-          yield return waitObj;
+          
           triggerEnterEvent.Invoke();
 
           if (canRepeat)
@@ -26,11 +26,12 @@ public class TriggerEventsBehaviour : MonoBehaviour
                var i = 0;
                while (i < repeatTimes)
                {
+                    yield return waitObj;
                     i++;
                     triggerEnterRepeatEvent.Invoke();
                }
           }
-
+          yield return waitObj;
           triggerEnterEndEvent.Invoke();
      }
 

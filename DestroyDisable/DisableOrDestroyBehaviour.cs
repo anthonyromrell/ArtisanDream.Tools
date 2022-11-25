@@ -66,6 +66,11 @@ public class DisableOrDestroyBehaviour : MonoBehaviour
     {
         Destroy(obj);
     }
+    
+    public void DestroyGameObject(GameObject obj)
+    {
+        Destroy(obj);
+    }
 
     private IEnumerator OnCall ()
     {

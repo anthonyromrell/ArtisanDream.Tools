@@ -6,10 +6,10 @@ using UnityEngine.Events;
 public class CoroutinesBehaviour : MonoBehaviour
 {
     public float seconds = 1f;
-    public UnityEvent startCoroutineEvent, startEvent, delayEvent, repeatEvent, endEvent;
+    public UnityEvent awakeEvent, startCoroutineEvent, startEvent, delayEvent, repeatEvent, endEvent;
     public bool canRun;
     public IntData counterNum;
-    public int maxCounterNum = 3;
+    public int maxCounterNum = 3, counterNumTemp;
     
     private WaitForSeconds waitForSecondsObj;
     private WaitForFixedUpdate waitForFixedUpdate;
@@ -28,8 +28,10 @@ public class CoroutinesBehaviour : MonoBehaviour
 
     private void Awake ()
     {
+        awakeEvent.Invoke();
         waitForSecondsObj = new WaitForSeconds(Seconds);
         waitForFixedUpdate = new WaitForFixedUpdate();
+        if (counterNum != null) counterNumTemp = counterNum.value;
     }
 
     private void Start()
@@ -72,13 +74,12 @@ public class CoroutinesBehaviour : MonoBehaviour
 
     private IEnumerator RepeatCountDownCoroutine()
     {
-        counterNum.value = maxCounterNum;
         startEvent.Invoke();
-        while (counterNum.value >= 0) 
+        while (counterNumTemp > 0) 
         {
             yield return waitForSecondsObj;
             repeatEvent.Invoke();
-            counterNum.value--;
+            counterNumTemp--;
         }
         endEvent.Invoke();
     }

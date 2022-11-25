@@ -9,7 +9,7 @@ public class CharacterMoveAndRotate3d : CharacterPattern
 
     public override void Move(CharacterController controller)
     {
-        PositionDirection.Set(0,0,speed*Input.GetAxis(vAxis));
+        PositionDirection.Set(0,0,Speed*Input.GetAxis(vAxis));
         rotateDirection.y = rotateSpeed * Input.GetAxis(hAxis);
         controller.transform.Rotate(rotateDirection);
         PositionDirection = controller.transform.TransformDirection(PositionDirection);

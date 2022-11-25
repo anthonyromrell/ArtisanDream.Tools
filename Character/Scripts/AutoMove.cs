@@ -9,20 +9,20 @@ public class AutoMove : CharacterPattern
         X, Y,Z
     }
 
-    public MoveAxis Axis;
+    public MoveAxis axis;
     
     public override void Move(CharacterController controller)
     {
-        switch (Axis)
+        switch (axis)
         {
             case MoveAxis.X:
-                PositionDirection.Set(speed,0,0 );
+                PositionDirection.Set(Speed,0,0 );
                 break;
             case MoveAxis.Y:
-                PositionDirection.Set(0,speed,0 );
+                PositionDirection.Set(0,Speed,0 );
                 break;
             case MoveAxis.Z:
-                PositionDirection.Set(0,0,speed );
+                PositionDirection.Set(0,0,Speed );
                 break;
         }
         controller.Move(PositionDirection*Time.deltaTime);

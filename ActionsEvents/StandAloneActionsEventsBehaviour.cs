@@ -24,6 +24,6 @@ public class StandAloneActionsEventsBehaviour : MonoBehaviour
     
     public void RaiseGameAction (GameAction gameActionObj)
     {
-        gameActionObj.RaiseAction();
+        gameActionObj.raiseNoArgs();
     }
 }

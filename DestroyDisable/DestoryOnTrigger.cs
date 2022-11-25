@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class DestoryOnTrigger : MonoBehaviour
 {
-	public bool useTrigger;
+	public float holdTime = 0.1f;
 
-	public bool UseTrigger
+	private IEnumerator OnTriggerEnter(Collider other)
 	{
-		get => useTrigger;
-		set => useTrigger = value;
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if (UseTrigger)
-		{
-			Destroy(other.gameObject);
-		}
+		yield return new WaitForSeconds(holdTime);
+		Destroy(gameObject);
 	}
 }

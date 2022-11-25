@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public abstract class GenericObjectsBase<T> : ScriptableObject
 {
-   public List<T> items = new List<T>();
+    public List<T> items = new List<T>();
 
     public void Add(T obj)
     {

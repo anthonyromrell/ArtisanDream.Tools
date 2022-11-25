@@ -5,15 +5,14 @@ using UnityEngine.Events;
 public class GameAction : ScriptableObject
 {
     public UnityAction<object> raise;
-    public UnityAction<Coroutine> raiseCoroutine;
     public UnityAction raiseNoArgs;
+    
     
     public void RaiseAction()
     {
         raiseNoArgs?.Invoke();
     }
-
-    public void RaiseAction(Object obj)
+    public void RaiseAction(object obj)
     {
         raise?.Invoke(obj);
     }
@@ -32,9 +31,9 @@ public class GameAction : ScriptableObject
     {
         raise?.Invoke(obj);
     }
-
-    public void RaiseAction(Coroutine obj)
+    
+    public void RaiseAction(GameObject obj)
     {
-        raiseCoroutine?.Invoke(obj);
+        raise?.Invoke(obj);
     }
 }

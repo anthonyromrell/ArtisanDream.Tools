@@ -27,25 +27,11 @@ public class CharacterBehaviour : MonoBehaviour
         //StartCoroutine(Start());
     }
     
-    // private IEnumerator Start()
-    // {
-    //     CanRun = true;
-    //     while (CanRun)
-    //     {
-    //         yield return waitObj;
-    //         characterPattern.Move(controller);
-    //     }
-    // }
-
     public void LateUpdate()
     {
         characterPattern.Move(controller);
     }
-
-    // public void Move(InputAction.CallbackContext context)
-    // { 
-    //     characterPattern.inputs = context.ReadValue<Vector2>();
-    // }
+    
 
     private void OnTriggerEnter(Collider other)
     {

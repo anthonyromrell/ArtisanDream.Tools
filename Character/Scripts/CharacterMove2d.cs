@@ -5,7 +5,7 @@ public class CharacterMove2d : CharacterPattern
 {
     public override void Move( CharacterController controller)
     {
-        PositionDirection.x = Input.GetAxis("Horizontal")*speed;
+        PositionDirection.x = Input.GetAxis("Horizontal")*Speed;
 
         if (controller.isGrounded)
         {

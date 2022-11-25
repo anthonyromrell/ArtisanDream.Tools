@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb341d657ba3e4f9db95315f691f802a, type: 3}
-  m_Name: DataStorage
+  m_Script: {fileID: 11500000, guid: f97b1ffafe804442886d0b5e1a42f095, type: 3}
+  m_Name: InstanceAction
   m_EditorClassIdentifier: 
-  gameActionObj: {fileID: 0}
-  data: {fileID: 0}
-  listData: []
