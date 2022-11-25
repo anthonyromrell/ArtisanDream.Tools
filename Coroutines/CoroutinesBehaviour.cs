@@ -9,7 +9,7 @@ public class CoroutinesBehaviour : MonoBehaviour
     public UnityEvent awakeEvent, startCoroutineEvent, startEvent, delayEvent, repeatEvent, endEvent;
     public bool canRun;
     public IntData counterNum;
-    public int maxCounterNum = 3, counterNumTemp;
+    public int counterNumTemp;
     
     private WaitForSeconds waitForSecondsObj;
     private WaitForFixedUpdate waitForFixedUpdate;
