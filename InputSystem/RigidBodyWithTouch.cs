@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(TouchSwipeBehaviour))]
 [RequireComponent(typeof(Rigidbody))]
-public class SwipeVisualBehaviour : MonoBehaviour
+public class RigidBodyWithTouch : MonoBehaviour
 {
      public float force = 10f;
      private Rigidbody rb;

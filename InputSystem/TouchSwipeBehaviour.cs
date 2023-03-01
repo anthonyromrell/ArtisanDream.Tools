@@ -14,13 +14,11 @@ public class TouchSwipeBehaviour : MonoBehaviour
     private Camera cameraMain;
     private CameraUtility cameraUtility;
     
-    
     private void Awake()
     {
         cameraMain = Camera.main;
         cameraUtility = ScriptableObject.CreateInstance<CameraUtility>();
     }
- 
     private void OnEnable()
     {
         controls.gameInputsObj.Touch.Enable();
@@ -31,8 +29,6 @@ public class TouchSwipeBehaviour : MonoBehaviour
     {
         controls.gameInputsObj.Touch.Enable();
     }
-    
-
     private void StartTouchPrimary(InputAction.CallbackContext ctx)
     {
         positionStart = GetCtx(ctx);
@@ -46,14 +42,12 @@ public class TouchSwipeBehaviour : MonoBehaviour
         GetSwipeDirectionAndTime();
         sendSwipeDirection(direction, force);
     }
-    
     private Vector3 GetCtx(InputAction.CallbackContext ctx)
     {
         var camPosition = cameraUtility.ScreenToWorld(cameraMain,
             controls.gameInputsObj.Touch.PrimaryPositition.ReadValue<Vector2>());
         return camPosition;
     }
-
     private void GetSwipeDirectionAndTime()
     {
         if (!(Vector3.Distance(positionStart, positionEnd) >= minimumDistance) ||
@@ -61,12 +55,6 @@ public class TouchSwipeBehaviour : MonoBehaviour
         var vectorDir = positionEnd - positionStart;
         direction = new Vector2(vectorDir.x, vectorDir.y);
         force = timeEnd - timeStart;
-        Debug.DrawLine(positionStart, positionEnd, Color.red, 2f);
-    }
-    
-    public void GetPrimaryPosition()
-    {
-        var pos = controls.gameInputsObj.Touch.PrimaryPositition.ReadValue<Vector2>();
-        //sendPrimaryPosition(cameraUtility.ScreenToWorld(cameraMain, pos));
+        //Debug.DrawLine(positionStart, positionEnd, Color.red, 2f);
     }
 }

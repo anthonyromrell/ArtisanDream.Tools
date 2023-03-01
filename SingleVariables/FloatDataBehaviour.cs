@@ -19,7 +19,7 @@ public class FloatDataBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var newObj = other.GetComponent<FloatDataContainer>().dataObj;
-        UpdateValue(newObj);
+        //var newObj = other.GetComponent<FloatDataContainer>().dataObj;
+       // UpdateValue(newObj);
     }
 }
