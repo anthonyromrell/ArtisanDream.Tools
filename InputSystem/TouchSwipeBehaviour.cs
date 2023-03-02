@@ -5,25 +5,24 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-5)]
 public class TouchSwipeBehaviour : MonoBehaviour
 {
+    public UnityAction<FromTouchData> sendTouchData;
     public GameInputsSO controls;
     public float minimumDistance = .2f, maximumTime = 1f;
-    public UnityAction<Vector2, float> sendSwipeDirection, sendPrimaryPosition;
-    
-    private float timeStart, timeEnd, force;
-    private Vector2 positionStart, positionEnd, direction, findDirection;
+    private FromTouchData touchData;
     private Camera cameraMain;
     private CameraUtility cameraUtility;
     
     private void Awake()
     {
+        touchData = ScriptableObject.CreateInstance<FromTouchData>();
         cameraMain = Camera.main;
         cameraUtility = ScriptableObject.CreateInstance<CameraUtility>();
+        controls.gameInputsObj.Touch.PrimaryContact.started += StartTouchPrimary;
+        controls.gameInputsObj.Touch.PrimaryContact.canceled += EndTouchPrimary;
     }
     private void OnEnable()
     {
         controls.gameInputsObj.Touch.Enable();
-        controls.gameInputsObj.Touch.PrimaryContact.started += StartTouchPrimary;
-        controls.gameInputsObj.Touch.PrimaryContact.canceled += EndTouchPrimary;
     }
     private void OnDisable()
     {
@@ -31,16 +30,16 @@ public class TouchSwipeBehaviour : MonoBehaviour
     }
     private void StartTouchPrimary(InputAction.CallbackContext ctx)
     {
-        positionStart = GetCtx(ctx);
-        timeStart = (float)ctx.startTime;
+        touchData.positionStart = GetCtx(ctx);
+        touchData.timeStart = (float)ctx.startTime;
     }
     
     private void EndTouchPrimary(InputAction.CallbackContext ctx)
     {
-        positionEnd = GetCtx(ctx);
-        timeEnd = (float)ctx.time;
+        touchData.positionEnd = GetCtx(ctx);
+        touchData.timeEnd = (float)ctx.time;
         GetSwipeDirectionAndTime();
-        sendSwipeDirection(direction, force);
+        sendTouchData(touchData);
     }
     private Vector3 GetCtx(InputAction.CallbackContext ctx)
     {
@@ -50,11 +49,10 @@ public class TouchSwipeBehaviour : MonoBehaviour
     }
     private void GetSwipeDirectionAndTime()
     {
-        if (!(Vector3.Distance(positionStart, positionEnd) >= minimumDistance) ||
-            !((timeEnd - timeStart) <= maximumTime)) return;
-        var vectorDir = positionEnd - positionStart;
-        direction = new Vector2(vectorDir.x, vectorDir.y);
-        force = timeEnd - timeStart;
-        //Debug.DrawLine(positionStart, positionEnd, Color.red, 2f);
+        if (!(Vector3.Distance(touchData.positionStart, touchData.positionEnd) >= minimumDistance) ||
+            !((touchData.timeEnd - touchData.timeStart) <= maximumTime)) return;
+        var vectorDir = touchData.positionEnd - touchData.positionStart;
+        touchData.direction = new Vector2(vectorDir.x, vectorDir.y);
+        touchData.force = touchData.timeEnd - touchData.timeStart;
     }
 }
