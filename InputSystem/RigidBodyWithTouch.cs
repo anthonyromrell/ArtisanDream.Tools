@@ -15,8 +15,8 @@ public class RigidBodyWithTouch : MonoBehaviour
           touchSwipeBehaviourObj.sendTouchData += GetSwipeDirection;
      }
 
-     private void GetSwipeDirection(FromTouchData data)
+     private void GetSwipeDirection(TouchData data)
      {
-          rb.AddForce(data.direction*force);
+          rb.AddForce(data.direction*data.force*force);
      }
 }

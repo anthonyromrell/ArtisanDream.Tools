@@ -162,6 +162,54 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""mTouch"",
+            ""id"": ""435796a4-ac8a-441c-b0f7-ee8a4b45a669"",
+            ""actions"": [
+                {
+                    ""name"": ""Contact"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fa41f1f3-e497-4714-a218-80a6e66d9399"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ContactPostion"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3a400464-5e74-41b9-ba36-81a13fa45105"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""aa1065d8-06ad-4c27-a9dc-941a1a7ac7b6"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Contact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1936bfcf-b383-43ed-93e7-842aabde8bd9"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ContactPostion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -186,6 +234,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
         m_Touch_PrimaryContact = m_Touch.FindAction("PrimaryContact", throwIfNotFound: true);
         m_Touch_PrimaryPositition = m_Touch.FindAction("PrimaryPositition", throwIfNotFound: true);
+        // mTouch
+        m_mTouch = asset.FindActionMap("mTouch", throwIfNotFound: true);
+        m_mTouch_Contact = m_mTouch.FindAction("Contact", throwIfNotFound: true);
+        m_mTouch_ContactPostion = m_mTouch.FindAction("ContactPostion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -323,6 +375,47 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         }
     }
     public TouchActions @Touch => new TouchActions(this);
+
+    // mTouch
+    private readonly InputActionMap m_mTouch;
+    private IMTouchActions m_MTouchActionsCallbackInterface;
+    private readonly InputAction m_mTouch_Contact;
+    private readonly InputAction m_mTouch_ContactPostion;
+    public struct MTouchActions
+    {
+        private @GameInputs m_Wrapper;
+        public MTouchActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Contact => m_Wrapper.m_mTouch_Contact;
+        public InputAction @ContactPostion => m_Wrapper.m_mTouch_ContactPostion;
+        public InputActionMap Get() { return m_Wrapper.m_mTouch; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MTouchActions set) { return set.Get(); }
+        public void SetCallbacks(IMTouchActions instance)
+        {
+            if (m_Wrapper.m_MTouchActionsCallbackInterface != null)
+            {
+                @Contact.started -= m_Wrapper.m_MTouchActionsCallbackInterface.OnContact;
+                @Contact.performed -= m_Wrapper.m_MTouchActionsCallbackInterface.OnContact;
+                @Contact.canceled -= m_Wrapper.m_MTouchActionsCallbackInterface.OnContact;
+                @ContactPostion.started -= m_Wrapper.m_MTouchActionsCallbackInterface.OnContactPostion;
+                @ContactPostion.performed -= m_Wrapper.m_MTouchActionsCallbackInterface.OnContactPostion;
+                @ContactPostion.canceled -= m_Wrapper.m_MTouchActionsCallbackInterface.OnContactPostion;
+            }
+            m_Wrapper.m_MTouchActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Contact.started += instance.OnContact;
+                @Contact.performed += instance.OnContact;
+                @Contact.canceled += instance.OnContact;
+                @ContactPostion.started += instance.OnContactPostion;
+                @ContactPostion.performed += instance.OnContactPostion;
+                @ContactPostion.canceled += instance.OnContactPostion;
+            }
+        }
+    }
+    public MTouchActions @mTouch => new MTouchActions(this);
     private int m_KeysSchemeIndex = -1;
     public InputControlScheme KeysScheme
     {
@@ -341,5 +434,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     {
         void OnPrimaryContact(InputAction.CallbackContext context);
         void OnPrimaryPositition(InputAction.CallbackContext context);
+    }
+    public interface IMTouchActions
+    {
+        void OnContact(InputAction.CallbackContext context);
+        void OnContactPostion(InputAction.CallbackContext context);
     }
 }

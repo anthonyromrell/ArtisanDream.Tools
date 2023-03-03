@@ -5,16 +5,16 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-5)]
 public class TouchSwipeBehaviour : MonoBehaviour
 {
-    public UnityAction<FromTouchData> sendTouchData;
+    public UnityAction<TouchData> sendTouchData;
     public GameInputsSO controls;
     public float minimumDistance = .2f, maximumTime = 1f;
-    private FromTouchData touchData;
+    private TouchData touchData;
     private Camera cameraMain;
     private CameraUtility cameraUtility;
     
     private void Awake()
     {
-        touchData = ScriptableObject.CreateInstance<FromTouchData>();
+        touchData = ScriptableObject.CreateInstance<TouchData>();
         cameraMain = Camera.main;
         cameraUtility = ScriptableObject.CreateInstance<CameraUtility>();
         controls.gameInputsObj.Touch.PrimaryContact.started += StartTouchPrimary;
