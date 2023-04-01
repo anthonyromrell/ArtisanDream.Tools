@@ -140,6 +140,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "mTouch",
+            "id": "435796a4-ac8a-441c-b0f7-ee8a4b45a669",
+            "actions": [
+                {
+                    "name": "Contact",
+                    "type": "PassThrough",
+                    "id": "fa41f1f3-e497-4714-a218-80a6e66d9399",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ContactPostion",
+                    "type": "PassThrough",
+                    "id": "3a400464-5e74-41b9-ba36-81a13fa45105",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aa1065d8-06ad-4c27-a9dc-941a1a7ac7b6",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Contact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1936bfcf-b383-43ed-93e7-842aabde8bd9",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ContactPostion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

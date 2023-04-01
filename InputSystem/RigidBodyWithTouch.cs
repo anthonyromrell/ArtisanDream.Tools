@@ -2,24 +2,21 @@ using UnityEngine;
 
 [RequireComponent(typeof(TouchSwipeBehaviour))]
 [RequireComponent(typeof(Rigidbody))]
-public class SwipeVisualBehaviour : MonoBehaviour
+public class RigidBodyWithTouch : MonoBehaviour
 {
      public float force = 10f;
      private Rigidbody rb;
      private TouchSwipeBehaviour touchSwipeBehaviourObj;
-
-     private void Awake()
+     
+     private void OnEnable()
      {
           rb = GetComponent<Rigidbody>();
           touchSwipeBehaviourObj = GetComponent<TouchSwipeBehaviour>();
-     }
-     private void OnEnable()
-     {
-          touchSwipeBehaviourObj.sendSwipeDirection += GetSwipeDirection;
+          touchSwipeBehaviourObj.sendTouchData += GetSwipeDirection;
      }
 
-     private void GetSwipeDirection(Vector2 value, float num)
+     private void GetSwipeDirection(TouchData data)
      {
-          rb.AddForce(value*num*force);
+          rb.AddForce(data.direction*data.force*force);
      }
 }
