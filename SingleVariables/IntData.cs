@@ -11,7 +11,7 @@ public class IntData : NameId
 
     private void OnEnable()
     {
-        enableEvent.Invoke();
+        enableEvent?.Invoke();
     }
 
     public void SetValue(int amount)
@@ -102,6 +102,5 @@ public class IntData : NameId
             value = num;
             atMinValue.Invoke();
         }
-            
     }
 }

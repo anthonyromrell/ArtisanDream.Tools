@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -23,5 +24,12 @@ public class StoreItem : ScriptableObject, IStoreItem
     {
         get => previewArt;
         set => previewArt = value;
+    }
+
+    public string Name { get; set; }
+
+    private void OnEnable()
+    {
+        Name = name;
     }
 }

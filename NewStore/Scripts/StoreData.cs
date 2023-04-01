@@ -4,9 +4,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class StoreData : ScriptableObject
 {
-    public List<ScriptableObject> inventory;
-    private List<IStoreItem> storeItemsInventory;
-
+    public IntData cash;
+    [SerializeField]private List<ScriptableObject> inventory;
+    public List<IStoreItem> storeItemsInventory;
+    
     private void OnEnable()
     {
         UpdateStoreItemsInventory();
@@ -14,6 +15,7 @@ public class StoreData : ScriptableObject
 
     public void UpdateStoreItemsInventory()
     {
+        storeItemsInventory = new List<IStoreItem>();
         storeItemsInventory.Clear();
         foreach (var item in inventory)
         {
