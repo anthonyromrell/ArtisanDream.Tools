@@ -7,7 +7,7 @@ public class IntData : NameId
 {
     public int value;
     private int currentValue;
-    public UnityEvent decrementEvent, valueChangeEvent,atZeroEvent, compareTrueEvent, enableEvent;
+    public UnityEvent decrementEvent, valueChangeEvent,atZeroEvent, compareTrueEvent, enableEvent, atMinValue;
 
     private void OnEnable()
     {
@@ -93,5 +93,15 @@ public class IntData : NameId
         {
             compareTrueEvent.Invoke();
         }
+    }
+
+    public void CheckMinValue(int num)
+    {
+        if (value <= num)
+        {
+            value = num;
+            atMinValue.Invoke();
+        }
+            
     }
 }
