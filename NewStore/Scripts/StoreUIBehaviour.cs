@@ -24,7 +24,7 @@ public class StoreUIBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (StoreItemObj.Price < Cash.value)
+        if (StoreItemObj.Price <= Cash.value)
         {
             StoreItemObj.Purchased = true;
             ToggleObj.isOn = true;
