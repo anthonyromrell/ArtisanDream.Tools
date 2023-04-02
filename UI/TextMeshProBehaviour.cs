@@ -2,13 +2,15 @@
 using TMPro;
 using UnityEngine;
 using System;
+using System.Collections;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class TextMeshProBehaviour : TextBehaviour
 {
     private TextMeshProUGUI textObj;
     private TimeSpan timeSpanObj;
-
+    private int currentNum, tempDifference;
+    private WaitForFixedUpdate waitObj = new WaitForFixedUpdate();
     protected override void Start()
     {
         gameActionObj.raiseNoArgs += Raise;
@@ -50,5 +52,26 @@ public class TextMeshProBehaviour : TextBehaviour
     public new void UpdateTextAsMoney (IntData obj)
     {
         textObj.text = "$"+obj.value;
+    }
+
+    public void StoreIntDataValue(IntData obj)
+    {
+        currentNum = obj.value;
+    }
+    public void StartUpdateNumberCount(IntData obj)
+    {
+        //tempNum = int.Parse(textObj.text);
+        tempDifference = currentNum - obj.value;
+        StartCoroutine(UpdateNumberCount(obj));
+    }
+
+    private IEnumerator UpdateNumberCount(IntData intData)
+    {
+        while (intData.value != currentNum)
+        {
+            currentNum-=5;
+            textObj.text = currentNum.ToString("C0");
+            yield return waitObj;
+        }
     }
 }
