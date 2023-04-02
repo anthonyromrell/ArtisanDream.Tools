@@ -49,6 +49,6 @@ public class TextMeshProBehaviour : TextBehaviour
     
     public new void UpdateTextAsMoney (IntData obj)
     {
-        textObj.text = "$"+obj.value;
+        textObj.text = obj.value.ToString("C0");
     }
 }
