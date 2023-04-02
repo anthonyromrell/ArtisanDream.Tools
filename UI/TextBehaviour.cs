@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class TextBehaviour : MonoBehaviour
 {
     private Text textObj;
-    public UnityEvent awakeEvent;
+    public GameAction gameActionObj;
+    public UnityEvent awakeEvent, raiseEvent;
     
-    void Start()
+    protected virtual void Start()
     {
         textObj = GetComponent<Text>();
         awakeEvent.Invoke();

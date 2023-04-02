@@ -1,18 +1,15 @@
 ﻿using System.Globalization;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using System;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class TextMeshProBehaviour : MonoBehaviour
+public class TextMeshProBehaviour : TextBehaviour
 {
     private TextMeshProUGUI textObj;
-    public GameAction gameActionObj;
-    public UnityEvent awakeEvent, raiseEvent;
     private TimeSpan timeSpanObj;
-    
-    private void Start()
+
+    protected override void Start()
     {
         gameActionObj.raiseNoArgs += Raise;
         textObj = GetComponent<TextMeshProUGUI>();
@@ -24,22 +21,22 @@ public class TextMeshProBehaviour : MonoBehaviour
         raiseEvent.Invoke();
     }
 
-    public void UpdateText(StringList stringListDataObj)
+    public new void UpdateText(StringList stringListDataObj)
     {
         textObj.text = stringListDataObj.ReturnCurrentLine();
     }
     
-    public void UpdateText(IntData intDataObj)
+    public new void UpdateText(IntData intDataObj)
     {
         textObj.text = intDataObj.value.ToString();
     }
 
-    public void UpdateText(string obj)
+    public new void UpdateText(string obj)
     {
         textObj.text = obj;
     }
 
-    public void UpdateText(FloatData obj)
+    public new void UpdateText(FloatData obj)
     {
         textObj.text = obj.value.ToString(CultureInfo.CurrentCulture);
     }
@@ -48,5 +45,10 @@ public class TextMeshProBehaviour : MonoBehaviour
     {
         timeSpanObj = TimeSpan.FromSeconds(obj.value);
         textObj.text = timeSpanObj.Minutes + ":" + timeSpanObj.Seconds;
+    }
+    
+    public new void UpdateTextAsMoney (IntData obj)
+    {
+        textObj.text = "$"+obj.value;
     }
 }
