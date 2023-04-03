@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AltPoolingBehaviour : MonoBehaviour
+public class AutoTransformPoolingBehaviour : MonoBehaviour
 {
     public List<Transform> poolList;
     public UnityEvent startEvent, poolEvent;

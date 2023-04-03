@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f7651c6c5045bca2fa1b73c146462, type: 3}
+  m_Script: {fileID: 11500000, guid: 99163535cd4734a82b46a0729b6a2c99, type: 3}
   m_Name: ColorCollection
   m_EditorClassIdentifier: 
-  colorDataList:
-  - {fileID: 11400000, guid: 53519964d4c5147ae9cea98aab56c933, type: 2}
-  - {fileID: 11400000, guid: 42014312bf6e6470c85a583a5325ffa6, type: 2}
-  - {fileID: 11400000, guid: d92891703d71d4633ae5d2ba9ea71649, type: 2}
-  - {fileID: 11400000, guid: bdf5989bf251c4732ab32db0e068dba3, type: 2}
+  colorDataList: []
