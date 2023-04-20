@@ -13,10 +13,4 @@ MonoBehaviour:
   m_Name: Store Data
   m_EditorClassIdentifier: 
   cash: {fileID: 11400000, guid: 7ebd98afc5c5c4e329172fd812dc7d0a, type: 2}
-  inventory:
-  - {fileID: 11400000, guid: 733e9c0a50d434b29a353336811ccd1b, type: 2}
-  - {fileID: 11400000, guid: ffce7cbf9d1e04bbea71df9de0300e92, type: 2}
-  - {fileID: 11400000, guid: 3bd3404ff05e54d8bbfe63cad84d7084, type: 2}
-  - {fileID: 11400000, guid: db0bf52636f0944e999e5678252707d4, type: 2}
-  - {fileID: 11400000, guid: 77ad9a58b1da84a5b98b27753efe065d, type: 2}
-  - {fileID: 11400000, guid: 2fee04f643b5745a981224d0a1dcf696, type: 2}
+  inventory: []

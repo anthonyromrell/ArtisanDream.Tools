@@ -1,24 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InventoryItemBehaviour : MonoBehaviour
+public class InventoryItemBehaviour : ColliderBehaviour
 {
     public InventoryItem inventoryItemObj;
     public InventoryData inventoryDataObj;
-    public UnityEvent startEvent, triggerEnterEvent;
-
-    private void Start()
-    {
-        startEvent.Invoke();
-    }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        triggerEnterEvent.Invoke();
-    }
 
     public void Config2DAsset()
     {
@@ -36,5 +23,8 @@ public class InventoryItemBehaviour : MonoBehaviour
         inventoryDataObj.AddToInventory(inventoryItemObj);
     }
 
-    
+    public void UseItem()
+    {
+        //
+    }
 }

@@ -17,7 +17,12 @@ public class InventoryData : ScriptableObject
     {
         inventory.Add(obj);
     }
-    
+
+    public void ClearInventory()
+    {
+        inventory.Clear();
+        InventoryDataObj.Clear();
+    }
     public void UpdateStoreItemsInventory()
     {
         InventoryDataObj = new List<IStoreItem>();
