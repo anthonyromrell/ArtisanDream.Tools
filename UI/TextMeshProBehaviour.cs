@@ -60,7 +60,6 @@ public class TextMeshProBehaviour : TextBehaviour
     }
     public void StartUpdateNumberCount(IntData obj)
     {
-        //tempNum = int.Parse(textObj.text);
         tempDifference = currentNum - obj.value;
         StartCoroutine(UpdateNumberCount(obj));
     }

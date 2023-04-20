@@ -2,11 +2,11 @@ using UnityEngine;
 //place on a UI Panel
 public class InventoryUIBehaviour : MonoBehaviour
 {
-    public StoreData storeDataObj;
+    public InventoryData storeDataObj;
     public StoreUIBehaviour storeUIPrefab;
     private void Start()
     {
-        foreach (var item in storeDataObj.storeItemsInventory)
+        foreach (var item in storeDataObj.InventoryDataObj)
         {
             var element = Instantiate(storeUIPrefab.gameObject, transform);
             var elementData = element.GetComponent<StoreUIBehaviour>();

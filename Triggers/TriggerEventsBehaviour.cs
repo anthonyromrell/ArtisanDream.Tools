@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class TriggerEventsBehaviour : MonoBehaviour
 {
-     public UnityEvent triggerEnterEvent, triggerEnterRepeatEvent, triggerEnterEndEvent, triggerExitEvent;
+     public UnityEvent startEvent, triggerEnterEvent, triggerEnterRepeatEvent, triggerEnterEndEvent, triggerExitEvent;
      public float delayTime = 0.01f;
      private WaitForSeconds waitObj;
      public bool canRepeat;
@@ -13,6 +13,7 @@ public class TriggerEventsBehaviour : MonoBehaviour
 
      private void Start()
      {
+          startEvent.Invoke();
           waitObj = new WaitForSeconds(delayTime);
      }
      

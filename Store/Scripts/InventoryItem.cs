@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class StoreItem : ScriptableObject, IStoreItem
+public class InventoryItem : ScriptableObject, IStoreItem
 {
     [SerializeField]private int price;
     [SerializeField]private bool purchased;
@@ -31,5 +31,10 @@ public class StoreItem : ScriptableObject, IStoreItem
     private void OnEnable()
     {
         Name = name;
+    }
+
+    public Sprite GetSprite()
+    {
+        return previewArt;
     }
 }
