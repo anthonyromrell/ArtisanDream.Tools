@@ -20,7 +20,7 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
 
      private IEnumerator OnTriggerEnter(Collider other)
      {
-          yield return waitObj;
+          yield return waitForTriggerEnterObj;
           triggerEnterEvent.Invoke();
           if (triggerEnterAction != null) triggerEnterAction.Raise();
 

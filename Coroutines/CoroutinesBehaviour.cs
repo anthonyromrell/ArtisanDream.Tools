@@ -85,7 +85,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     
     private IEnumerator RepeatCountUpCoroutine()
     {
-        counterNumTemp = 0;
+        var counterNumTemp = 0;
         startEvent.Invoke();
         while (counterNumTemp < counterNum.value) 
         {

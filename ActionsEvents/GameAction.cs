@@ -33,7 +33,7 @@ public class GameAction : ScriptableObject
         raise?.Invoke(obj);
     }
     
-    public void Raise(GameObject obj)
+    public void Raise(Coroutine obj)
     {
         raiseCoroutine?.Invoke(obj);
     }

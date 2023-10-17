@@ -13,20 +13,22 @@ public class AutoMove : CharacterPattern
 
     public override void Move(CharacterController controller)
     {
-        // add rotation from a float variable, apply it to the character controller
-        Vector3 rotation = new Vector3(0f, rotationSpeed * Time.deltaTime, 0f);
+        var rotation = new Vector3(0f, rotationSpeed * Time.deltaTime, 0f);
         controller.transform.Rotate(rotation);
 
         switch (axis)
         {
             case MoveAxis.X:
-                PositionDirection.Set(Speed, 0, 0);
+                PositionDirection.Set(speed, 0, 0);
                 break;
             case MoveAxis.Y:
-                PositionDirection.Set(0, Speed, 0);
+                PositionDirection.Set(0, speed, 0);
                 break;
             case MoveAxis.Z:
-                PositionDirection.Set(0, 0, Speed);
+                PositionDirection.Set(0, 0, speed);
+                break;
+            default:
+                PositionDirection.Set(speed, 0, 0);
                 break;
         }
         PositionDirection = controller.transform.TransformDirection(PositionDirection);
