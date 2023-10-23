@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
@@ -20,11 +20,6 @@ public class CharacterBehaviour : MonoBehaviour
     public void SwapPattern(CharacterPattern pattern)
     {
         characterPattern = pattern;
-    }
-
-    public void Restart()
-    {
-        //StartCoroutine(Start());
     }
     
     public void LateUpdate()
