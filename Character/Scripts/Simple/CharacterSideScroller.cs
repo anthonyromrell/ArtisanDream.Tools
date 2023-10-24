@@ -32,7 +32,7 @@ public class CharacterSideScroller : MonoBehaviour
         }
 
         // Jumping
-        if (controller.isGrounded && Input.GetButtonDown("Jump"))
+        if (controller.isGrounded && Input.GetButton("Jump"))
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
         }
