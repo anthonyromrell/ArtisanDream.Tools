@@ -19,7 +19,7 @@ public class CharacterSideScroller : MonoBehaviour
     {
         // Horizontal movement
         var moveInput = Input.GetAxis("Horizontal");
-        var moveDirection = transform.right * (moveInput * moveSpeed);
+        var moveDirection = new Vector3(moveInput, 0f, 0f) * moveSpeed;
 
         // Apply gravity
         if (!controller.isGrounded)
@@ -37,8 +37,14 @@ public class CharacterSideScroller : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
         }
 
-        // Apply movement and gravity
+        // Apply movement and handle collisions
         var move = moveDirection + velocity;
         controller.Move(move * Time.deltaTime);
+
+        // Set the character's Z position to 0
+        var transform1 = transform;
+        var newPosition = transform1.position;
+        newPosition.z = 0;
+        transform1.position = newPosition;
     }
 }
