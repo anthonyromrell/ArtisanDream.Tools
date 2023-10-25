@@ -23,7 +23,8 @@ public class CharacterSideScroller : MonoBehaviour
         // Horizontal movement
         var moveInput = Input.GetAxis("Horizontal");
         var moveDirection = new Vector3(moveInput, 0f, 0f) * moveSpeed;
-
+        
+        
         // Apply gravity
         if (!controller.isGrounded)
         {
@@ -36,7 +37,7 @@ public class CharacterSideScroller : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
             if (controller.isGrounded || jumpsRemaining > 0)
             {
