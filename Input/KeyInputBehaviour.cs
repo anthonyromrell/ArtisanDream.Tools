@@ -14,4 +14,8 @@ public class KeyInputBehaviour : MonoBehaviour
             onKeyEvent.Raise();
         }
     }
+    
+    //fixed Update move a rigidbody with a force of 5 in y axis when the key is pressed 
+    // void FixedUpdate()
+    
 }
