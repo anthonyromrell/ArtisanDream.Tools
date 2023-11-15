@@ -25,7 +25,7 @@ public class AvaliableButtonBehaviour : MonoBehaviour
     {
         buttonObj = GetComponent<Button>();
         buttonObj.interactable = false;
-        sendavaliable.raise += GetavaliableHandler;
+        sendavaliable.raise += GetAvailableHandler;
         buttonImage = GetComponent<Image>();
         endGame.raiseNoArgs += EndGameHandler;
     }
@@ -35,7 +35,7 @@ public class AvaliableButtonBehaviour : MonoBehaviour
         buttonObj.interactable = false;
     }
 
-    private void GetavaliableHandler(object obj)
+    private void GetAvailableHandler(object obj)
     {
         buttonObj.interactable = true;
         if (avaliableNumData.value != avaliableNum) return;

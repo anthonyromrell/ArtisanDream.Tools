@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b72c68dee764417933c1d8573165cb, type: 3}
   m_Name: Shrimp1Brain
   m_EditorClassIdentifier: 
-  aiBaseObj: {fileID: 11400000, guid: 7d31aacd447044677a889e51ea35b99d, type: 2}
+  aiBaseObj: {fileID: 11400000, guid: bc955bc8a33f74ea494c45bbe6d60fca, type: 2}
