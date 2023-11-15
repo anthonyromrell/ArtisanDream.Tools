@@ -3,24 +3,23 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TriggerEvents2D : MonoBehaviour
+public class TriggerEvents2DBehaviour : MonoEventsBehaviour
 {
     public UnityEvent triggerEnterEvent, triggerEnterRepeatEvent, triggerEnterEndEvent, triggerExitEvent;
-    public float delayTimeStart = 0.01f, delayTimeHold = 0.01f, delayTimeEnd = 0.01f;
-    private WaitForSeconds waitObjStart, waitObjHold, waitObjEnd;
+    private WaitForSeconds waitForTriggerEnterObj, waitForTriggerRepeatObj;
+    public float triggerHoldTime = 0.01f, repeatHoldTime = 0.01f, exitHoldTime = 0.01f;
     public bool canRepeat;
     public int repeatTimes = 10;
-
-    private void Start()
-    {
-        waitObjStart = new WaitForSeconds(delayTimeStart);
-        waitObjHold = new WaitForSeconds(delayTimeHold);
-        waitObjEnd = new WaitForSeconds(delayTimeEnd);
-    }
      
+    protected override void Awake()
+    {
+        base.Awake();
+        waitForTriggerEnterObj = new WaitForSeconds(triggerHoldTime);
+        waitForTriggerRepeatObj = new WaitForSeconds(repeatHoldTime);
+    }
+    
     private IEnumerator OnTriggerEnter2D(Collider2D other)
     {
-        yield return waitObjStart;
         triggerEnterEvent.Invoke();
 
         if (canRepeat)
@@ -28,13 +27,12 @@ public class TriggerEvents2D : MonoBehaviour
             var i = 0;
             while (i < repeatTimes)
             {
-                yield return waitObjHold;
-                triggerEnterRepeatEvent.Invoke();
+                yield return waitForTriggerEnterObj;
                 i++;
+                triggerEnterRepeatEvent.Invoke();
             }
         }
-
-        yield return waitObjEnd;
+        yield return waitForTriggerRepeatObj;
         triggerEnterEndEvent.Invoke();
     }
 
