@@ -6,11 +6,19 @@ public class InventoryData : ScriptableObject
 {
     public IntData cash;
     [SerializeField]private List<ScriptableObject> inventory;
-    public List<IStoreItem> InventoryDataObj;
-    
+    public List<IInventoryItem> inventoryDataObjList;
+    public List<IStoreItem> storeDataObjList;
+
+    public InventoryData(List<IInventoryItem> inventoryDataObjList, List<IStoreItem> storeDataObjList)
+    {
+        this.inventoryDataObjList = inventoryDataObjList;
+        this.storeDataObjList = storeDataObjList;
+    }
+
     private void OnEnable()
     {
         UpdateStoreItemsInventory();
+        UpdateItemsInventory();
     }
 
     public void AddToInventory(ScriptableObject obj)
@@ -21,15 +29,26 @@ public class InventoryData : ScriptableObject
     public void ClearInventory()
     {
         inventory.Clear();
-        InventoryDataObj.Clear();
+        inventoryDataObjList.Clear();
+        storeDataObjList.Clear();
     }
     public void UpdateStoreItemsInventory()
     {
-        InventoryDataObj = new List<IStoreItem>();
+        storeDataObjList = new List<IStoreItem>();
         foreach (var item in inventory)
         {
-            if(item is IStoreItem storeItem)                                                                                                                                                                                                
-                InventoryDataObj.Add(storeItem);
+            if(item is IStoreItem inventoryItem)                                                                                                                                                                                                
+                storeDataObjList.Add(inventoryItem);
+        }
+    }
+    
+    public void UpdateItemsInventory()
+    {
+        inventoryDataObjList = new List<IInventoryItem>();
+        foreach (var item in inventory)
+        {
+            if(item is IInventoryItem inventoryItem)                                                                                                                                                                                                
+                inventoryDataObjList.Add(inventoryItem);
         }
     }
 }

@@ -16,6 +16,7 @@ public class SideScrollerMoveJump : CharacterPattern
         
         if (jumpCount < jumpCountMax && Input.GetButtonDown("Jump"))
         {
+            
             PositionDirection.y = jumpForce;
             jumpCount++;
         }
@@ -23,4 +24,6 @@ public class SideScrollerMoveJump : CharacterPattern
         PositionDirection.y -= gravity*Time.deltaTime;
         controller.Move(PositionDirection*Time.deltaTime);
     }
+    // Function to rotate the character
+    
 }
