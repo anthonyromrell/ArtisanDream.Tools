@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,6 +24,6 @@ public class StandAloneActionsEventsBehaviour : MonoBehaviour
     
     public void RaiseGameAction (GameAction gameActionObj)
     {
-        gameActionObj.raiseNoArgs();
+        gameActionObj.Raise();
     }
 }

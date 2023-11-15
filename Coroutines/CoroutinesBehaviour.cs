@@ -1,12 +1,12 @@
-﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CoroutinesBehaviour : MonoBehaviour
+public class CoroutinesBehaviour : MonoEventsBehaviour
 {
     public float seconds = 1f;
-    public UnityEvent awakeEvent, startCoroutineEvent, startEvent, delayEvent, repeatEvent, endEvent;
+    public UnityEvent delayEvent, repeatEvent, endEvent;
+    public GameAction delayAction, repeatAction, endAction;
     public bool canRun;
     public IntData counterNum;
     public int counterNumTemp;
@@ -20,24 +20,20 @@ public class CoroutinesBehaviour : MonoBehaviour
         set => seconds = value;
     }
 
-    public bool CanRun
+    private bool CanRun
     {
         get => canRun;
         set => canRun = value;
     }
 
-    private void Awake ()
+    protected override void Awake ()
     {
-        awakeEvent.Invoke();
+        base.Awake();
         waitForSecondsObj = new WaitForSeconds(Seconds);
         waitForFixedUpdate = new WaitForFixedUpdate();
         if (counterNum != null) counterNumTemp = counterNum.value;
     }
-
-    private void Start()
-    {
-        startCoroutineEvent.Invoke();
-    }
+    
 
     public void StartDelayCoroutine()
     {
@@ -48,6 +44,7 @@ public class CoroutinesBehaviour : MonoBehaviour
     {
         yield return waitForSecondsObj;
         delayEvent.Invoke();
+        delayAction.Raise();
     }
     
     public void StartRepeatSecondsCoroutine()
@@ -63,8 +60,10 @@ public class CoroutinesBehaviour : MonoBehaviour
         {
             yield return waitForSecondsObj;
             repeatEvent.Invoke();
+            repeatAction.Raise();
         }
         endEvent.Invoke();
+        endAction.Raise();
     }
     
     public void StartRepeatCountDownCoroutine()
@@ -84,6 +83,19 @@ public class CoroutinesBehaviour : MonoBehaviour
         endEvent.Invoke();
     }
     
+    private IEnumerator RepeatCountUpCoroutine()
+    {
+        var counterNumTemp = 0;
+        startEvent.Invoke();
+        while (counterNumTemp < counterNum.value) 
+        {
+            yield return waitForSecondsObj;
+            repeatEvent.Invoke();
+            counterNumTemp++;
+        }
+        endEvent.Invoke();
+    }
+    
     public void StartRepeatFixedCoroutine()
     {
         StartCoroutine(RepeatFixedCoroutine());
@@ -93,11 +105,14 @@ public class CoroutinesBehaviour : MonoBehaviour
     {
         CanRun = true;
         startEvent.Invoke();
+        startAction.Raise();
         while (CanRun) 
         {
             yield return waitForFixedUpdate;
             repeatEvent.Invoke();
+            repeatAction.Raise();
         }
         endEvent.Invoke();
+        endAction.Raise();
     }
 }

@@ -14,7 +14,7 @@ public class InputPlayer : MonoBehaviour
     {
         controls.gameInputsObj.KeyActionMap.Enable();
     }
-    private void OnDisable()
+    private void OnDisable() 
     {
         controls.gameInputsObj.KeyActionMap.Disable();
     }

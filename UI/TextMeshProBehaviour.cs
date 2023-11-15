@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
+//[RequireComponent(typeof(TextMeshProUGUI))
 public class TextMeshProBehaviour : TextBehaviour
 {
     private TextMeshProUGUI textObj;
