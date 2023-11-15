@@ -4,14 +4,12 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class StoreUIBehaviour : MonoBehaviour
+public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
 {
     public UnityEvent purchaseEvent, noPurchaseEvent;
     public IntData Cash { get; set; }
-    public Button ButtonObj { get; set; }
-    public TextMeshProUGUI Label { get; set; }
-    public Text PriceLabel { get; set; }
-    public Toggle ToggleObj { get; set; }
+    public Text PriceLabel { get; private set; }
+    public Toggle ToggleObj { get; private set; }
     public IStoreItem StoreItemObj { get; set; }
     
     private void Awake()
@@ -24,9 +22,15 @@ public class StoreUIBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
+        RunButton();
+    }
+
+    private void RunButton()
+    {
         if (StoreItemObj.Price <= Cash.value)
         {
             StoreItemObj.Purchased = true;
+            StoreItemObj.CanUse = true;
             ToggleObj.isOn = true;
             Cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
