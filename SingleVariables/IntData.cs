@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
 public class IntData : NameId
 {
     public int value;
     private int currentValue;
-    public UnityEvent decrementEvent, valueChangeEvent,atZeroEvent, compareTrueEvent;
-    
+    public UnityEvent decrementEvent, valueChangeEvent,atZeroEvent, compareTrueEvent, enableEvent, atMinValue;
+
+    private void OnEnable()
+    {
+        enableEvent?.Invoke();
+    }
+
     public void SetValue(int amount)
     {
         value = amount;
@@ -66,17 +72,35 @@ public class IntData : NameId
 
     public void CompareValue(IntData data)
     {
+        if (value < data.value)
+        {
+            value = data.value;
+            valueChangeEvent.Invoke();
+        }
         if (value == data.value)
         {
             compareTrueEvent.Invoke();
         }
     }
     
-    public void CompareValue(int data)
+    public void CompareValue(int num)
     {
-        if (value == data)
+        if (value < num)
+        {
+            value = num;
+        }
+        if (value == num)
         {
             compareTrueEvent.Invoke();
+        }
+    }
+
+    public void CheckMinValue(int num)
+    {
+        if (value <= num)
+        {
+            value = num;
+            atMinValue.Invoke();
         }
     }
 }

@@ -9,7 +9,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     public GameAction delayAction, repeatAction, endAction;
     public bool canRun;
     public IntData counterNum;
-    public int maxCounterNum = 3;
+    public int counterNumTemp;
     
     private WaitForSeconds waitForSecondsObj;
     private WaitForFixedUpdate waitForFixedUpdate;
@@ -31,6 +31,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         base.Awake();
         waitForSecondsObj = new WaitForSeconds(Seconds);
         waitForFixedUpdate = new WaitForFixedUpdate();
+        if (counterNum != null) counterNumTemp = counterNum.value;
     }
     
 
@@ -72,13 +73,12 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
 
     private IEnumerator RepeatCountDownCoroutine()
     {
-        counterNum.value = maxCounterNum;
         startEvent.Invoke();
-        while (counterNum.value >= 0) 
+        while (counterNumTemp > 0) 
         {
             yield return waitForSecondsObj;
             repeatEvent.Invoke();
-            counterNum.value--;
+            counterNumTemp--;
         }
         endEvent.Invoke();
     }

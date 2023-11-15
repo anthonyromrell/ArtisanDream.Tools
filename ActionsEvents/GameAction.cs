@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class GameAction : ScriptableObject
 {
     public UnityAction<object> raise;
-    public UnityAction<Coroutine> raiseCoroutine;
     public UnityAction raiseNoArgs;
     
     
@@ -35,6 +34,6 @@ public class GameAction : ScriptableObject
     
     public void Raise(Coroutine obj)
     {
-        raiseCoroutine?.Invoke(obj);
+        raise?.Invoke(obj);
     }
 }
