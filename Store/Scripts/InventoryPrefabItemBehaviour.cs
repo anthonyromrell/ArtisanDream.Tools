@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InventoryItemBehaviour : ColliderBehaviour
+public class InventoryPrefabItemBehaviour : ColliderBehaviour
 {
     public GameAction gameActionObj;
     public InventoryItem inventoryItemObj;

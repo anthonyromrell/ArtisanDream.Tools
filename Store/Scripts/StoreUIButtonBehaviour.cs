@@ -28,7 +28,6 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
             cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
             purchaseEvent?.Invoke();
-            StoreItemObj.Own = true;
         }
         else
         {

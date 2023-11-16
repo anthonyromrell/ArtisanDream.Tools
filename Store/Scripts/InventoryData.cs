@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu (fileName = "InventoryData", menuName = "Store/InventoryData")]
 public class InventoryData : ScriptableObject
 {
     public IntData cash;

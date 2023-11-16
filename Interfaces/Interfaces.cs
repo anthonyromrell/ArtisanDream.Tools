@@ -13,7 +13,6 @@ public interface IStoreItem
 {
     int Price { get; set; }
     bool UsedOrPurchase { get; set; }
-    bool Own { get; set; }
     Sprite PreviewArt { get; set; }
     string ThisName { get; set; }
 }

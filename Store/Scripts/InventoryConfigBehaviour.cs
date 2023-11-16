@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InventoryUIBehaviour : MonoBehaviour
+public class InventoryConfigBehaviour : MonoBehaviour
 {
     public UnityEvent buttonEvent;
     public InventoryData inventoryDataObj;
@@ -15,6 +16,7 @@ public class InventoryUIBehaviour : MonoBehaviour
 
     private void AddItemsToUI<T>(List<T> items)
     {
+        
         foreach (var item in items)
         {
             GameObject element = null;
@@ -80,7 +82,7 @@ public class InventoryUIBehaviour : MonoBehaviour
         if (item.GameActionObj == null || item.GameArt == null) return i;
 
         var element = Instantiate(item.GameArt, transform);
-        var elementData = element.GetComponent<InventoryItemBehaviour>();
+        var elementData = element.GetComponent<InventoryPrefabItemBehaviour>();
         if (elementData == null) return i;
         elementData.inventoryItemObj = item as InventoryItem;
         elementData.gameActionObj = item.GameActionObj;
@@ -92,11 +94,7 @@ public class InventoryUIBehaviour : MonoBehaviour
 
     public void AddAllInventoryItemsPrefabsToScene()
     {
-        var i = 0;
-        foreach (var item in inventoryDataObj.inventoryDataObjList)
-        {
-            i = ConfigureGameObject(item, i);
-        }
+        var i = inventoryDataObj.inventoryDataObjList.Aggregate(0, (current, item) => ConfigureGameObject(item, current));
     }
 
     
