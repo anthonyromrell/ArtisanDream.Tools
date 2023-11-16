@@ -1,56 +1,54 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using Object = UnityEngine.Object;
 
 public class InstancingBehaviour : MonoBehaviour
 {
     public IntData indexer;
     public Object collectionObj;
     public UnityEvent startEvent;
-    private ICollectList collectList;
+    private ICollectList<Object> collectList; // Specify the type for ICollectList
     public Transform startPoint, targetPoint, prefabObj;
-    //MUST SPLIT AND REFACTOR
+
     private void Start()
     {
-        if (collectionObj != null) collectList = (ICollectList) collectionObj;
+        var list = collectionObj as ICollectList<Object>;
+        if (list != null) // Specify the type for ICollectList
+        {
+            collectList = list;
+        }
         startEvent.Invoke();
     }
-    
-    public void InstanceAddToSelf(GameObject prefab)
+
+    public void InstantiateAtTransform(GameObject prefab, Transform location, Transform lookAtTarget = null)
     {
-        var newInstance = Instantiate(prefab, transform);
-    }
-    
-    public void InstanceAtThisTransform(GameObject prefab)
-    {
-        var newInstance = Instantiate(prefab, transform.position, Quaternion.identity);
-        newInstance.transform.LookAt(targetPoint.position);
+        if (prefab == null || location == null) return;
+
+        var newInstance = Instantiate(prefab, location.position, Quaternion.identity);
+        if (lookAtTarget != null)
+        {
+            newInstance.transform.LookAt(lookAtTarget.position);
+        }
     }
 
-    public void InstanceUsingVars()
+    public void InstantiateMultiple(GameObject prefab, int count)
     {
-        var newInstance = Instantiate(prefabObj, startPoint.position, Quaternion.identity);
-        newInstance.transform.LookAt(targetPoint.position);
-    }
-    
-    public void InstanceAddToSelfCount(GameObject prefab)
-    {
-        for (var i = 0; i < indexer.value; i++)
+        if (prefab == null) return;
+
+        for (var i = 0; i < count; i++)
         {
             var newInstance = Instantiate(prefab, transform);
             newInstance.name = i.ToString();
         }
     }
-    
-    public void InstanceFromCollection(GameObject prefab)
+
+    public void InstantiateFromCollection(GameObject prefab)
     {
-        collectList.Index = 0;
-        while (collectList.Index < collectList.CollectionList.Count)
+        if (prefab == null || collectList?.CollectionList == null) return;
+
+        foreach (var item in collectList.CollectionList)
         {
             var newInstance = Instantiate(prefab, transform);
             collectList.ConfigureInstance(newInstance);
-            collectList.Index++;
         }
     }
 }

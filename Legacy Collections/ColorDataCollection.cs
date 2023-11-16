@@ -1,38 +1,45 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Collections/ColorDataList")]
-public class ColorDataCollection : InstanceConfigBase, ICollectList
+public class ColorDataCollection : InstanceConfigBase, ICollectList<ColorData>
 {
     public List<ColorData> colorDataList;
     public int Index { get; set; }
-    public List<Object> CollectionList { get; set; }
+    public List<ColorData> CollectionList { get; set; } = new List<ColorData>();
 
     private void OnEnable()
     {
-        if (CollectionList == null) return;
         CollectionList.Clear();
-        foreach (var obj in colorDataList)
-        {
-            CollectionList.Add(obj);
-        }
+        CollectionList.AddRange(colorDataList);
     }
 
     public void RandomizeIndex()
     {
-        Index = Random.Range(0, colorDataList.Count);
+        if (colorDataList.Count > 0)
+        {
+            Index = Random.Range(0, colorDataList.Count);
+        }
     }
 
     public override void ConfigureInstance(GameObject instance)
     {
+        if (instance == null || Index < 0 || Index >= colorDataList.Count) return;
+
         var id = (NameId) colorDataList[Index];
         var idComponent = instance.GetComponentInChildren<IdBehaviour>();
-        if (idComponent == null) return;
-        idComponent.nameIdObj = id;
-        instance.name += id.name;
+        if (idComponent != null)
+        {
+            idComponent.nameIdObj = id;
+        }
+
+        instance.name = id.name; // Consider if you want to append or set the name
+
         var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.color = colorDataList[Index].value;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = colorDataList[Index].value;
+        }
     }
 }

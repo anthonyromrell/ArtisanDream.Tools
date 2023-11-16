@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 100
   purchased: 0
+  canUse: 0
   previewArt: {fileID: 7482667652216324306, guid: 34bc9b27cf227493bb06ac4ed145c276, type: 3}
+  intLevel: 0
+  floatLevel: 0
+  gameArt: {fileID: 0}
+  used: 0
+  gameActionObj: {fileID: 11400000, guid: cd7c935b292a74f6e8d84318041fa5b2, type: 2}

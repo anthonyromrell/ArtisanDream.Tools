@@ -10,7 +10,7 @@ public class InventoryItemBehaviour : ColliderBehaviour
     public void Config2DAsset()
     {
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = inventoryItemObj.GetSprite();
+        spriteRenderer.sprite = inventoryItemObj.PreviewArt;
     }
     
     public void Config3DAsset()
