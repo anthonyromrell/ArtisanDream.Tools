@@ -17,11 +17,11 @@ public class StoreInventoryUIBehaviour : InventoryUIBehaviour
             var elementData = element.GetComponent<StoreUIButtonBehaviour>();
             elementData.ButtonObj.image.sprite = item.PreviewArt;
             elementData.StoreItemObj = item;
-            elementData.Label.text = item.Name;
-            elementData.ToggleObj.isOn = item.Purchased;
+            elementData.Label.text = item.ThisName;
+            elementData.ToggleObj.isOn = item.UsedOrPurchase;
             elementData.PriceLabel.text = "$" + item.Price;
             elementData.cash = inventoryDataObj.cash;
-            if (item.Purchased)
+            if (item.UsedOrPurchase)
             {
                 elementData.ButtonObj.interactable = false;
             }

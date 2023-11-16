@@ -15,7 +15,7 @@ public class InventoryItemBehaviour : ColliderBehaviour
     private void UseItem()
     {
         if (inventoryItemObj == null) return;
-        inventoryItemObj.Used = true;
+        inventoryItemObj.UsedOrPurchase = false;
         gameObject.SetActive(false);
     }
 

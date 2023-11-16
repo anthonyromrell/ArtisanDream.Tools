@@ -12,21 +12,21 @@ public interface ICollectList<T> where T : Object
 public interface IStoreItem
 {
     int Price { get; set; }
-    bool Purchased { get; set; }
-    bool CanUse { get; set; }
+    bool UsedOrPurchase { get; set; }
+    bool Own { get; set; }
     Sprite PreviewArt { get; set; }
-    string Name { get; set; }
+    string ThisName { get; set; }
 }
 
 
 public interface IInventoryItem
 {
-    bool Used { get; set; }
+    bool UsedOrPurchase { get; set; }
     int IntLevel { get; set; }
     float FloatLevel { get; set; }
     Sprite PreviewArt { get; set; }
     GameObject GameArt { get; set; }
-    string Name { get; set; }
+    string ThisName { get; set; }
     
     public GameAction GameActionObj { get; set; }
     void Raise();

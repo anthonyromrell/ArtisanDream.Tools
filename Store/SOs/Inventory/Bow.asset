@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   price: 100
-  purchased: 0
-  canUse: 0
+  own: 0
   previewArt: {fileID: -9095717837082945937, guid: ef66c97736b2c44529b613501fc36365, type: 3}
   intLevel: 0
   floatLevel: 0
   gameArt: {fileID: 71354544342217495, guid: defd6ed1577724f09b20bd7446f9607b, type: 3}
-  used: 0
+  usedOrPurchase: 0
   gameActionObj: {fileID: 11400000, guid: cd7c935b292a74f6e8d84318041fa5b2, type: 2}
