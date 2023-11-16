@@ -13,39 +13,22 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
     
     protected override void Awake()
     {
-        base.Awake(); // Calls InventoryUIButtonBehaviour's Awake
+        base.Awake();
         ToggleObj = GetComponentInChildren<Toggle>();
-        PriceLabel = ToggleObj?.GetComponentInChildren<Text>();
-        ButtonObj?.onClick.AddListener(AttemptPurchase);
+        PriceLabel = ToggleObj.GetComponentInChildren<Text>();
+        ButtonObj.onClick.AddListener(AttemptPurchase);
     }
 
     private void AttemptPurchase()
     {
-        if (StoreItemObj == null || cash == null)
-        {
-            Debug.Log(StoreItemObj);
-            Debug.LogError("StoreItemObj or Cash is not set", this);
-            return;
-        }
-
-        if (StoreItemObj.Purchased)
-        {
-            Debug.LogWarning("Item already purchased", this);
-            return;
-        }
-
         if (StoreItemObj.Price <= cash.value)
         {
-            StoreItemObj.Purchased = true;
-            StoreItemObj.CanUse = true;
+            StoreItemObj.UsedOrPurchase = true;
             ToggleObj.isOn = true;
             cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
             purchaseEvent?.Invoke();
-            if (StoreItemObj is IInventoryItem inventoryItem)
-            {
-                inventoryItem.Used = false;
-            }
+            StoreItemObj.Own = true;
         }
         else
         {

@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   price: 100
-  purchased: 0
-  canUse: 0
+  own: 0
   previewArt: {fileID: 7482667652216324306, guid: 34bc9b27cf227493bb06ac4ed145c276, type: 3}
   intLevel: 0
   floatLevel: 0
   gameArt: {fileID: 7556441597489327303, guid: 2c1a3a2d27f3d4ad891b1e0a02079595, type: 3}
-  used: 0
+  usedOrPurchase: 0
   gameActionObj: {fileID: 11400000, guid: cd7c935b292a74f6e8d84318041fa5b2, type: 2}

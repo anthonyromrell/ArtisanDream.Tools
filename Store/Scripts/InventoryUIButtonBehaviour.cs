@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InventoryUIButtonBehaviour : MonoBehaviour
@@ -19,16 +18,14 @@ public class InventoryUIButtonBehaviour : MonoBehaviour
         {
             ButtonObj.onClick.AddListener(HandleButtonClick);
         }
-        else
-        {
-            Debug.LogError("Button component not found on the GameObject", this);
-        }
     }
 
     private void HandleButtonClick()
     {
         if (InventoryItemObj == null) return;
-        InventoryItemObj.Used = true;
+        InventoryItemObj.UsedOrPurchase = false;
         ButtonObj.interactable = false;
+        var storeItem = InventoryItemObj as IStoreItem;
+        storeItem.Own = false;
     }
 }

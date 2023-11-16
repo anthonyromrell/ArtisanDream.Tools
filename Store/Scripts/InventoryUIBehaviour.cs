@@ -17,8 +17,17 @@ public class InventoryUIBehaviour : MonoBehaviour
     {
         foreach (var item in items)
         {
-            if (item is IInventoryItem { Used: true }) continue;
-            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
+            GameObject element = null;
+            if (item is IInventoryItem { UsedOrPurchase: true })
+            {
+                element = Instantiate(inventoryUIPrefab.gameObject, transform);
+            }
+            
+            if (item is IStoreItem { UsedOrPurchase: false } )
+            {
+                element = Instantiate(inventoryUIPrefab.gameObject, transform);
+            }
+            
             ConfigureElement(element, item);
         }
     }
@@ -29,10 +38,9 @@ public class InventoryUIBehaviour : MonoBehaviour
         {
             var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
             if (elementData == null) return;
-
             elementData.ButtonObj.image.sprite = inventoryItem.PreviewArt;
-            elementData.Label.text = inventoryItem.Name;
-            elementData.ButtonObj.interactable = !inventoryItem.Used;
+            elementData.Label.text = inventoryItem.ThisName;
+            elementData.ButtonObj.interactable = inventoryItem.UsedOrPurchase;
             elementData.InventoryItemObj = inventoryItem as InventoryItem;
             if(inventoryItem.GameActionObj != null)
                 elementData.ButtonObj.onClick.AddListener(inventoryItem.Raise);
@@ -47,10 +55,10 @@ public class InventoryUIBehaviour : MonoBehaviour
             var elementData = element.GetComponent<StoreUIButtonBehaviour>();
             if (elementData == null) return;
             elementData.ButtonObj.image.sprite = storeItem.PreviewArt;
-            elementData.Label.text = storeItem.Name;
-            elementData.ButtonObj.interactable = !storeItem.Purchased;
+            elementData.Label.text = storeItem.ThisName;
+            elementData.ButtonObj.interactable = !storeItem.UsedOrPurchase;
             elementData.StoreItemObj = storeItem;
-            elementData.ToggleObj.isOn = storeItem.Purchased;
+            elementData.ToggleObj.isOn = storeItem.UsedOrPurchase;
             elementData.PriceLabel.text = $"${storeItem.Price}";
             elementData.cash = inventoryDataObj.cash;
         }
@@ -98,10 +106,8 @@ public class InventoryUIBehaviour : MonoBehaviour
         var i = 0;
         foreach (var item in inventoryDataObj.storeDataObjList)
         {
-            if (!item.Purchased || item is not IInventoryItem storeItem ) continue;
-            var newItem = item as IInventoryItem;
-            if (newItem.Used) return;
-            i = ConfigureGameObject(newItem, i);
+            if (!item.UsedOrPurchase || item is not IInventoryItem storeItem ) continue;
+            i = ConfigureGameObject(storeItem, i);
         }
     }
 }
