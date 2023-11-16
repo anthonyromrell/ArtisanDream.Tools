@@ -17,6 +17,7 @@ public class InventoryUIBehaviour : MonoBehaviour
     {
         foreach (var item in items)
         {
+            if (item is IInventoryItem { Used: true }) continue;
             var element = Instantiate(inventoryUIPrefab.gameObject, transform);
             ConfigureElement(element, item);
         }
@@ -65,35 +66,42 @@ public class InventoryUIBehaviour : MonoBehaviour
         AddItemsToUI(inventoryDataObj.storeDataObjList);
     }
     
+    
+    private int ConfigureGameObject(IInventoryItem item, int i)
+    {
+        if (item.GameActionObj == null || item.GameArt == null) return i;
+
+        var element = Instantiate(item.GameArt, transform);
+        var elementData = element.GetComponent<InventoryItemBehaviour>();
+        if (elementData == null) return i;
+        elementData.inventoryItemObj = item as InventoryItem;
+        elementData.gameActionObj = item.GameActionObj;
+        elementData.gameObject.transform.position = Vector3.left * ++i * -3;
+        return i;
+    }
+
+ 
+
     public void AddAllInventoryItemsPrefabsToScene()
     {
         var i = 0;
         foreach (var item in inventoryDataObj.inventoryDataObjList)
         {
-            i++;
-            if (item.GameActionObj == null) return;
-            if (item.GameArt == null) return;
-            var element = Instantiate(item.GameArt, transform);
-            var elementData = element.GetComponent<TriggerEventsBehaviour>();  
-            elementData.triggerEnterAction = item.GameActionObj;
-            elementData.gameObject.transform.transform.position = Vector3.left*i*-10;
+            i = ConfigureGameObject(item, i);
         }
     }
+
     
+
     public void AddPurchasedInventoryItemsPrefabsToScene()
     {
         var i = 0;
         foreach (var item in inventoryDataObj.storeDataObjList)
         {
-            i++;
-            if (!item.Purchased) continue;
-            if (item is not IInventoryItem storeItem) continue;
-            if (storeItem.GameActionObj == null) return;
-            if (storeItem.GameArt == null) return;
-            var element = Instantiate(storeItem.GameArt, transform);
-            var elementData = element.GetComponent<TriggerEventsBehaviour>();  
-            elementData.triggerEnterAction = storeItem.GameActionObj;
-            elementData.gameObject.transform.transform.position = Vector3.left*i*-10;
+            if (!item.Purchased || item is not IInventoryItem storeItem ) continue;
+            var newItem = item as IInventoryItem;
+            if (newItem.Used) return;
+            i = ConfigureGameObject(newItem, i);
         }
     }
 }

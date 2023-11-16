@@ -1,30 +1,27 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class InventoryItemBehaviour : ColliderBehaviour
 {
+    public GameAction gameActionObj;
     public InventoryItem inventoryItemObj;
-    public InventoryData inventoryDataObj;
     
-
-    public void Config2DAsset()
+    protected override void Start()
     {
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = inventoryItemObj.PreviewArt;
-    }
-    
-    public void Config3DAsset()
-    {
-        
+        base.Start();
+        inventoryItemObj.GameActionObj = gameActionObj;
+        triggerEnterEvent.AddListener(UseItem);
     }
 
-    public void AddToInventory()
+    private void UseItem()
     {
-        inventoryDataObj.AddToInventory(inventoryItemObj);
+        if (inventoryItemObj == null) return;
+        inventoryItemObj.Used = true;
+        gameObject.SetActive(false);
     }
 
-    public void UseItem()
+    protected override void OnTriggerEnter(Collider other)
     {
-        //
+        base.OnTriggerEnter(other);
+        gameActionObj.Raise();
     }
 }

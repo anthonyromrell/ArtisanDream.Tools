@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +12,7 @@ public class ColliderBehaviour : MonoBehaviour
         startEvent.Invoke();
     }
     
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         triggerEnterEvent.Invoke();
     }

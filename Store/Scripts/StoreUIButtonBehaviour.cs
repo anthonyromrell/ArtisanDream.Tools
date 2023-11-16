@@ -16,7 +16,6 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
         base.Awake(); // Calls InventoryUIButtonBehaviour's Awake
         ToggleObj = GetComponentInChildren<Toggle>();
         PriceLabel = ToggleObj?.GetComponentInChildren<Text>();
-
         ButtonObj?.onClick.AddListener(AttemptPurchase);
     }
 
@@ -43,6 +42,10 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
             cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
             purchaseEvent?.Invoke();
+            if (StoreItemObj is IInventoryItem inventoryItem)
+            {
+                inventoryItem.Used = false;
+            }
         }
         else
         {

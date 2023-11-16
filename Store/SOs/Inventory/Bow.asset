@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   price: 100
-  purchased: 1
+  purchased: 0
   canUse: 0
   previewArt: {fileID: -9095717837082945937, guid: ef66c97736b2c44529b613501fc36365, type: 3}
   intLevel: 0
