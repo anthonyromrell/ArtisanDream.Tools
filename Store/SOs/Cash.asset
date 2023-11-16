@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6df0c6962af14c60b2d5c35ebd9c64c, type: 3}
   m_Name: Cash
   m_EditorClassIdentifier: 
-  value: 0
+  value: 2000
   decrementEvent:
     m_PersistentCalls:
       m_Calls: []
