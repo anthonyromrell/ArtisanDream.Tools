@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,94 +7,42 @@ public class InventoryUIBehaviour : MonoBehaviour
     public UnityEvent buttonEvent;
     public InventoryData inventoryDataObj;
     public InventoryUIButtonBehaviour inventoryUIPrefab;
-    private StoreUIButtonBehaviour storeUIPrefab;
     
     private void Start()
     {
         buttonEvent.Invoke();
     }
 
-    public void AddAllInventoryItemsToUI()
+    private void AddItemsToUI(IEnumerable<IInventoryItem> items, bool isStoreItem = false)
     {
-        foreach (var item in inventoryDataObj.inventoryDataObjList)
+        foreach (var item in items)
         {
             var element = Instantiate(inventoryUIPrefab.gameObject, transform);
             var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
+            if (elementData == null) continue;
+
             elementData.ButtonObj.image.sprite = item.PreviewArt;
             elementData.Label.text = item.Name;
-            if (item.Used)
-            {
-                elementData.ButtonObj.interactable = false;
-            }
+            elementData.ButtonObj.interactable = !item.Used;
+
+            if (!isStoreItem) continue;
+            var storeElementData = elementData as StoreUIButtonBehaviour;
+
+            if (storeElementData == null || item is not IStoreItem storeItem) continue;
+            storeElementData.StoreItemObj = storeItem;
+            storeElementData.ToggleObj.isOn = storeItem.Purchased;
+            storeElementData.PriceLabel.text = $"${storeItem.Price}";
+            storeElementData.Cash = inventoryDataObj.cash;
         }
+    }
+
+    public void AddAllInventoryItemsToUI()
+    {
+        AddItemsToUI(inventoryDataObj.inventoryDataObjList);
     }
     
     public void AddAllStoreInventoryItemsToUI()
     {
-        storeUIPrefab = inventoryUIPrefab as StoreUIButtonBehaviour;
-        foreach (var item in inventoryDataObj.storeDataObjList)
-        {
-            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
-            var elementData = element.GetComponent<StoreUIButtonBehaviour>();
-            elementData.ButtonObj.image.sprite = item.PreviewArt;
-            elementData.StoreItemObj = item;
-            elementData.Label.text = item.Name;
-            elementData.ToggleObj.isOn = item.Purchased;
-            elementData.PriceLabel.text = "$" + item.Price;
-            elementData.Cash = inventoryDataObj.cash;
-            if (item.Purchased)
-            {
-                elementData.ButtonObj.interactable = false;
-            }
-        }
-    }
-    
-    public void AddAllPurchasedInventoryItemsToUI()
-    {
-        storeUIPrefab = inventoryUIPrefab as StoreUIButtonBehaviour;
-        foreach (var item in inventoryDataObj.storeDataObjList)
-        {
-            if (!item.Purchased) continue;
-            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
-            var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
-            elementData.ButtonObj.image.sprite = item.PreviewArt;
-            elementData.Label.text = item.Name;
-            if (!item.CanUse)
-            {
-                elementData.ButtonObj.interactable = false;
-            }
-        }
-    }
-    
-    private void AddAllInventoryItemsToGame()
-    {
-        foreach (var item in inventoryDataObj.inventoryDataObjList)
-        {
-            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
-            var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
-            elementData.ButtonObj.image.sprite = item.PreviewArt;
-            elementData.Label.text = item.Name;
-            if (item.Used)
-            {
-                elementData.ButtonObj.interactable = false;
-            }
-        }
-    }
-    
-    public void AddAllPurchasedInventoryItemsToGame()
-    {
-        storeUIPrefab = inventoryUIPrefab as StoreUIButtonBehaviour;
-        foreach (var item in inventoryDataObj.storeDataObjList)
-        {
-            if (!item.Purchased) continue;
-            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
-            var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
-            elementData.ButtonObj.image.sprite = item.PreviewArt;
-            elementData.Label.text = item.Name;
-            if (!item.CanUse)
-            {
-                elementData.ButtonObj.interactable = false;
-            }
-        }
+        AddItemsToUI(inventoryDataObj.storeDataObjList, true);
     }
 }

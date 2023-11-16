@@ -565,9 +565,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a28a400391344b9c88e28b4820b5ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHoldTime: 0.1
+  awakeAction: {fileID: 0}
+  startAction: {fileID: 0}
+  awakeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   startEvent:
     m_PersistentCalls:
       m_Calls: []
+  triggerEnterAction: {fileID: 0}
+  triggerEnterRepeatAction: {fileID: 0}
+  triggerEnterEndAction: {fileID: 0}
+  triggerExitAction: {fileID: 0}
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -580,7 +590,9 @@ MonoBehaviour:
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
-  delayTime: 0.01
+  triggerHoldTime: 0.01
+  repeatHoldTime: 0.01
+  exitHoldTime: 0.01
   canRepeat: 0
   repeatTimes: 10
 --- !u!1 &1500580413
@@ -685,7 +697,7 @@ Transform:
   m_GameObject: {fileID: 1500580413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.312383, y: -0.12108017, z: -0.001982689}
+  m_LocalPosition: {x: 2.03, y: -0.12108017, z: -0.001982689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -703,9 +715,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a28a400391344b9c88e28b4820b5ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHoldTime: 0.1
+  awakeAction: {fileID: 0}
+  startAction: {fileID: 0}
+  awakeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   startEvent:
     m_PersistentCalls:
       m_Calls: []
+  triggerEnterAction: {fileID: 0}
+  triggerEnterRepeatAction: {fileID: 0}
+  triggerEnterEndAction: {fileID: 0}
+  triggerExitAction: {fileID: 0}
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -718,7 +740,9 @@ MonoBehaviour:
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
-  delayTime: 0.01
+  triggerHoldTime: 0.01
+  repeatHoldTime: 0.01
+  exitHoldTime: 0.01
   canRepeat: 0
   repeatTimes: 10
 --- !u!1 &1854079215
@@ -823,7 +847,7 @@ Transform:
   m_GameObject: {fileID: 1854079215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.312383, y: -0.12108017, z: -0.001982689}
+  m_LocalPosition: {x: 0.19, y: -0.12108017, z: -0.001982689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -841,9 +865,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a28a400391344b9c88e28b4820b5ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHoldTime: 0.1
+  awakeAction: {fileID: 0}
+  startAction: {fileID: 0}
+  awakeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   startEvent:
     m_PersistentCalls:
       m_Calls: []
+  triggerEnterAction: {fileID: 0}
+  triggerEnterRepeatAction: {fileID: 0}
+  triggerEnterEndAction: {fileID: 0}
+  triggerExitAction: {fileID: 0}
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -856,7 +890,9 @@ MonoBehaviour:
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
-  delayTime: 0.01
+  triggerHoldTime: 0.01
+  repeatHoldTime: 0.01
+  exitHoldTime: 0.01
   canRepeat: 0
   repeatTimes: 10
 --- !u!1 &2110644895
@@ -871,7 +907,7 @@ GameObject:
   - component: {fileID: 2110644899}
   - component: {fileID: 2110644898}
   - component: {fileID: 2110644897}
-  - component: {fileID: 2110644896}
+  - component: {fileID: 2110644901}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -879,36 +915,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2110644896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110644895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a28a400391344b9c88e28b4820b5ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterRepeatEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  delayTime: 0.01
-  canRepeat: 0
-  repeatTimes: 10
 --- !u!65 &2110644897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -989,12 +995,54 @@ Transform:
   m_GameObject: {fileID: 2110644895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.312383, y: -0.12108017, z: -0.001982689}
+  m_LocalPosition: {x: -2.84, y: -0.12108017, z: -0.001982689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2110644901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110644895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a28a400391344b9c88e28b4820b5ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHoldTime: 0.1
+  awakeAction: {fileID: 0}
+  startAction: {fileID: 0}
+  awakeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  startEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterAction: {fileID: 0}
+  triggerEnterRepeatAction: {fileID: 0}
+  triggerEnterEndAction: {fileID: 0}
+  triggerExitAction: {fileID: 0}
+  triggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterRepeatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerHoldTime: 0.01
+  repeatHoldTime: 0.01
+  exitHoldTime: 0.01
+  canRepeat: 0
+  repeatTimes: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

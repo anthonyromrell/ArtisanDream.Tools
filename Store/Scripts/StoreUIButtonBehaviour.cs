@@ -12,21 +12,29 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
     public Toggle ToggleObj { get; private set; }
     public IStoreItem StoreItemObj { get; set; }
     
-    private void Awake()
+    protected override void Awake()
     {
-        ButtonObj = GetComponent<Button>();
-        Label = ButtonObj.GetComponentInChildren<TextMeshProUGUI>();
+        base.Awake(); // Calls InventoryUIButtonBehaviour's Awake
         ToggleObj = GetComponentInChildren<Toggle>();
-        PriceLabel = ToggleObj.GetComponentInChildren<Text>();
+        PriceLabel = ToggleObj?.GetComponentInChildren<Text>();
+
+        ButtonObj?.onClick.AddListener(AttemptPurchase);
     }
 
-    public void OnMouseDown()
+    private void AttemptPurchase()
     {
-        RunButton();
-    }
+        if (StoreItemObj == null || Cash == null)
+        {
+            Debug.LogError("StoreItemObj or Cash is not set", this);
+            return;
+        }
 
-    private void RunButton()
-    {
+        if (StoreItemObj.Purchased)
+        {
+            Debug.LogWarning("Item already purchased", this);
+            return;
+        }
+
         if (StoreItemObj.Price <= Cash.value)
         {
             StoreItemObj.Purchased = true;
@@ -34,11 +42,11 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
             ToggleObj.isOn = true;
             Cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
-            purchaseEvent.Invoke();
+            purchaseEvent?.Invoke();
         }
         else
         {
-            noPurchaseEvent.Invoke();
+            noPurchaseEvent?.Invoke();
         }
     }
 }

@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
 public class InventoryUIButtonBehaviour : MonoBehaviour
 {
     public UnityEvent buttonEvent;
@@ -10,19 +11,31 @@ public class InventoryUIButtonBehaviour : MonoBehaviour
     
     public InventoryItem InventoryItemObj { get; set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         ButtonObj = GetComponent<Button>();
         Label = ButtonObj.GetComponentInChildren<TextMeshProUGUI>();
-    }
-    private void OnMouseDown()
-    {
-        RunButton();
+
+        if (ButtonObj != null)
+        {
+            ButtonObj.onClick.AddListener(HandleButtonClick);
+        }
+        else
+        {
+            Debug.LogError("Button component not found on the GameObject", this);
+        }
     }
 
-    private void RunButton()
+    private void HandleButtonClick()
     {
-        buttonEvent.Invoke();
-        InventoryItemObj.Used = true;
+        if (InventoryItemObj != null)
+        {
+            buttonEvent.Invoke();
+            InventoryItemObj.Used = true;
+        }
+        else
+        {
+            Debug.LogWarning("InventoryItemObj is not set", this);
+        }
     }
 }
