@@ -27,4 +27,13 @@ public interface IInventoryItem
     Sprite PreviewArt { get; set; }
     GameObject GameArt { get; set; }
     string Name { get; set; }
+    
+    public GameAction GameActionObj { get; set; }
+    void Raise();
+}
+
+public interface IGameAction<T>
+{
+    public GameAction GameActionObj { get; set; }
+    void Raise(T obj);
 }

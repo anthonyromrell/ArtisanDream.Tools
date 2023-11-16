@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class InventoryUIButtonBehaviour : MonoBehaviour
 {
-    public UnityEvent buttonEvent;
     public Button ButtonObj { get; protected set; }
     public TextMeshProUGUI Label { get; protected set; }
     
@@ -15,7 +14,7 @@ public class InventoryUIButtonBehaviour : MonoBehaviour
     {
         ButtonObj = GetComponent<Button>();
         Label = ButtonObj.GetComponentInChildren<TextMeshProUGUI>();
-
+     
         if (ButtonObj != null)
         {
             ButtonObj.onClick.AddListener(HandleButtonClick);
@@ -28,14 +27,8 @@ public class InventoryUIButtonBehaviour : MonoBehaviour
 
     private void HandleButtonClick()
     {
-        if (InventoryItemObj != null)
-        {
-            buttonEvent.Invoke();
-            InventoryItemObj.Used = true;
-        }
-        else
-        {
-            Debug.LogWarning("InventoryItemObj is not set", this);
-        }
+        if (InventoryItemObj == null) return;
+        InventoryItemObj.Used = true;
+        ButtonObj.interactable = false;
     }
 }

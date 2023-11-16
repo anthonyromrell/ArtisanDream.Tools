@@ -32,13 +32,19 @@ public class InventoryUIBehaviour : MonoBehaviour
             elementData.ButtonObj.image.sprite = inventoryItem.PreviewArt;
             elementData.Label.text = inventoryItem.Name;
             elementData.ButtonObj.interactable = !inventoryItem.Used;
+            elementData.InventoryItemObj = inventoryItem as InventoryItem;
+            if(inventoryItem.GameActionObj != null)
+                elementData.ButtonObj.onClick.AddListener(inventoryItem.Raise);
+            else
+            {
+                elementData.ButtonObj.interactable = false;
+            }
         }
 
         if (item is not IStoreItem storeItem) return;
         {
             var elementData = element.GetComponent<StoreUIButtonBehaviour>();
             if (elementData == null) return;
-
             elementData.ButtonObj.image.sprite = storeItem.PreviewArt;
             elementData.Label.text = storeItem.Name;
             elementData.ButtonObj.interactable = !storeItem.Purchased;
