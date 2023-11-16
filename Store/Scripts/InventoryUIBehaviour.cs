@@ -13,28 +13,36 @@ public class InventoryUIBehaviour : MonoBehaviour
         buttonEvent.Invoke();
     }
 
-    private void AddItemsToUI(IEnumerable<IInventoryItem> items, bool isStoreItem = false)
+    private void AddItemsToUI(List<IInventoryItem> items)
     {
         foreach (var item in items)
         {
             var element = Instantiate(inventoryUIPrefab.gameObject, transform);
             var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
-            if (elementData == null) continue;
+            
+            elementData.ButtonObj.image.sprite = item.PreviewArt;
+            elementData.Label.text = item.Name; 
+            elementData.ButtonObj.interactable = !item.Used;
+        }
+    }
+    
+    private void AddItemsToUI (List<IStoreItem> items)
+    {
+        foreach (var item in items)
+        {
+            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
+            var elementData = element.GetComponent<StoreUIButtonBehaviour>();
 
             elementData.ButtonObj.image.sprite = item.PreviewArt;
             elementData.Label.text = item.Name;
-            elementData.ButtonObj.interactable = !item.Used;
-
-            if (!isStoreItem) continue;
-            var storeElementData = elementData as StoreUIButtonBehaviour;
-
-            if (storeElementData == null || item is not IStoreItem storeItem) continue;
-            storeElementData.StoreItemObj = storeItem;
-            storeElementData.ToggleObj.isOn = storeItem.Purchased;
-            storeElementData.PriceLabel.text = $"${storeItem.Price}";
-            storeElementData.Cash = inventoryDataObj.cash;
+            elementData.ButtonObj.interactable = !item.Purchased;
+            elementData.StoreItemObj = item;
+            elementData.ToggleObj.isOn = item.Purchased;
+            elementData.PriceLabel.text = $"${item.Price}";
+            elementData.cash = inventoryDataObj.cash;
         }
     }
+
 
     public void AddAllInventoryItemsToUI()
     {
@@ -43,6 +51,6 @@ public class InventoryUIBehaviour : MonoBehaviour
     
     public void AddAllStoreInventoryItemsToUI()
     {
-        AddItemsToUI(inventoryDataObj.storeDataObjList, true);
+        AddItemsToUI(inventoryDataObj.storeDataObjList);
     }
 }

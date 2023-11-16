@@ -20,7 +20,7 @@ public class StoreInventoryUIBehaviour : InventoryUIBehaviour
             elementData.Label.text = item.Name;
             elementData.ToggleObj.isOn = item.Purchased;
             elementData.PriceLabel.text = "$" + item.Price;
-            elementData.Cash = inventoryDataObj.cash;
+            elementData.cash = inventoryDataObj.cash;
             if (item.Purchased)
             {
                 elementData.ButtonObj.interactable = false;

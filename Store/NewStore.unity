@@ -1025,7 +1025,6 @@ GameObject:
   - component: {fileID: 1885749349}
   - component: {fileID: 1885749351}
   - component: {fileID: 1885749350}
-  - component: {fileID: 1885749353}
   - component: {fileID: 1885749352}
   - component: {fileID: 1885749354}
   m_Layer: 0
@@ -1116,23 +1115,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &1885749353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885749348}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e970b267a504cefa13d081eaf6258b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  inventoryDataObj: {fileID: 11400000, guid: 30652d38dda4c4d598ace085ff6106ce, type: 2}
-  inventoryUIPrefab: {fileID: 5412739403429779018, guid: 3b1ab0c93975243c0bb7278c1127f094, type: 3}
 --- !u!114 &1885749354
 MonoBehaviour:
   m_ObjectHideFlags: 0
