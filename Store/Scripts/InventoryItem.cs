@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu (fileName = "InventoryItem", menuName = "Store/InventoryItem")]
 public class InventoryItem : ScriptableObject, IStoreItem, IInventoryItem
 {
     [SerializeField] private int price;
@@ -15,8 +15,6 @@ public class InventoryItem : ScriptableObject, IStoreItem, IInventoryItem
 
     // IStoreItem and IInventoryItem Implementation
     public int Price { get => price; set => price = value; }
-    //public bool Purchased { get => purchased; set => purchased = value; }
-    public bool Own { get => own; set => own = value; }
     public bool UsedOrPurchase { get => usedOrPurchase; set => usedOrPurchase = value; }
     public int IntLevel { get => intLevel; set => intLevel = value; }
     public float FloatLevel { get => floatLevel; set => floatLevel = value; } // Corrected type

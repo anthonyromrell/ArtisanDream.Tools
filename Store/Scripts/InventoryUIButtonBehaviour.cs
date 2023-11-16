@@ -25,7 +25,5 @@ public class InventoryUIButtonBehaviour : MonoBehaviour
         if (InventoryItemObj == null) return;
         InventoryItemObj.UsedOrPurchase = false;
         ButtonObj.interactable = false;
-        var storeItem = InventoryItemObj as IStoreItem;
-        storeItem.Own = false;
     }
 }
