@@ -64,4 +64,36 @@ public class InventoryUIBehaviour : MonoBehaviour
     {
         AddItemsToUI(inventoryDataObj.storeDataObjList);
     }
+    
+    public void AddAllInventoryItemsPrefabsToScene()
+    {
+        var i = 0;
+        foreach (var item in inventoryDataObj.inventoryDataObjList)
+        {
+            i++;
+            if (item.GameActionObj == null) return;
+            if (item.GameArt == null) return;
+            var element = Instantiate(item.GameArt, transform);
+            var elementData = element.GetComponent<TriggerEventsBehaviour>();  
+            elementData.triggerEnterAction = item.GameActionObj;
+            elementData.gameObject.transform.transform.position = Vector3.left*i*-10;
+        }
+    }
+    
+    public void AddPurchasedInventoryItemsPrefabsToScene()
+    {
+        var i = 0;
+        foreach (var item in inventoryDataObj.storeDataObjList)
+        {
+            i++;
+            if (!item.Purchased) continue;
+            if (item is not IInventoryItem storeItem) continue;
+            if (storeItem.GameActionObj == null) return;
+            if (storeItem.GameArt == null) return;
+            var element = Instantiate(storeItem.GameArt, transform);
+            var elementData = element.GetComponent<TriggerEventsBehaviour>();  
+            elementData.triggerEnterAction = storeItem.GameActionObj;
+            elementData.gameObject.transform.transform.position = Vector3.left*i*-10;
+        }
+    }
 }
