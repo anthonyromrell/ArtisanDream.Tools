@@ -29,12 +29,9 @@ public class InventoryConfigBehaviour : MonoBehaviour
     {
         foreach (var item in items)
         {
-            if (item is not { UsedOrPurchase: false }) continue;
-            {
-                var element = Instantiate(inventoryUIPrefab.gameObject, transform);
-                var elementData = element.GetComponent<StoreUIButtonBehaviour>();
-                elementData.ConfigButton(item);
-            }
+            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
+            var elementData = element.GetComponent<StoreUIButtonBehaviour>();
+            elementData.ConfigButton(item);
         }
     }
     
@@ -58,7 +55,7 @@ public class InventoryConfigBehaviour : MonoBehaviour
         if (elementData == null) return i;
         elementData.inventoryItemObj = item as InventoryItem;
         elementData.gameActionObj = item.GameActionObj;
-        elementData.gameObject.transform.position = Vector3.left * ++i * -3;
+        elementData.gameObject.transform.position = Vector3.left * ++i * -2;
         return i;
     }
     

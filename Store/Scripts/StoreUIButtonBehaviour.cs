@@ -5,6 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
 {
+    public GameAction purchaseActionObj;
     public UnityEvent purchaseEvent, noPurchaseEvent;
     public IntData cash;
     public Text PriceLabel { get; private set; }
@@ -39,6 +40,7 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
             cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
             purchaseEvent?.Invoke();
+            purchaseActionObj.Raise();
         }
         else
         {
