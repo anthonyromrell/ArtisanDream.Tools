@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1536644607166684895}
   - component: {fileID: 7271970860099139285}
   - component: {fileID: 8250147091318888423}
-  - component: {fileID: 4560310011978982697}
   - component: {fileID: -4037592181683793899}
+  - component: {fileID: -8973566629730357816}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -107,48 +107,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4560310011978982697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5139029590519710873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a28a400391344b9c88e28b4820b5ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHoldTime: 0.1
-  awakeAction: {fileID: 0}
-  startAction: {fileID: 0}
-  awakeEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  startEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterAction: {fileID: 0}
-  triggerEnterRepeatAction: {fileID: 0}
-  triggerEnterEndAction: {fileID: 0}
-  triggerExitAction: {fileID: 0}
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterRepeatEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerHoldTime: 0.01
-  repeatHoldTime: 0.01
-  exitHoldTime: 0.01
-  canRepeat: 0
-  repeatTimes: 10
 --- !u!114 &-4037592181683793899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,5 +125,23 @@ MonoBehaviour:
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls: []
+  gameActionObj: {fileID: 0}
   inventoryItemObj: {fileID: 0}
-  inventoryDataObj: {fileID: 0}
+--- !u!114 &-8973566629730357816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139029590519710873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8ecf5cfbf2d4be9b71a349301f8009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  onUp:
+    m_PersistentCalls:
+      m_Calls: []

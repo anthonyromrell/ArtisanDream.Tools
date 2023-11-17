@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2511900774680238701}
   - component: {fileID: 1659290501522805166}
   - component: {fileID: 4102639701227073296}
+  - component: {fileID: 2229634621351985667}
   m_Layer: 0
   m_Name: Isometric Diamond
   m_TagString: Untagged
@@ -127,3 +128,21 @@ MonoBehaviour:
       m_Calls: []
   gameActionObj: {fileID: 0}
   inventoryItemObj: {fileID: 0}
+--- !u!114 &2229634621351985667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356380240858130757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8ecf5cfbf2d4be9b71a349301f8009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  onUp:
+    m_PersistentCalls:
+      m_Calls: []

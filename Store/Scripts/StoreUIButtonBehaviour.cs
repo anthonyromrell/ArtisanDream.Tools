@@ -5,6 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
 {
+    public GameAction purchaseActionObj;
     public UnityEvent purchaseEvent, noPurchaseEvent;
     public IntData cash;
     public Text PriceLabel { get; private set; }
@@ -19,6 +20,17 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
         ButtonObj.onClick.AddListener(AttemptPurchase);
     }
 
+    public void ConfigButton(IStoreItem storeItem)
+    {
+        if (storeItem == null) return;
+        ButtonObj.image.sprite = storeItem.PreviewArt;
+        Label.text = storeItem.ThisName;
+        ButtonObj.interactable = !storeItem.UsedOrPurchase;
+        StoreItemObj = storeItem;
+        ToggleObj.isOn = storeItem.UsedOrPurchase;
+        PriceLabel.text = $"${storeItem.Price}";
+    }
+    
     private void AttemptPurchase()
     {
         if (StoreItemObj.Price <= cash.value)
@@ -28,6 +40,7 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
             cash.UpdateValue(-StoreItemObj.Price);
             ButtonObj.interactable = false;
             purchaseEvent?.Invoke();
+            purchaseActionObj.Raise();
         }
         else
         {
