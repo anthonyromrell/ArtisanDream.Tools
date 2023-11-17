@@ -12,6 +12,15 @@ public class InventoryPrefabItemBehaviour : ColliderBehaviour
         triggerEnterEvent.AddListener(UseItem);
     }
 
+    public int ConfigureGameObject(IInventoryItem item, int i)
+    {
+        if (item.GameActionObj == null || item.GameArt == null) return i;
+        inventoryItemObj = item as InventoryItem;
+        gameActionObj = item.GameActionObj;
+        gameObject.transform.position = Vector3.left * i * -2;
+        return i;
+    }
+    
     private void UseItem()
     {
         if (inventoryItemObj == null) return;
