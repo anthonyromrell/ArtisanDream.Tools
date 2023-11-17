@@ -20,6 +20,20 @@ public class InventoryUIButtonBehaviour : MonoBehaviour
         }
     }
 
+    public void ConfigButton(IInventoryItem inventoryItem)
+    {
+        ButtonObj.image.sprite = inventoryItem.PreviewArt;
+        Label.text = inventoryItem.ThisName;
+        ButtonObj.interactable = inventoryItem.UsedOrPurchase;
+        InventoryItemObj = inventoryItem as InventoryItem;
+        if(inventoryItem.GameActionObj != null)
+            ButtonObj.onClick.AddListener(inventoryItem.Raise);
+        else
+        {
+            ButtonObj.interactable = false;
+        }
+    }
+
     private void HandleButtonClick()
     {
         if (InventoryItemObj == null) return;

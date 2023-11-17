@@ -19,6 +19,17 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
         ButtonObj.onClick.AddListener(AttemptPurchase);
     }
 
+    public void ConfigButton(IStoreItem storeItem)
+    {
+        if (storeItem == null) return;
+        ButtonObj.image.sprite = storeItem.PreviewArt;
+        Label.text = storeItem.ThisName;
+        ButtonObj.interactable = !storeItem.UsedOrPurchase;
+        StoreItemObj = storeItem;
+        ToggleObj.isOn = storeItem.UsedOrPurchase;
+        PriceLabel.text = $"${storeItem.Price}";
+    }
+    
     private void AttemptPurchase()
     {
         if (StoreItemObj.Price <= cash.value)

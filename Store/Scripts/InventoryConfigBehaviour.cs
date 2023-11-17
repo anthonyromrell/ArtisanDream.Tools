@@ -14,57 +14,33 @@ public class InventoryConfigBehaviour : MonoBehaviour
         buttonEvent.Invoke();
     }
 
-    private void AddItemsToUI<T>(List<T> items)
+    private void AddItemsToUI(List<IInventoryItem> items)
     {
-        
         foreach (var item in items)
         {
             GameObject element = null;
             if (item is IInventoryItem { UsedOrPurchase: true })
             {
                 element = Instantiate(inventoryUIPrefab.gameObject, transform);
+                var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
+                elementData.ConfigButton(item as IInventoryItem);
             }
-            
-            if (item is IStoreItem { UsedOrPurchase: false } )
-            {
-                element = Instantiate(inventoryUIPrefab.gameObject, transform);
-            }
-            
-            ConfigureElement(element, item);
         }
     }
-
-    private void ConfigureElement<T>(GameObject element, T item)
+    
+    private void AddItemsToUI(List<IStoreItem> items)
     {
-        if (item is IInventoryItem inventoryItem)
+        foreach (var item in items)
         {
-            var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
-            if (elementData == null) return;
-            elementData.ButtonObj.image.sprite = inventoryItem.PreviewArt;
-            elementData.Label.text = inventoryItem.ThisName;
-            elementData.ButtonObj.interactable = inventoryItem.UsedOrPurchase;
-            elementData.InventoryItemObj = inventoryItem as InventoryItem;
-            if(inventoryItem.GameActionObj != null)
-                elementData.ButtonObj.onClick.AddListener(inventoryItem.Raise);
-            else
+            if (item is not IStoreItem { UsedOrPurchase: false } storeItem) continue;
             {
-                elementData.ButtonObj.interactable = false;
+                var element = Instantiate(inventoryUIPrefab.gameObject, transform);
+                var elementData = element.GetComponent<StoreUIButtonBehaviour>();
+                elementData.ConfigButton(storeItem);
             }
         }
-
-        if (item is not IStoreItem storeItem) return;
-        {
-            var elementData = element.GetComponent<StoreUIButtonBehaviour>();
-            if (elementData == null) return;
-            elementData.ButtonObj.image.sprite = storeItem.PreviewArt;
-            elementData.Label.text = storeItem.ThisName;
-            elementData.ButtonObj.interactable = !storeItem.UsedOrPurchase;
-            elementData.StoreItemObj = storeItem;
-            elementData.ToggleObj.isOn = storeItem.UsedOrPurchase;
-            elementData.PriceLabel.text = $"${storeItem.Price}";
-            elementData.cash = inventoryDataObj.cash;
-        }
     }
+    
 
     public void AddAllInventoryItemsToUI()
     {
