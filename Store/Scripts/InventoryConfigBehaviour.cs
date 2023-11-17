@@ -18,13 +18,10 @@ public class InventoryConfigBehaviour : MonoBehaviour
     {
         foreach (var item in items)
         {
-            GameObject element = null;
-            if (item is IInventoryItem { UsedOrPurchase: true })
-            {
-                element = Instantiate(inventoryUIPrefab.gameObject, transform);
-                var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
-                elementData.ConfigButton(item as IInventoryItem);
-            }
+            if (item is not { UsedOrPurchase: true }) continue;
+            var element = Instantiate(inventoryUIPrefab.gameObject, transform);
+            var elementData = element.GetComponent<InventoryUIButtonBehaviour>();
+            elementData.ConfigButton(item);
         }
     }
     
@@ -32,11 +29,11 @@ public class InventoryConfigBehaviour : MonoBehaviour
     {
         foreach (var item in items)
         {
-            if (item is not IStoreItem { UsedOrPurchase: false } storeItem) continue;
+            if (item is not { UsedOrPurchase: false }) continue;
             {
                 var element = Instantiate(inventoryUIPrefab.gameObject, transform);
                 var elementData = element.GetComponent<StoreUIButtonBehaviour>();
-                elementData.ConfigButton(storeItem);
+                elementData.ConfigButton(item);
             }
         }
     }
@@ -52,7 +49,6 @@ public class InventoryConfigBehaviour : MonoBehaviour
         AddItemsToUI(inventoryDataObj.storeDataObjList);
     }
     
-    
     private int ConfigureGameObject(IInventoryItem item, int i)
     {
         if (item.GameActionObj == null || item.GameArt == null) return i;
@@ -65,9 +61,7 @@ public class InventoryConfigBehaviour : MonoBehaviour
         elementData.gameObject.transform.position = Vector3.left * ++i * -3;
         return i;
     }
-
- 
-
+    
     public void AddAllInventoryItemsPrefabsToScene()
     {
         var i = inventoryDataObj.inventoryDataObjList.Aggregate(0, (current, item) => ConfigureGameObject(item, current));
