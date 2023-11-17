@@ -3,7 +3,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Collections/ColorDataList")]
-public class ColorDataCollection : InstanceConfigBase, ICollectList<ColorData>
+public class ColorDataCollection : ScriptableObject, ICollectList<ColorData>
 {
     public List<ColorData> colorDataList;
     public int Index { get; set; }
@@ -23,7 +23,7 @@ public class ColorDataCollection : InstanceConfigBase, ICollectList<ColorData>
         }
     }
 
-    public override void ConfigureInstance(GameObject instance)
+    public void ConfigureInstance(GameObject instance)
     {
         if (instance == null || Index < 0 || Index >= colorDataList.Count) return;
 
