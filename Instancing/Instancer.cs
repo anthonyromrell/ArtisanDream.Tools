@@ -13,11 +13,11 @@ public class Instancer : ScriptableObject
     
     public void InstanceFromV3Collection(Vector3DataCollection collection)
     {
-        if (indexer.value < 0 || indexer.value >= collection.vector3Datas.Count)
+        if (indexer.Value < 0 || indexer.Value >= collection.vector3Datas.Count)
         {
             Debug.LogWarning("Indexer value out of range.");
             return;
         }
-        Instantiate(prefab, collection.vector3Datas[indexer.value].value, Quaternion.identity);
+        Instantiate(prefab, collection.vector3Datas[indexer.Value].value, Quaternion.identity);
     }
 }

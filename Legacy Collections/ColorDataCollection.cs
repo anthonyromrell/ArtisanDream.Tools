@@ -39,7 +39,7 @@ public class ColorDataCollection : ScriptableObject, ICollectList<ColorData>
         var spriteRenderer = instance.GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            spriteRenderer.color = colorDataList[Index].value;
+            spriteRenderer.color = colorDataList[Index].Value;
         }
     }
 }

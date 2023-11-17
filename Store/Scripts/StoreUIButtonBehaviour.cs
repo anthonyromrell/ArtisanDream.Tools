@@ -33,7 +33,7 @@ public class StoreUIButtonBehaviour : InventoryUIButtonBehaviour
     
     private void AttemptPurchase()
     {
-        if (StoreItemObj.Price <= cash.value)
+        if (StoreItemObj.Price <= cash.Value)
         {
             StoreItemObj.UsedOrPurchase = true;
             ToggleObj.isOn = true;

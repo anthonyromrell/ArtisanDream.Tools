@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 
-
 [CreateAssetMenu(menuName = "Single Variables/Float3Data")]
-public class Float3Data: ScriptableObject
+public class Float3Data : NameId
 {
-    public float x;
-    public float y;
-    public float z;
+    public Vector3 v3;
 
-    public Float3Data(float x, float y, float z)
+    // Optional: Methods to set or modify the Vector3 value
+    public void SetValue(float x, float y, float z)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        v3 = new Vector3(x, y, z);
     }
 
-    public Vector3 v3;
+    public void SetValue(Vector3 value)
+    {
+        v3 = value;
+    }
+
+    public Vector3 GetValue()
+    {
+        return v3;
+    }
 }

@@ -15,7 +15,7 @@ public class SpriteRendererBehaviour : MonoBehaviour
 
     public void ChangeSpriteColor(ColorData colorDataObj)
     {
-        spriteRendererObj.color = colorDataObj.value;
+        spriteRendererObj.color = colorDataObj.Value;
     }
 
     public void MatchCameraSize(Camera cam)

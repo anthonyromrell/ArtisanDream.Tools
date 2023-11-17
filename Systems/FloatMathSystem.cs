@@ -16,12 +16,12 @@ public class FloatMathSystem : WorkSystem
     
     public void UpdateValue ()
     {
-        dataObj.UpdateValue(fromNameId.value);
+        dataObj.UpdateValue(fromNameId.Value);
     }
     
     public void ChangeValue ()
     {
-        dataObj.value = fromNameId.value;
+        dataObj.Value = fromNameId.Value;
     }
     
     public void IncrementValue ()

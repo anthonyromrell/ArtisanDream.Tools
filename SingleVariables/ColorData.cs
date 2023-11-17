@@ -4,20 +4,30 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Single Variables/ColorData")]
 public class ColorData : NameId
 {
-	public Color value = Color.blue;
+    [SerializeField] private Color value = Color.blue;
 
-	public void ChangeColor(SpriteRenderer spriteRenderer)
-	{
-		spriteRenderer.color = value;
-	}
-	
-	public void ChangeColor(Material material)
-	{
-		material.color = value;
-	}
-	
-	public void ChangeColor(Image image)
-	{
-		image.color = value;
-	}
+    public Color Value
+    {
+        get => value;
+        set => this.value = value;
+    }
+    
+    public void ChangeColor(Object component)
+    {
+        switch (component)
+        {
+            case SpriteRenderer spriteRenderer:
+                spriteRenderer.color = Value;
+                break;
+            case Material material:
+                material.color = Value;
+                break;
+            case Image image:
+                image.color = Value;
+                break;
+            case Text text:
+                text.color = Value;
+                break;
+        }
+    }
 }

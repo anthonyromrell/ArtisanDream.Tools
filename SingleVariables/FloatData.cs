@@ -1,51 +1,58 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[ExecuteInEditMode]
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : NameId
 {
-    public float value;
-    public UnityEvent minValueEvent, maxValueEvent, updateValueEvent;
-    
-    public void SetValue (float amount)
+    [SerializeField] private float value, minValue, maxValue;
+    public float Value 
     {
-        value = amount;
-        updateValueEvent.Invoke();
+        get => value;
+        set
+        {
+            this.value = value;
+            updateValueEvent.Invoke();
+        }
     }
 
+    public UnityEvent minValueEvent, maxValueEvent, updateValueEvent;
+    
     public void UpdateValue(float amount)
     {
-        value += amount;
-        updateValueEvent.Invoke();
+        Value += amount;
     }
 
     public void IncrementValue()
     {
-        value ++;
+        Value++;
     }
-    
+
     public void UpdateValue(FloatData data)
     {
-        if (data != null) value += data.value;
+        if (data != null) Value += data.Value;
     }
 
     public void SetValue(FloatData data)
     {
-        if (data != null) value = data.value;
+        if (data != null) Value = data.Value;
     }
     
-    public void CheckMinValue(float minValue)
+    public void CheckValueRange()
     {
-        if (!(value < minValue)) return;
-        minValueEvent.Invoke();
-        value = minValue;
+        CheckValueRange(minValue, maxValue);
     }
-
-    public void CheckMaxValue(float maxValue)
+    
+    private void CheckValueRange(float minValue, float maxValue)
     {
-        if (!(value >= maxValue)) return;
-        maxValueEvent.Invoke();
-        value = maxValue;
+        if (Value < minValue)
+        {
+            minValueEvent.Invoke();
+            Value = minValue;
+        }
+        else if (Value > maxValue)
+        {
+            maxValueEvent.Invoke();
+            Value = maxValue;
+        }
     }
 }

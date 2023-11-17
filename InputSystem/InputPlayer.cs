@@ -22,7 +22,7 @@ public class InputPlayer : MonoBehaviour
     private void FixedUpdate()
     {
         movement.Set(move.x, move.y);
-        movement *= speed.value * UnityEngine.Time.deltaTime;
+        movement *= speed.Value * UnityEngine.Time.deltaTime;
         transform.Translate(movement, Space.World);
     }
 }

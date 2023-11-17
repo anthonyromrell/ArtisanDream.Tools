@@ -6,13 +6,13 @@ public class StringListManager : ScriptableObject
 {
     public List<StringList> stringListDatas;
     public int currentListNum;
-    
-    public StringList ReturnCurrentData()
+
+    private StringList ReturnCurrentData()
     {
         return stringListDatas[currentListNum];
     }
 
-    public void IncrementListNum()
+    private void IncrementListNum()
     {
         if (currentListNum < stringListDatas.Count - 1)
         {
@@ -26,7 +26,7 @@ public class StringListManager : ScriptableObject
 
     public void UseNextListOnEnd()
     {
-        if (ReturnCurrentData().currentLineNumber == ReturnCurrentData().stringListObj.Count - 1 )
+        if (ReturnCurrentData().CurrentLineNumber == ReturnCurrentData().stringListObj.Count - 1 )
         {
             IncrementListNum();
         }

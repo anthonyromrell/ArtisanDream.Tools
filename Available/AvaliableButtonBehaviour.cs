@@ -38,7 +38,7 @@ public class AvaliableButtonBehaviour : MonoBehaviour
     private void GetAvailableHandler(object obj)
     {
         buttonObj.interactable = true;
-        if (avaliableNumData.value != avaliableNum) return;
+        if (avaliableNumData.Value != avaliableNum) return;
         avaliableDataObject = obj as AvailableData;
         buttonImage.color = avaliableDataObject.activeColor;
         avaliableBar.color = avaliableDataObject.activeColor;

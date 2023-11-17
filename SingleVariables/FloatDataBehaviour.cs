@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FloatDataBehaviour : MonoBehaviour
 {
@@ -9,17 +8,11 @@ public class FloatDataBehaviour : MonoBehaviour
 
     public void UpdateValue(FloatData obj)
     {
-        value += obj.value;
+        value += obj.Value;
     } 
     
     public void UpdateFloatData(float number)
     {
         floatDataObj.UpdateValue(number);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //var newObj = other.GetComponent<FloatDataContainer>().dataObj;
-       // UpdateValue(newObj);
     }
 }

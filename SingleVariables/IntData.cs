@@ -3,104 +3,101 @@ using UnityEngine.Events;
 using Object = UnityEngine.Object;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
-public class IntData : NameId
+public class IntData : ScriptableObject
 {
-    public int value;
+    [SerializeField] private int value, minValue, maxValue;
+    public int Value 
+    {
+        get => value;
+        set
+        {
+            this.value = value;
+            InvokeValueChangedEvent();
+        }
+    }
     private int currentValue;
-    public UnityEvent decrementEvent, valueChangeEvent,atZeroEvent, compareTrueEvent, enableEvent, atMinValue;
+    public UnityEvent decrementEvent, atZeroEvent, minValueEvent, enableEvent, maxValueEvent, valueChangeEvent;
 
     private void OnEnable()
     {
         enableEvent?.Invoke();
     }
 
-    public void SetValue(int amount)
+    private void InvokeValueChangedEvent()
     {
-        value = amount;
-        valueChangeEvent.Invoke();
+        valueChangeEvent?.Invoke();
     }
+
     public void UpdateFromCurrentValue()
     {
-        value = currentValue;
-        valueChangeEvent.Invoke();
+        Value = currentValue;
     }
 
     public void UpdateCurrentValue()
     {
-        currentValue = value;
-        valueChangeEvent.Invoke();
+        currentValue = Value;
     }
-    
+
     public void UpdateValue(int amount)
     {
-        value += amount;
-        valueChangeEvent.Invoke();
+        Value += amount;
     }
-    
+
     public void IncrementValue()
     {
-        value++;
-        valueChangeEvent.Invoke();
+        Value++;
     }
 
     public void DecrementToZero()
     {
-        if (value > 0)
+        if (Value > 0)
         {
-            value--;
-            decrementEvent.Invoke();
+            Value--;
+            decrementEvent?.Invoke();
         }
-        if (value == 0){
-            atZeroEvent.Invoke();
+        CheckZero();
+    }
+
+    private void CheckZero()
+    {
+        if (Value == 0)
+        {
+            atZeroEvent?.Invoke();
         }
     }
 
     public void UpdateValue(Object data)
     {
-        var newData = data as IntData;
-        if (newData != null) value += newData.value;
-        valueChangeEvent.Invoke();
+        if (data is IntData newData)
+        {
+            Value += newData.Value;
+        }
     }
-    
+
     public void SetValue(Object data)
     {
-        var newData = data as IntData;
-        if (newData == null) return;
-        value = newData.value;
-        valueChangeEvent.Invoke();
-    }
-
-    public void CompareValue(IntData data)
-    {
-        if (value < data.value)
+        if (data is IntData newData)
         {
-            value = data.value;
-            valueChangeEvent.Invoke();
-        }
-        if (value == data.value)
-        {
-            compareTrueEvent.Invoke();
+            Value = newData.Value;
         }
     }
     
-    public void CompareValue(int num)
+    public void CheckValueRange()
     {
-        if (value < num)
-        {
-            value = num;
-        }
-        if (value == num)
-        {
-            compareTrueEvent.Invoke();
-        }
+        CheckValueRange(minValue, maxValue);
     }
-
-    public void CheckMinValue(int num)
+    
+    private void CheckValueRange(int minValue, int maxValue)
     {
-        if (value <= num)
+        if (Value < minValue)
         {
-            value = num;
-            atMinValue.Invoke();
+            minValueEvent.Invoke();
+            Value = minValue;
+        }
+        else if (Value > maxValue)
+        {
+            maxValueEvent.Invoke();
+            Value = maxValue;
         }
     }
 }

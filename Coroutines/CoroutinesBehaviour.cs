@@ -31,7 +31,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         base.Awake();
         waitForSecondsObj = new WaitForSeconds(Seconds);
         waitForFixedUpdate = new WaitForFixedUpdate();
-        if (counterNum != null) counterNumTemp = counterNum.value;
+        if (counterNum != null) counterNumTemp = counterNum.Value;
     }
     
 
@@ -87,7 +87,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     {
         var counterNumTemp = 0;
         startEvent.Invoke();
-        while (counterNumTemp < counterNum.value) 
+        while (counterNumTemp < counterNum.Value) 
         {
             yield return waitForSecondsObj;
             repeatEvent.Invoke();

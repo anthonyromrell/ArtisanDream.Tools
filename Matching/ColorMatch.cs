@@ -14,7 +14,7 @@ public class ColorMatch : SimpleMatchID
     {
         foreach (var spriteRenderer in spriteRenderers)
         {
-            spriteRenderer.color = colorData.value;
+            spriteRenderer.color = colorData.Value;
         }
     }
 }
