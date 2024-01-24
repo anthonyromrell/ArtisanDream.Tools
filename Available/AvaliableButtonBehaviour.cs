@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,9 +25,9 @@ public class AvaliableButtonBehaviour : MonoBehaviour
     {
         buttonObj = GetComponent<Button>();
         buttonObj.interactable = false;
-        sendavaliable.raise += GetAvailableHandler;
+        sendavaliable.Raise += GetavaliableHandler;
         buttonImage = GetComponent<Image>();
-        endGame.raiseNoArgs += EndGameHandler;
+        endGame.RaiseNoArgs += EndGameHandler;
     }
 
     private void EndGameHandler()

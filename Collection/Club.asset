@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265199a95c9f1404590a3659d5f0970e, type: 3}
-  m_Name: Coin1
+  m_Script: {fileID: 11500000, guid: e76dacb67a3ac4ae3a47214d1b7821e3, type: 3}
+  m_Name: Club
   m_EditorClassIdentifier: 
-  value: 1
+  art: {fileID: -9095717837082945937, guid: fa4bf3c8f27f84d428ef56723cbf6742, type: 3}
+  price: 9
+  collected: 0

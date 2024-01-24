@@ -17,7 +17,7 @@ public class GameActionHandler : MonoBehaviour
     private void OnEnable()
     {
         waitObj = new WaitForSeconds(holdTime);
-        action.raiseNoArgs += Respond;
+        action.RaiseNoArgs += Respond;
     }
 
     private void Respond()
@@ -39,6 +39,6 @@ public class GameActionHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-        action.raiseNoArgs = null;
+        action.RaiseNoArgs = null;
     }
 }

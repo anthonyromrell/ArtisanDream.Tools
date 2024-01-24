@@ -11,7 +11,7 @@ public class AvailableObjectBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        getAttach.raise += AttachHandler;
+        getAttach.Raise += AttachHandler;
         availableDataObj.availableObj = this;
     }
 
@@ -23,7 +23,7 @@ public class AvailableObjectBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider obj)
     {
         availableDataObj.useAvailable += Fire;
-        sendAvailable.raise(availableDataObj);
+        sendAvailable.Raise(availableDataObj);
         availableNum.Value++;
         GetComponent<BoxCollider>().enabled = false;
         transform.parent = attachPoint.transform;

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d291d5913db814675bb0bf7195cb1270
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - collectable: {instanceID: 0}
+  - cash: {fileID: 11400000, guid: 7f189a56c64f2473e8d51e2ba5850217, type: 2}
+  - checkCollection: {fileID: 11400000, guid: 8eea8bef90e5d4c7889a9fbc638cda74, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

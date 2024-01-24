@@ -30,7 +30,7 @@ public class GameActionsHandler : MonoBehaviour
     {
         foreach (var obj in handlerList)
         {
-            obj.action.raiseNoArgs += obj.Respond;
+            obj.action.RaiseNoArgs += obj.Respond;
         }
     }
 }

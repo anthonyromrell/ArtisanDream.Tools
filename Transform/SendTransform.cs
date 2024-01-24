@@ -6,6 +6,6 @@ public class SendTransform : MonoBehaviour
 
     private void Start()
     {
-        sendTransformAction.raise?.Invoke(transform);
+        sendTransformAction.Raise?.Invoke(transform);
     }
 }

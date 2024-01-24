@@ -4,36 +4,42 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Actions/Game Action")]
 public class GameAction : ScriptableObject
 {
-    public UnityAction<object> raise;
-    public UnityAction raiseNoArgs;
-    
-    
-    public void Raise()
+    public GameAction(UnityAction<Coroutine> raiseCoroutine)
     {
-        raiseNoArgs?.Invoke();
+        RaiseCoroutine = raiseCoroutine;
+    }
+    public UnityAction<object> Raise { get; set; }
+
+    private UnityAction<Coroutine> RaiseCoroutine { get; set; }
+
+    public UnityAction RaiseNoArgs { get; set; }
+
+    public void RaiseAction()
+    {
+        RaiseNoArgs?.Invoke();
     }
     public void Raise(object obj)
     {
-        raise?.Invoke(obj);
+        Raise?.Invoke(obj);
     }
 
     public void Raise(float obj)
     {
-        raise?.Invoke(obj);
+        Raise?.Invoke(obj);
     }
     
     public void Raise(int obj)
     {
-        raise?.Invoke(obj);
+        Raise?.Invoke(obj);
     }
 
     public void Raise(Transform obj)
     {
-        raise?.Invoke(obj);
+        Raise?.Invoke(obj);
     }
     
     public void Raise(Coroutine obj)
     {
-        raise?.Invoke(obj);
+        RaiseCoroutine?.Invoke(obj);
     }
 }

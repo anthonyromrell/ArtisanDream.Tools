@@ -67,6 +67,17 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         InvokeEventAndAction(endEvent, endAction);
     }
 
-    // ... Similar structure for other coroutine methods ...
+    private IEnumerator RepeatCountDownCoroutine()
+    {
+        counterNum.Value = maxCounterNum;
+        startEvent.Invoke();
+        while (counterNum.Value >= 0) 
+        {
+            yield return waitForSecondsObj;
+            repeatEvent.Invoke();
+            counterNum.Value--;
+        }
+        endEvent.Invoke();
+    }
     
 }
