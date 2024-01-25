@@ -17,7 +17,7 @@ public class TextMeshProBehaviour : MonoBehaviour
     protected void Start()
     {
         waitObj = new WaitForFixedUpdate();
-        gameActionObj.raiseNoArgs += Raise;
+        gameActionObj.RaiseNoArgs += Raise;
         textObj = GetComponent<TextMeshProUGUI>();
         awakeEvent.Invoke();
     }

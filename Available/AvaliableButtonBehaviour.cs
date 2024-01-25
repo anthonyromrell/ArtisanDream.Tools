@@ -25,7 +25,7 @@ public class AvaliableButtonBehaviour : MonoBehaviour
     {
         buttonObj = GetComponent<Button>();
         buttonObj.interactable = false;
-        sendavaliable.Raise += GetavaliableHandler;
+       //sendavaliable.Raise += GetavaliableHandler;
         buttonImage = GetComponent<Image>();
         endGame.RaiseNoArgs += EndGameHandler;
     }

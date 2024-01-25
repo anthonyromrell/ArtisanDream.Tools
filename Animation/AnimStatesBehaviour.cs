@@ -10,7 +10,7 @@ public class AnimStatesBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         onEnterStateEvent.Invoke();
-        if (onEnterStateAction != null) onEnterStateAction.Raise();
+        if (onEnterStateAction != null) onEnterStateAction.RaiseNoArgs();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

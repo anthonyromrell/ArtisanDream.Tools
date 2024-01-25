@@ -2,11 +2,9 @@ using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-<<<<<<< HEAD:Pooling/RigidBodyPoolBehaviour.cs
+
 public class RigidBodyPoolBehaviour : MonoBehaviour
-=======
-public class BulletBehaviour : MonoBehaviour
->>>>>>> origin/GameActionRefactor:Pooling/BulletBehaviour.cs
+
 {
     private Rigidbody rbObj;
     private WaitForSeconds wfsObj;

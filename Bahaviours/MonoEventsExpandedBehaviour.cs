@@ -9,18 +9,18 @@ public class MonoEventsExpandedBehaviour : MonoEventsBehaviour
     private void OnDisable()
     {
         disableEvent.Invoke();
-        if (disableAction != null) disableAction.Raise();
+        if (disableAction != null) disableAction.RaiseNoArgs();
     }
 
     private void OnDestroy()
     {
         destroyEvent.Invoke();
-        if (destroyAction != null) destroyAction.Raise();
+        if (destroyAction != null) destroyAction.RaiseNoArgs();
     }
 
     private void OnApplicationQuit()
     {
         applicationQuitEvent.Invoke();
-        if (applicationQuitAction != null) applicationQuitAction.Raise();
+        if (applicationQuitAction != null) applicationQuitAction.RaiseNoArgs();
     }
 }

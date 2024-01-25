@@ -12,7 +12,7 @@ public class MonoEventsBehaviour : MonoBehaviour
     protected virtual void Awake()
     {
         awakeEvent.Invoke();
-        if (awakeAction != null) awakeAction.Raise();
+        if (awakeAction != null) awakeAction.RaiseNoArgs();
         waitStartObj = new WaitForSeconds(startHoldTime);
     }
 
@@ -20,6 +20,6 @@ public class MonoEventsBehaviour : MonoBehaviour
     {
         yield return waitStartObj;
         startEvent.Invoke();
-        if (startAction != null) startAction.Raise();
+        if (startAction != null) startAction.RaiseNoArgs();
     }
 }

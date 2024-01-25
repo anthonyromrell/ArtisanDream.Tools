@@ -31,6 +31,6 @@ public class InventoryPrefabItemBehaviour : ColliderBehaviour
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        gameActionObj.Raise();
+        gameActionObj.RaiseNoArgs();
     }
 }

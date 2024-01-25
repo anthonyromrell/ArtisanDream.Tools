@@ -18,27 +18,28 @@ public class GameAction : ScriptableObject
     {
         RaiseNoArgs?.Invoke();
     }
-    public void Raise(object obj)
+
+    public void RaiseAction(Object obj)
     {
         Raise?.Invoke(obj);
     }
 
-    public void Raise(float obj)
+    public void RaiseAction(float obj)
     {
         Raise?.Invoke(obj);
     }
     
-    public void Raise(int obj)
+    public void RaiseAction(int obj)
     {
         Raise?.Invoke(obj);
     }
 
-    public void Raise(Transform obj)
+    public void RaiseAction(Transform obj)
     {
         Raise?.Invoke(obj);
     }
-    
-    public void Raise(Coroutine obj)
+
+    public void RaiseAction(Coroutine obj)
     {
         RaiseCoroutine?.Invoke(obj);
     }

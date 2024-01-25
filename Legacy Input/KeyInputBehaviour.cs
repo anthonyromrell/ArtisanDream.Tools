@@ -11,7 +11,7 @@ public class KeyInputBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(keyCode))
         {
-            onKeyEvent.raiseNoArgs();
+            onKeyEvent.RaiseNoArgs();
         }
     }
 }

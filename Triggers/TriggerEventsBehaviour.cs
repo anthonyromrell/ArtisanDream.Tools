@@ -21,7 +21,7 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
      {
           yield return waitForTriggerEnterObj;
           triggerEnterEvent.Invoke();
-          if (triggerEnterAction != null) triggerEnterAction.Raise();
+          if (triggerEnterAction != null) triggerEnterAction.RaiseNoArgs();
 
           if (canRepeat)
           {
@@ -31,17 +31,17 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
                     yield return waitForTriggerEnterObj;
                     i++;
                     triggerEnterRepeatEvent.Invoke();
-                    if (triggerEnterRepeatAction != null) triggerEnterRepeatAction.Raise();
+                    if (triggerEnterRepeatAction != null) triggerEnterRepeatAction.RaiseNoArgs();
                }
           }
           yield return waitForTriggerRepeatObj;
           triggerEnterEndEvent.Invoke();
-          if (triggerEnterEndAction != null) triggerEnterEndAction.Raise();
+          if (triggerEnterEndAction != null) triggerEnterEndAction.RaiseNoArgs();
      }
 
      private void OnTriggerExit(Collider other)
      {
           triggerExitEvent.Invoke();
-          if (triggerExitAction != null) triggerExitAction.Raise();
+          if (triggerExitAction != null) triggerExitAction.RaiseNoArgs();
      }
 }

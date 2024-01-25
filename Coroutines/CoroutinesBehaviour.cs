@@ -9,6 +9,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     public GameAction delayAction, repeatAction, endAction;
     private bool canRun;
     public IntData counterNum;
+    public int maxCounterNum = 3;
     
     private WaitForSeconds waitForSecondsObj;
     private WaitForFixedUpdate waitForFixedUpdate;
@@ -36,7 +37,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     private void InvokeEventAndAction(UnityEvent unityEvent, GameAction gameAction)
     {
         unityEvent?.Invoke();
-        gameAction.Raise();
+        gameAction.RaiseNoArgs();
     }
 
     private IEnumerator DelayCoroutine()
@@ -79,5 +80,4 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         }
         endEvent.Invoke();
     }
-    
 }

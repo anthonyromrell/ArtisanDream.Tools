@@ -8,12 +8,12 @@ public class InstancingBehaviour : MonoBehaviour
     public IntData indexer;
     public Object collectionObj;
     public UnityEvent startEvent;
-    private ICollectList collectList;
+    //private ICollectList collectList;
     public Transform startPoint, targetPoint, prefabObj;
     //MUST SPLIT AND REFACTOR
     private void Start()
     {
-        if (collectionObj != null) collectList = (ICollectList) collectionObj;
+        //if (collectionObj != null) collectList = (ICollectList) collectionObj;
         startEvent.Invoke();
     }
     
@@ -43,14 +43,14 @@ public class InstancingBehaviour : MonoBehaviour
         }
     }
     
-    public void InstanceFromCollection(GameObject prefab)
-    {
-        collectList.Index = 0;
-        while (collectList.Index < collectList.CollectionList.Count)
-        {
-            var newInstance = Instantiate(prefab, transform);
-            collectList.ConfigureInstance(newInstance);
-            collectList.Index++;
-        }
-    }
+    // public void InstanceFromCollection(GameObject prefab)
+    // {
+    //     collectList.Index = 0;
+    //     while (collectList.Index < collectList.CollectionList.Count)
+    //     {
+    //         var newInstance = Instantiate(prefab, transform);
+    //         collectList.ConfigureInstance(newInstance);
+    //         collectList.Index++;
+    //     }
+    // }
 }
