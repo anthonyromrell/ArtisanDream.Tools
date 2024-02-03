@@ -3,13 +3,13 @@ using UnityEngine.Events;
 
 public class SimpleMatchID : IdBehaviour
 {
-    protected NameId OtherIdObj;
+    protected NameId otherIdObj;
     public UnityEvent matchEvent, noMatchEvent;
     public virtual void OnTriggerEnter(Collider other)
     {
-        OtherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
+        otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
 
-        if (nameIdObj == OtherIdObj)
+        if (nameIdObj == otherIdObj)
         {
             matchEvent.Invoke();
         }

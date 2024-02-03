@@ -1,59 +1,56 @@
-﻿using System.Globalization;
-using TMPro;
+﻿using System;
 using UnityEngine;
-using System;
-using System.Collections;
+using TMPro;
 using UnityEngine.Events;
+using System.Globalization;
+using System.Collections;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class TextMeshProBehaviour : MonoBehaviour
 {
+    [SerializeField] private GameAction gameActionObj;
+    [SerializeField] private UnityEvent awakeEvent, raiseEvent;
+
     private TextMeshProUGUI textObj;
-    private TimeSpan timeSpanObj;
-    public GameAction gameActionObj;
-    private int currentNum, tempDifference;
-    private WaitForFixedUpdate waitObj;
-    public UnityEvent awakeEvent, raiseEvent;
-    protected void Start()
+    private WaitForSeconds waitForFixedUpdate;
+
+    private int currentNum;
+
+    private void Start()
     {
-        waitObj = new WaitForFixedUpdate();
-        gameActionObj.RaiseNoArgs += Raise;
-        textObj = GetComponent<TextMeshProUGUI>();
+        waitForFixedUpdate = new WaitForSeconds(0.1f); // Set delay time for UpdateNumberCount
+        Awake();
         awakeEvent.Invoke();
     }
 
-    private void Raise()
+    private void OnDestroy()
     {
-        raiseEvent.Invoke();
+        gameActionObj.RaiseNoArgs -= Raise;
     }
 
-    public new void UpdateText(StringList stringListDataObj)
+    protected void Awake()
     {
-        textObj.text = stringListDataObj.ReturnCurrentLine();
-    }
-    
-    public new void UpdateText(IntData intDataObj)
-    {
-        textObj.text = intDataObj.Value.ToString();
+        textObj = GetComponent<TextMeshProUGUI>();
+        gameActionObj.RaiseNoArgs += Raise;
     }
 
-    public new void UpdateText(string obj)
-    {
-        textObj.text = obj;
-    }
+    private void Raise() => raiseEvent.Invoke();
 
-    public new void UpdateText(FloatData obj)
-    {
-        textObj.text = obj.Value.ToString(CultureInfo.CurrentCulture);
-    }
+    public void UpdateText(StringList stringListDataObj) => textObj.text = stringListDataObj.ReturnCurrentLine();
+
+    public void UpdateText(IntData intDataObj) => textObj.text = intDataObj.Value.ToString();
+
+    public void UpdateText(string obj) => textObj.text = obj;
+
+    public void UpdateText(FloatData obj) => textObj.text = obj.Value.ToString(CultureInfo.CurrentCulture);
 
     public void UpdateTextWithTime(FloatData obj)
     {
-        timeSpanObj = TimeSpan.FromSeconds(obj.Value);
-        textObj.text = timeSpanObj.Minutes + ":" + timeSpanObj.Seconds;
+        TimeSpan timeSpanObj = TimeSpan.FromSeconds(obj.Value);
+        textObj.text = $"{timeSpanObj.Minutes}:{timeSpanObj.Seconds:d2}";
     }
-    
-    public new void UpdateTextAsMoney (IntData obj)
+
+    public void UpdateTextAsMoney(IntData obj)
     {
         textObj.text = obj.Value.ToString("C0");
     }
@@ -62,9 +59,9 @@ public class TextMeshProBehaviour : MonoBehaviour
     {
         currentNum = obj.Value;
     }
+
     public void StartUpdateNumberCount(IntData obj)
     {
-        tempDifference = currentNum - obj.Value;
         StartCoroutine(UpdateNumberCount(obj));
     }
 
@@ -72,9 +69,9 @@ public class TextMeshProBehaviour : MonoBehaviour
     {
         while (intData.Value != currentNum)
         {
-            currentNum-=5;
+            currentNum -= 5; // You may want to adjust the decrement value here
             textObj.text = currentNum.ToString("C0");
-            yield return waitObj;
+            yield return waitForFixedUpdate;
         }
     }
 }

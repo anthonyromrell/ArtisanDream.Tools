@@ -1,56 +1,44 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using Object = UnityEngine.Object;
+using UnityEngine.Serialization;
 
 public class InstancingBehaviour : MonoBehaviour
 {
-    public IntData indexer;
-    public Object collectionObj;
-    public UnityEvent startEvent;
-    //private ICollectList collectList;
-    public Transform startPoint, targetPoint, prefabObj;
-    //MUST SPLIT AND REFACTOR
+    [FormerlySerializedAs("Indexer")] public IntData indexer;
+    [FormerlySerializedAs("StartEvent")] public UnityEvent startEvent;
+    [FormerlySerializedAs("SpawnPoint")] public Transform spawnPoint;
+    [FormerlySerializedAs("TargetPoint")] public Transform targetPoint;
+    [FormerlySerializedAs("PrefabObj")] public Transform prefabObj;
+
     private void Start()
     {
-        //if (collectionObj != null) collectList = (ICollectList) collectionObj;
         startEvent.Invoke();
     }
-    
-    public void InstanceAddToSelf(GameObject prefab)
+
+    public void InstantiateGameObject(GameObject prefab, Transform parent)
     {
-        var newInstance = Instantiate(prefab, transform);
+        Instantiate(prefab, parent);
     }
-    
-    public void InstanceAtThisTransform(GameObject prefab)
+
+    public void InstantiateAtPosition(GameObject prefab)
     {
-        var newInstance = Instantiate(prefab, transform.position, Quaternion.identity);
+        var newInstance = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         newInstance.transform.LookAt(targetPoint.position);
     }
 
-    public void InstanceUsingVars()
+    public void InstantiateUsingPrefab()
     {
-        var newInstance = Instantiate(prefabObj, startPoint.position, Quaternion.identity);
+        if (prefabObj == null) return;
+        var newInstance = Instantiate(prefabObj, spawnPoint.position, Quaternion.identity);
         newInstance.transform.LookAt(targetPoint.position);
     }
-    
-    public void InstanceAddToSelfCount(GameObject prefab)
+
+    public void InstantiateMultiple(GameObject prefab)
     {
         for (var i = 0; i < indexer.Value; i++)
         {
-            var newInstance = Instantiate(prefab, transform);
+            var newInstance = Instantiate(prefab, spawnPoint);
             newInstance.name = i.ToString();
         }
     }
-    
-    // public void InstanceFromCollection(GameObject prefab)
-    // {
-    //     collectList.Index = 0;
-    //     while (collectList.Index < collectList.CollectionList.Count)
-    //     {
-    //         var newInstance = Instantiate(prefab, transform);
-    //         collectList.ConfigureInstance(newInstance);
-    //         collectList.Index++;
-    //     }
-    // }
 }

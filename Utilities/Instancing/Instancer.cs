@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+//Use with the Coroutines behaviour
+
 [CreateAssetMenu(menuName = "Utilities/InstanceObject")]
 public class Instancer : ScriptableObject
 {

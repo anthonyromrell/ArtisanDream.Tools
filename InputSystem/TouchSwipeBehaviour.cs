@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class TouchSwipeBehaviour : MonoBehaviour
 {
     public UnityAction<TouchData> sendTouchData;
-    public GameInputsSO controls;
+    public GameInputsSo controls;
     public float minimumDistance = .2f, maximumTime = 1f;
     private TouchData touchData;
     private Camera cameraMain;

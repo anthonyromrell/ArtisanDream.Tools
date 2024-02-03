@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu]
-public class GameInputsSO : ScriptableObject
+public class GameInputsSo : ScriptableObject
 {
     public GameInputs gameInputsObj;
 

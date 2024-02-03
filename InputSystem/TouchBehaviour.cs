@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TouchBehaviour : MonoBehaviour
 {
-    public GameInputsSO gameInputs;
+    public GameInputsSo gameInputs;
     private TouchData touchData;
     private void Awake()
     {

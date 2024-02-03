@@ -15,7 +15,7 @@ public class MatchIdBehaviour : IdBehaviour
       public bool canRepeat;
       public float repeatTime;
       public UnityEvent workEvent, repeatEvent, delayedEvent;
-      internal WaitForSeconds RepeatWaitObj;
+      internal WaitForSeconds repeatWaitObj;
    }
 
    public float holdTime = 0.1f;
@@ -29,13 +29,13 @@ public class MatchIdBehaviour : IdBehaviour
       foreach (var obj in triggerEnterMatches)
       {
          var possibleMatch = obj;
-         possibleMatch.RepeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
+         possibleMatch.repeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
       }
       
       foreach (var obj in triggerExitMatches)
       {
          var possibleMatch = obj;
-         possibleMatch.RepeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
+         possibleMatch.repeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
       }
    }
 
@@ -74,7 +74,7 @@ public class MatchIdBehaviour : IdBehaviour
 
          while (obj.canRepeat)
          {
-            yield return obj.RepeatWaitObj;
+            yield return obj.repeatWaitObj;
             obj.repeatEvent.Invoke();
          }
          

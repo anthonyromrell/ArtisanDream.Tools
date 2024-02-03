@@ -10,7 +10,6 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     private bool canRun;
     public IntData counterNum;
     public int maxCounterNum = 3;
-    
     private WaitForSeconds waitForSecondsObj;
     private WaitForFixedUpdate waitForFixedUpdate;
 
@@ -31,8 +30,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         waitForSecondsObj = new WaitForSeconds(Seconds);
         waitForFixedUpdate = new WaitForFixedUpdate();
     }
-
-    // ... Other methods ...
+    // ...
 
     private void InvokeEventAndAction(UnityEvent unityEvent, GameAction gameAction)
     {
@@ -46,7 +44,7 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         InvokeEventAndAction(delayEvent, delayAction);
     }
 
-    // ... Similar changes for other coroutines ...
+    // ...
 
     public void StartRepeatSecondsCoroutine()
     {
@@ -55,16 +53,17 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
         StartCoroutine(RepeatSecondsCoroutine());
     }
 
-    // ... Similar changes for starting other coroutines ...
+    // ...
 
     private IEnumerator RepeatSecondsCoroutine()
     {
         InvokeEventAndAction(startEvent, startAction);
-        while (canRun) 
+        while (canRun)
         {
             yield return waitForSecondsObj;
             InvokeEventAndAction(repeatEvent, repeatAction);
         }
+
         InvokeEventAndAction(endEvent, endAction);
     }
 
@@ -72,12 +71,13 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     {
         counterNum.Value = maxCounterNum;
         startEvent.Invoke();
-        while (counterNum.Value >= 0) 
+        while (counterNum.Value >= 0)
         {
             yield return waitForSecondsObj;
             repeatEvent.Invoke();
             counterNum.Value--;
         }
+
         endEvent.Invoke();
     }
 }

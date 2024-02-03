@@ -3,7 +3,7 @@
 public abstract class CharacterPattern : ScriptableObject
 {
     [HideInInspector] public Vector3 inputs;
-    protected Vector3 PositionDirection;
+    protected Vector3 positionDirection;
     public string hAxis = "Horizontal", vAxis = "Vertical";
     public float speed = 10f, gravity = 3f, jumpForce = 30f;
     public int jumpCount = 0, jumpCountMax = 2;

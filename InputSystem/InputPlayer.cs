@@ -1,7 +1,7 @@
 using UnityEngine;
 public class InputPlayer : MonoBehaviour
 {
-    public GameInputsSO controls;
+    public GameInputsSo controls;
     private Vector2 move, movement;
     public FloatData speed;
     private void Awake()

@@ -5,27 +5,27 @@ public class CharacterMove2d : CharacterPattern
 {
     public override void Move( CharacterController controller)
     {
-        PositionDirection.x = Input.GetAxis("Horizontal")*Speed;
+        positionDirection.x = Input.GetAxis("Horizontal")*Speed;
 
         if (controller.isGrounded)
         {
-            PositionDirection.y = 0;
+            positionDirection.y = 0;
             jumpCount = 0;
         }
         
         if (jumpCount < jumpCountMax && Input.GetButtonDown("Jump"))
         {
-            PositionDirection.y = jumpForce;
+            positionDirection.y = jumpForce;
             jumpCount++;
         }
         
-        PositionDirection.y -= gravity;
+        positionDirection.y -= gravity;
         
         if (!Input.anyKey)
         {
-            PositionDirection.x = 0f;
+            positionDirection.x = 0f;
         }
   
-        controller.Move(PositionDirection*Time.deltaTime);
+        controller.Move(positionDirection*Time.deltaTime);
     }
 }

@@ -16,15 +16,15 @@ public class AutoMove : CharacterPattern
         switch (axis)
         {
             case MoveAxis.X:
-                PositionDirection.Set(Speed,0,0 );
+                positionDirection.Set(Speed,0,0 );
                 break;
             case MoveAxis.Y:
-                PositionDirection.Set(0,Speed,0 );
+                positionDirection.Set(0,Speed,0 );
                 break;
             case MoveAxis.Z:
-                PositionDirection.Set(0,0,Speed );
+                positionDirection.Set(0,0,Speed );
                 break;
         }
-        controller.Move(PositionDirection*Time.deltaTime);
+        controller.Move(positionDirection*Time.deltaTime);
     }
 }
