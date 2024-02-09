@@ -1,51 +1,55 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu]
 public class StringList : ScriptableObject
 {
     public List<string> stringListObj;
+
     [SerializeField] private int currentLineNumber;
+
+    public UnityEvent onLineNumberChanged;
 
     public int CurrentLineNumber
     {
         get => currentLineNumber;
         private set
         {
-            if (stringListObj is { Count: > 0 })
-                currentLineNumber = Mathf.Clamp(value, 0, stringListObj.Count - 1);
+            if (stringListObj is not { Count: > 0 }) return;
+            currentLineNumber = Mathf.Clamp(value, 0, stringListObj.Count - 1);
+            onLineNumberChanged?.Invoke();
         }
     }
 
-    public string ReturnCurrentLine()
-    {
-        if (stringListObj != null && CurrentLineNumber < stringListObj.Count)
-        {
-            return stringListObj[CurrentLineNumber];
-        }
-        return null; // or handle appropriately if the list is empty or index out of range
-    }
+    public string CurrentLine => stringListObj != null && CurrentLineNumber < stringListObj.Count
+        ? stringListObj[CurrentLineNumber]
+        : null;
 
     public void ResetToZero()
     {
-        currentLineNumber = 0;
+        CurrentLineNumber = 0;
     }
 
     public void IncrementLineNumber()
     {
-        if (stringListObj == null || stringListObj.Count == 0) return;
-        currentLineNumber = (currentLineNumber + 1) % stringListObj.Count;
+        if (IsNotEmpty())
+        {
+            CurrentLineNumber = (CurrentLineNumber + 1) % stringListObj.Count;
+        }
     }
 
     // Optional: Additional utility methods
     public void DecrementLineNumber()
     {
-        if (stringListObj == null || stringListObj.Count == 0) return;
-        currentLineNumber = (currentLineNumber - 1 + stringListObj.Count) % stringListObj.Count;
+        if (IsNotEmpty())
+        {
+            CurrentLineNumber = (CurrentLineNumber - 1 + stringListObj.Count) % stringListObj.Count;
+        }
     }
 
-    public bool IsEmpty()
+    public bool IsNotEmpty()
     {
-        return stringListObj == null || stringListObj.Count == 0;
+        return stringListObj is { Count: > 0 };
     }
 }

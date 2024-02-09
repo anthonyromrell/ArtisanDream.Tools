@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader: MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
     public enum LoadTypes
     {
@@ -11,54 +11,40 @@ public class SceneLoader: MonoBehaviour
     }
 
     public LoadTypes loadType;
-    
-    public void LoadScene (Object sceneObj) //Note this is experimental will not work in build with Scenes
+
+    public void LoadScene(Object sceneObj)
     {
-       
-        SceneManager.LoadScene(sceneObj.name);
-        
-        switch (loadType)
-        {
-            case LoadTypes.LoadScene:
-                SceneManager.LoadScene(sceneObj.name);
-                break;
-            case LoadTypes.LoadSceneAsync:
-                SceneManager.LoadSceneAsync(sceneObj.name);
-                break;
-            case LoadTypes.LoadSceneAdditive:
-                SceneManager.LoadScene(sceneObj.name, LoadSceneMode.Additive);
-                break;
-        }
+        LoadSceneInternal(sceneObj.name);
     }
 
     public void LoadScene(int index)
     {
-        switch (loadType)
-        {
-            case LoadTypes.LoadScene:
-                SceneManager.LoadScene(index);
-                break;
-            case LoadTypes.LoadSceneAsync:
-                SceneManager.LoadSceneAsync(index);
-                break;
-            case LoadTypes.LoadSceneAdditive:
-                SceneManager.LoadScene(index, LoadSceneMode.Additive);
-                break;
-        }
+        LoadSceneInternal(index.ToString());
     }
 
-    public void LoadScene (string byName)
+    public void LoadScene(string byName)
+    {
+        LoadSceneInternal(byName);
+    }
+    
+    public void LoadScene(Object sceneObj, LoadTypes type)
+    {
+        loadType = type;
+        LoadScene(sceneObj);
+    }
+    
+    private void LoadSceneInternal(string sceneName)
     {
         switch (loadType)
         {
             case LoadTypes.LoadScene:
-                SceneManager.LoadScene(byName);
+                SceneManager.LoadScene(sceneName);
                 break;
             case LoadTypes.LoadSceneAsync:
-                SceneManager.LoadSceneAsync(byName);
+                SceneManager.LoadSceneAsync(sceneName);
                 break;
             case LoadTypes.LoadSceneAdditive:
-                SceneManager.LoadScene(byName, LoadSceneMode.Additive);
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
                 break;
         }
     }

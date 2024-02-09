@@ -1,58 +1,45 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Single Variables/FloatData")]
 public class FloatData : NameId
 {
-    [SerializeField] private float value, minValue, maxValue;
-    public float Value 
+    [SerializeField] private float value,  minValue, maxValue;
+
+    [FormerlySerializedAs("minValueEvent")] public UnityEvent<float> valueOutOfRange;
+    [FormerlySerializedAs("updateValueEvent")] public UnityEvent onValueChanged;
+
+    public float Value
     {
         get => value;
         set
         {
             this.value = value;
-            updateValueEvent.Invoke();
+            onValueChanged.Invoke();
+            CheckValueRange();
         }
     }
 
-    public UnityEvent minValueEvent, maxValueEvent, updateValueEvent;
-    
     public void UpdateValue(float amount)
     {
         Value += amount;
     }
 
-    public void IncrementValue()
-    {
-        Value++;
-    }
-
     public void UpdateValue(FloatData data)
     {
-        if (data != null) Value += data.Value;
+        Value += data.Value;
     }
 
     public void SetValue(FloatData data)
     {
-        if (data != null) Value = data.Value;
+        Value = data.Value;
     }
-    
-    public void CheckValueRange()
+
+    private void CheckValueRange()
     {
-        CheckValueRange(minValue, maxValue);
-    }
-    
-    private void CheckValueRange(float minValue, float maxValue)
-    {
-        if (Value < minValue)
-        {
-            minValueEvent.Invoke();
-            Value = minValue;
-        }
-        else if (Value > maxValue)
-        {
-            maxValueEvent.Invoke();
-            Value = maxValue;
-        }
+        if (!(Value < minValue) && !(Value > maxValue)) return;
+        valueOutOfRange.Invoke(Value);
+        Value = Mathf.Clamp(Value, minValue, maxValue);
     }
 }

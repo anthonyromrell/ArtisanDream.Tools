@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Single Variables/ColorData")]
@@ -6,12 +8,18 @@ public class ColorData : NameId
 {
     [SerializeField] private Color value = Color.blue;
 
+    public UnityEvent onValueChanged;
+
     public Color Value
     {
         get => value;
-        set => this.value = value;
+        set
+        {
+            this.value = value;
+            onValueChanged?.Invoke();
+        }
     }
-    
+
     public void ChangeColor(Object component)
     {
         switch (component)
@@ -29,5 +37,10 @@ public class ColorData : NameId
                 text.color = Value;
                 break;
         }
+    }
+
+    public void ChangeColor(Color color)
+    {
+        Value = color;
     }
 }

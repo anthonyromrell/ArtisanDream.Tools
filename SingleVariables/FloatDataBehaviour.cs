@@ -2,17 +2,49 @@
 
 public class FloatDataBehaviour : MonoBehaviour
 {
-    public float value;
-    
-    public FloatData floatDataObj;
+    [SerializeField] private float dataValue;
 
-    public void UpdateValue(FloatData obj)
+    [SerializeField] private FloatData floatDataObj;
+
+    public float DataValue => dataValue;
+
+    public float FloatDataValue
     {
-        value += obj.Value;
-    } 
-    
-    public void UpdateFloatData(float number)
+        get
+        {
+            if (floatDataObj != null)
+            {
+                return floatDataObj.Value;
+            }
+            else
+            {
+                Debug.LogError("FloatData object is not set.");
+                return 0f;
+            }
+        }
+    }
+
+    public void IncrementValue(FloatData obj)
     {
-        floatDataObj.UpdateValue(number);
+        if (obj != null)
+        {
+            dataValue += obj.Value;
+        }
+        else
+        {
+            Debug.LogError("UpdateValue(floatData) called with null argument.");
+        }
+    }
+
+    public void UpdateFloatData(float increment)
+    {
+        if (floatDataObj != null)
+        {
+            floatDataObj.UpdateValue(floatDataObj.Value + increment);
+        }
+        else
+        {
+            Debug.LogError("FloatData object is not set. Cannot update its value.");
+        }
     }
 }

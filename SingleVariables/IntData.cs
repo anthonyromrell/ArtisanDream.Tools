@@ -1,104 +1,46 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
-public class IntData : NameId
+public class IntData : ScriptableObject
 {
-    [SerializeField] private int value;
-    private int currentValue;
-    public UnityEvent decrementEvent, valueChangeEvent,atZeroEvent, compareTrueEvent;
+    [SerializeField] private int value, minValue, maxValue;
+
+    [FormerlySerializedAs("minValueEvent")] public UnityEvent<float> valueOutOfRange;
+    [FormerlySerializedAs("updateValueEvent")] public UnityEvent onValueChanged;
 
     public int Value
     {
         get => value;
-        set => this.value = value;
+        set
+        {
+            this.value = value;
+            onValueChanged.Invoke();
+            CheckValueRange();
+        }
     }
 
-    public void SetValue(int amount)
-    {
-        Value = amount;
-        valueChangeEvent.Invoke();
-    }
-    public void UpdateFromCurrentValue()
-    {
-        Value = currentValue;
-        valueChangeEvent.Invoke();
-    }
-
-    public void UpdateCurrentValue()
-    {
-        currentValue = Value;
-        valueChangeEvent.Invoke();
-    }
-    
     public void UpdateValue(int amount)
     {
         Value += amount;
-        valueChangeEvent.Invoke();
     }
 
-    public void UpdateValue(Object data)
+    public void SetValue(IntData data)
     {
-        var newData = data as IntData;
-        if (newData != null) Value += newData.Value;
-        valueChangeEvent.Invoke();
-    }
-    
-    public void UpdateValueZeroCheck(int num)
-    {
-        UpdateValue(num);
-        ZeroCheck();
+        Value = data.Value;
     }
 
-    public void ZeroCheck()
+    private void CheckValueRange()
     {
-        if (Value <= 0)
-        {
-            value = 0;
-        }
+        if (Value >= minValue && Value <= maxValue) return;
+        valueOutOfRange.Invoke(Value);
+        Value = Mathf.Clamp(Value, minValue, maxValue);
     }
 
-    public void IncrementValue()
+    public void UpdateValueZeroCheck(int i)
     {
-        Value++;
-        valueChangeEvent.Invoke();
-    }
-
-    public void DecrementToZero()
-    {
-        if (Value > 0)
-        {
-            Value--;
-            decrementEvent.Invoke();
-        }
-        if (Value == 0){
-            atZeroEvent.Invoke();
-        }
-    }
-
-    
-    
-    public void SetValue(Object data)
-    {
-        var newData = data as IntData;
-        if (newData == null) return;
-        Value = newData.Value;
-        valueChangeEvent.Invoke();
-    }
-
-    public void CompareValue(IntData data)
-    {
-        if (Value == data.Value)
-        {
-            compareTrueEvent.Invoke();
-        }
-    }
-    
-    public void CompareValue(int data)
-    {
-        if (Value == data)
-        {
-            compareTrueEvent.Invoke();
-        }
+        if (Value + i < 0) return;
+        Value += i;
     }
 }

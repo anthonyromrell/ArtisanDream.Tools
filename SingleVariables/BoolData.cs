@@ -17,11 +17,22 @@ public class BoolData : NameId
             onValueChangeEvent?.Invoke();
         }
     }
-    
+
     public void SetValue(bool valueChange)
     {
         Value = valueChange;
-        if (valueChange)
+        TriggerEventsBasedOnValue();
+    }
+
+    public void ToggleValue()
+    {
+        Value = !Value;
+        TriggerEventsBasedOnValue();
+    }
+
+    private void TriggerEventsBasedOnValue()
+    {
+        if (Value)
         {
             setTrueEvent?.Invoke();
         }
@@ -29,10 +40,5 @@ public class BoolData : NameId
         {
             setFalseEvent?.Invoke();
         }
-    }
-
-    public void ToggleValue()
-    {
-        Value = !Value;
     }
 }

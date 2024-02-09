@@ -15,6 +15,7 @@ public interface IStoreItem
     bool UsedOrPurchase { get; set; }
     Sprite PreviewArt { get; set; }
     string ThisName { get; set; }
+    PurchaseType.Type ItemPurchaseType { get; set; }
 }
 
 

@@ -35,9 +35,6 @@ public class TextMeshProBehaviour : MonoBehaviour
     }
 
     private void Raise() => raiseEvent.Invoke();
-
-    public void UpdateText(StringList stringListDataObj) => textObj.text = stringListDataObj.ReturnCurrentLine();
-
     public void UpdateText(IntData intDataObj) => textObj.text = intDataObj.Value.ToString();
 
     public void UpdateText(string obj) => textObj.text = obj;

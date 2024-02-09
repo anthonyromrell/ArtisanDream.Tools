@@ -3,14 +3,55 @@ using UnityEngine.Events;
 
 public class IntDataBehavior : MonoBehaviour
 {
-    public IntData dataObj;
-    public UnityEvent nameTrueEvent;
+    [SerializeField] private IntData dataObj;
 
-    public void CompareNameToInt()
+    [SerializeField] private UnityEvent nameMatchedEvent;
+
+    public string ObjectName => gameObject.name;
+
+    public int DataObjValue
     {
-        if (name == dataObj.Value.ToString())
+        get
         {
-            nameTrueEvent.Invoke();
+            if (dataObj != null)
+            {
+                return dataObj.Value;
+            }
+            else
+            {
+                Debug.LogError("IntData object is not set.");
+                return 0;
+            }
+        }
+    }
+
+    private void Start()
+    {
+        CompareAndTriggerEvents();
+    }
+
+    public void CompareAndTriggerEvents()
+    {
+        if (DoesObjectNameMatchValue())
+        {
+            InvokeNameMatchedEvent();
+        }
+    }
+
+    private bool DoesObjectNameMatchValue()
+    {
+        return ObjectName == DataObjValue.ToString();
+    }
+
+    private void InvokeNameMatchedEvent()
+    {
+        if (nameMatchedEvent != null)
+        {
+            nameMatchedEvent.Invoke();
+        }
+        else
+        {
+            Debug.LogError("nameMatchedEvent is null. Please attach a UnityEvent.");
         }
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 public class InventoryItem : ScriptableObject, IStoreItem, IInventoryItem
 {
     [SerializeField] private int price;
-    //[SerializeField] private bool purchased;
-    [SerializeField] private bool own;
     [SerializeField] private Sprite previewArt;
     [SerializeField] private int intLevel;
     [SerializeField] private float floatLevel; // Changed to float
@@ -25,6 +23,8 @@ public class InventoryItem : ScriptableObject, IStoreItem, IInventoryItem
         get => name; // Directly return the scriptable object's name
         set => name = value;
     }
+
+    public PurchaseType.Type ItemPurchaseType { get; set; }
 
     public GameAction GameActionObj
     {

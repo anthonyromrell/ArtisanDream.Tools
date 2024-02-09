@@ -26,6 +26,10 @@ public class FloatMathSystem : WorkSystem
     
     public void IncrementValue ()
     {
-        dataObj.IncrementValue();
+        dataObj.UpdateValue(1);
+    }
+
+    public FloatMathSystem(NameId nameIdObj) : base(nameIdObj)
+    {
     }
 }

@@ -6,26 +6,29 @@ public class ToggleEvent : ScriptableObject
 {
     public UnityEvent onEvent;
     public UnityEvent offEvent;
-    public UnityAction raise;
-    
+
+    // Let's change raise to a property with a public getter
+    public UnityAction Raise { get; private set; }
+
     private void OnEnable()
     {
-        raise = TurnOn;
+        Raise = TurnOn;
     }
 
     public void OnRaise()
     {
-        raise();
+        Raise?.Invoke();
     }
-    
+
     private void TurnOn()
     {
-        onEvent.Invoke();
-        raise = TurnOff;
+        onEvent?.Invoke();
+        Raise = TurnOff;
     }
 
     private void TurnOff()
     {
-        offEvent.Invoke();
+        offEvent?.Invoke();
+        Raise = TurnOn;
     }
 }

@@ -20,11 +20,9 @@ public class FlipTransformBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Euler(0,direction1,0);
         }
 
-        if (Input.GetKeyDown(key2))
-        {
-            key2Event.Invoke();
-            transform.rotation = Quaternion.Euler(0,direction2,0);
-        }
+        if (!Input.GetKeyDown(key2)) return;
+        key2Event.Invoke();
+        transform.rotation = Quaternion.Euler(0,direction2,0);
     }
 
     public void FlipRotate (float value)

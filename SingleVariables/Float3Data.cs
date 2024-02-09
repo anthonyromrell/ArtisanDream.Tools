@@ -3,21 +3,23 @@
 [CreateAssetMenu(menuName = "Single Variables/Float3Data")]
 public class Float3Data : NameId
 {
-    public Vector3 v3;
+    [SerializeField] private Vector3 value;
 
-    // Optional: Methods to set or modify the Vector3 value
-    public void SetValue(float x, float y, float z)
+    public Vector3 Vector3Value
     {
-        v3 = new Vector3(x, y, z);
+        get => value;
+        set => this.value = value;
     }
 
-    public void SetValue(Vector3 value)
+    // This method is used to update `value` Vector3 value with given x, y, z coordinates.
+    public void UpdateVector3(float x, float y, float z)
     {
-        v3 = value;
+        Vector3Value = new Vector3(x, y, z);
     }
 
-    public Vector3 GetValue()
+    // Updates the `value` Vector3 value directly supplying a Vector3 instance.
+    public void UpdateVector3(Vector3 newVector)
     {
-        return v3;
+        Vector3Value = newVector;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneIsLoadedRunAnimation : MonoBehaviour
 {
     public float loadTime = 2;
+    private static readonly int IsLoaded = Animator.StringToHash("IsLoaded");
 
     private void Awake()
     {
@@ -20,6 +21,6 @@ public class SceneIsLoadedRunAnimation : MonoBehaviour
     {
         yield return new WaitForSeconds(loadTime);
         var anim = GetComponent<Animator>();
-        anim.SetTrigger("IsLoaded");
+        anim.SetTrigger(IsLoaded);
     }
 }
