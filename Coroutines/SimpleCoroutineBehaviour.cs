@@ -1,24 +1,25 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class SimpleCoroutineBehaviour : MonoBehaviour
 {
-    public float Seconds = 1;
-    private WaitForSeconds wait;
-    public UnityEvent Event;
+    public float seconds = 1;
+    private WaitForSeconds _waitForSeconds;
+    public UnityEvent @event;
 
     private void Awake()
     {
-        wait = new WaitForSeconds(Seconds);
+        _waitForSeconds = new WaitForSeconds(seconds);
     }
 
     private IEnumerator Start()
     {
         while (true)
         {
-            yield return wait;
-            Event.Invoke();
+            yield return _waitForSeconds;
+            @event.Invoke();
         }
     }
 }

@@ -4,57 +4,44 @@ using UnityEngine.Events;
 
 public class CoroutineBehaviour : MonoBehaviour
 {
-    public UnityEvent startEvent, startCountEvent, repeatCountEvent, endCountEvent, repeatUntilFalseEvent;
+    // Assuming you have a UnityEvent defined somewhere in your script
+    public UnityEvent repeatUntilFalseEvent;
 
-    public bool canRun;
-    public IntData counterNum;
-    public float seconds = 3.0f;
-    private WaitForSeconds wfsObj;
-    private WaitForFixedUpdate wffuObj;
+    // Reference to the WaitForFixedUpdate object
+    private readonly WaitForFixedUpdate _waitForFixedUpdateObj = new WaitForFixedUpdate();
 
-    public bool CanRun
-    {
-        get => canRun;
-        set => canRun = value;
-    }
+    // Control flag for coroutine
+    private bool isRunning = false;
 
-    private void Start()
+    // Coroutine
+    private IEnumerator RepeatFixedUpdate()
     {
-        wfsObj = new WaitForSeconds(seconds);
-        wffuObj = new WaitForFixedUpdate();
-        startEvent.Invoke();
-    }
-
-    public void StartCounting()
-    {
-        StartCoroutine(Counting());
-    }
-    
-    private IEnumerator Counting()
-    {
-        startCountEvent.Invoke();    
-        yield return wfsObj;
-        while (counterNum.value > 0)
+        while (isRunning)
         {
-            repeatCountEvent.Invoke();
-            counterNum.value--;
-            yield return wfsObj;
-        }
-        endCountEvent.Invoke();
-    }
-
-    public void StartRepeatUntilFalse()
-    {
-        CanRun = true;
-        StartCoroutine(RepeatUntilFalse());
-    }
-    
-    private IEnumerator RepeatUntilFalse()
-    {
-        while (CanRun)
-        {
-            yield return wfsObj;
+            yield return _waitForFixedUpdateObj;
             repeatUntilFalseEvent.Invoke();
         }
+    }
+
+    // Method to start the Coroutine
+    public void StartRepeatedUpdate()
+    {
+        if (isRunning) return;
+        isRunning = true;
+        StartCoroutine(nameof(RepeatFixedUpdate));
+    }
+
+    // Method to stop the Coroutine
+    public void StopRepeatedUpdate()
+    {
+        isRunning = false;
+    }
+
+    // Method to toggle the Coroutine
+    public void ToggleRepeatedUpdate()
+    {
+        isRunning = !isRunning;
+        if (isRunning)
+            StartCoroutine(nameof(RepeatFixedUpdate));
     }
 }
