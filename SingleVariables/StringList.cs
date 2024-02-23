@@ -38,8 +38,7 @@ public class StringList : ScriptableObject
             CurrentLineNumber = (CurrentLineNumber + 1) % stringListObj.Count;
         }
     }
-
-    // Optional: Additional utility methods
+    
     public void DecrementLineNumber()
     {
         if (IsNotEmpty())

@@ -7,10 +7,12 @@ public class SimpleMatchID : IdBehaviour
     public UnityEvent matchEvent, noMatchEvent;
     public virtual void OnTriggerEnter(Collider other)
     {
+       
         otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
 
         if (nameIdObj == otherIdObj)
         {
+            Debug.Log(other.name);
             matchEvent.Invoke();
         }
         else

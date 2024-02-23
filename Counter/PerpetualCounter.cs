@@ -7,7 +7,7 @@ public class PerpetualCounter : MonoBehaviour
     public UnityEvent onCount;
     public FloatData seconds;
     public float holdTime = 0.3f;
-    private readonly WaitForFixedUpdate waitObj = new();
+    private readonly WaitForFixedUpdate waitObj;
 
     private IEnumerator OnStart()
     {

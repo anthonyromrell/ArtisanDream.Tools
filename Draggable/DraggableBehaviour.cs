@@ -12,12 +12,10 @@ public class DraggableBehaviour : MonoBehaviour
 
         private bool CanDrag { get; set; }
         public UnityEvent onDrag, onUp;
-        public bool Draggable { get; set; }
 
         private void Start()
         {
             cam = Camera.main;
-            Draggable = true;
         }
 
         public IEnumerator OnMouseDown()
@@ -37,7 +35,7 @@ public class DraggableBehaviour : MonoBehaviour
         private void OnMouseUp()
         {
             CanDrag = false;
-            if (Draggable)
+            if (!CanDrag)
             {
                 onUp.Invoke();
             }
