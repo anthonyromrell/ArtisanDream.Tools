@@ -12,7 +12,6 @@ public class SimpleMatchID : IdBehaviour
 
         if (nameIdObj == otherIdObj)
         {
-            Debug.Log(other.name);
             matchEvent.Invoke();
         }
         else

@@ -39,6 +39,7 @@ public class GameActionHandler : MonoBehaviour
 
     private void OnDestroy()
     {
+        StopAllCoroutines();
         action.RaiseNoArgs = null;
     }
 }
