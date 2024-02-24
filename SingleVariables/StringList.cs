@@ -31,7 +31,6 @@ public class StringList : ScriptableObject
     
     public void CheckNum (IntData num)
     {
-        Debug.Log(num.Value);
         if (num.Value < stringListObj[currentLineNumber].Length && num.Value >= 0)
             return;
         
