@@ -23,7 +23,10 @@ public class GameActionHandler : MonoBehaviour
     private void Respond()
     {
         respondEvent.Invoke();
-        StartCoroutine(RespondLate());
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(RespondLate());
+        }
     }
 
     private IEnumerator RespondLate()
