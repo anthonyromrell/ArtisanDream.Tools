@@ -10,6 +10,7 @@ public class SpriteBehaviour : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ChangeSpriteColor();
     }
 
     public void ChangeSprite(Sprite newSprite)
