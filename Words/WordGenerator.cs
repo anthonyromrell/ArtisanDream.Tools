@@ -249,6 +249,7 @@ public class WordGenerator : MonoBehaviour
         // Assign value to the letter and deactivate it
         letterObject.textMesh.text = t.ToString();
         letterObject.textMesh.enabled = false;
+        letterObject.draggableBehaviour.enabled = false;
 
         if (isDuplicate)
         {
@@ -256,6 +257,7 @@ public class WordGenerator : MonoBehaviour
             letterObject.transform.position = RandomScreenPosition();
             letterObject.textMesh.enabled = true;
             letterObject.image.enabled = false;
+            letterObject.draggableBehaviour.enabled = true;
         }
 
         letterObject.gameObject.SetActive(true);

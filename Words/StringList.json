@@ -1,9 +1,14 @@
 {
   "stringList": [
-    "wolf", "lion", "frog", "deer", "swan", "crab", "fish", "hawk", "mule", "duck",
-    "worm", "lamb", "mice", "moth", "seal", "toad", "dove", "buck", "colt", "fawn",
-    "hare", "kite", "lynx", "mink", "oryx", "pony", "quok", "rave", "slop", "snag",
-    "swig", "teak", "vole", "wasp", "yarn", "zeal", "weld", "vamp", "tusk", "silk",
-    "rift", "puma", "opal", "nook", "mild", "lark", "knot", "jolt", "iris", "hulk"
+    "Tyrannosaurus", "Velociraptor", "Triceratops", "Stegosaurus", "Brachiosaurus",
+    "Allosaurus", "Diplodocus", "Spinosaurus", "Ankylosaurus", "Argentinosaurus",
+    "Carnotaurus", "Parasaurolophus", "Iguanodon", "Dilophosaurus", "Giganotosaurus",
+    "Pachycephalosaurus", "Therizinosaurus", "Utahraptor", "Apatosaurus", "Megalosaurus",
+    "Oviraptor", "Microraptor", "Kentrosaurus", "Acrocanthosaurus", "Albertosaurus",
+    "Baryonyx", "Ceratosaurus", "Dreadnoughtus", "Edmontosaurus", "Gallimimus",
+    "Hadrosaurus", "Indosuchus", "Jaxartosaurus", "Kritosaurus", "Lambeosaurus",
+    "Maiasaura", "Nodosaurus", "Ornithomimus", "Protoceratops", "Quetzalcoatlus",
+    "Rhabdodon", "Sauropelta", "Troodon", "Udanoceratops", "Velocisaurus",
+    "Wuerhosaurus", "Xenotarsosaurus", "Yinlong", "Zephyrosaurus", "Coelophysis"
   ]
 }

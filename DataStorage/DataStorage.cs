@@ -38,4 +38,27 @@ public class DataStorage : ScriptableObject
             LoadData(obj);
         }
     }
+    
+    public void ClearAllData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    
+    //save variables from a gameObject
+    public void SaveDataFromGameObject(GameObject obj)
+    {
+        var data = obj.GetComponent<DataStorage>();
+        if (data == null) return;
+        data.SaveAllData();
+    }
+    
+    //get variables from a gameObject
+    
+    public void LoadDataFromGameObject(GameObject obj)
+    {
+        var data = obj.GetComponent<DataStorage>();
+        if (data == null) return;
+        data.LoadAllData();
+    }
+    
 }

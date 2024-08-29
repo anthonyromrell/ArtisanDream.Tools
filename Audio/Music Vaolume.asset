@@ -10,15 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb341d657ba3e4f9db95315f691f802a, type: 3}
-  m_Name: DataStorage
+  m_Name: Music Vaolume
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: f0ed7eb3a91234616b6c191b264d3f7e, type: 2}
-  listData:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  data: {fileID: 0}
+  listData: []

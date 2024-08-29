@@ -164,14 +164,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257de3b1ebd294964a96cc971e1d02c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFilePath: Assets/ArtisanDream.Tools/DataStorage/StringList.json
+  jsonFilePath: Assets/ArtisanDream.Tools/Words/StringList.json
   assetFilePath: Assets/Game/Resources/WordLists/NewWords.asset
   stringListToWrite: []
   onStartEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1065446046}
-        m_TargetAssemblyTypeName: JsonAssetBehaviour, Assembly-CSharp
+        m_TargetAssemblyTypeName: JsonStringsAssetBehaviour, Assembly-CSharp
         m_MethodName: GetJson
         m_Mode: 1
         m_Arguments:

@@ -10,6 +10,7 @@ public class LetterObject : MonoBehaviour
     [HideInInspector] public TextMeshProUGUI textMesh;
     [HideInInspector] public Image image;
     [HideInInspector] public BoxCollider boxCollider;
+    [HideInInspector] public DraggableBehaviour draggableBehaviour;
     public GameAction letterCompleted;
     public void Awake()
     {
@@ -27,5 +28,6 @@ public class LetterObject : MonoBehaviour
         textMesh = gameObject.GetComponent<TextMeshProUGUI>();
         image = gameObject.GetComponentInChildren<Image>();
         boxCollider = gameObject.GetComponent<BoxCollider>();
+        draggableBehaviour = gameObject.GetComponent<DraggableBehaviour>();
     }
 }
