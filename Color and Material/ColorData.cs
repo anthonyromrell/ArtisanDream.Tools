@@ -1,6 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Single Variables/ColorData")]
