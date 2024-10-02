@@ -7,8 +7,8 @@ public class IntData : ScriptableObject
 {
     [SerializeField] private int value, minValue, maxValue;
 
-    [FormerlySerializedAs("minValueEvent")] public UnityEvent<float> valueOutOfRange;
-    [FormerlySerializedAs("updateValueEvent")] public UnityEvent onValueChanged;
+    public UnityEvent<float> valueOutOfRange;
+    public UnityEvent onValueChanged;
 
     public int Value
     {
@@ -23,12 +23,12 @@ public class IntData : ScriptableObject
 
     public void UpdateValue(int amount)
     {
-        Value += amount;
+        value += amount;
     }
 
     public void SetValue(IntData data)
     {
-        Value = data.Value;
+        value = data.value;
     }
     
     public void SetValue(int data)
@@ -44,14 +44,14 @@ public class IntData : ScriptableObject
 
     private void CheckValueRange()
     {
-        if (Value >= minValue && Value <= maxValue) return;
-        valueOutOfRange.Invoke(Value);
+        if (value >= minValue && value <= maxValue) return;
+        valueOutOfRange.Invoke(value);
         Value = Mathf.Clamp(Value, minValue, maxValue);
     }
 
     public void UpdateValueZeroCheck(int i)
     {
-        if (Value + i < 0) return;
-        Value += i;
+        if (value + i < 0) return;
+        value += i;
     }
 }
