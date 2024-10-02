@@ -12,4 +12,16 @@ public class Collection : ScriptableObject
     {
         collectablesList.Sort();
     }
+    
+    public void AddCollectable(Collectable obj)
+    {
+        collectablesList.Add(obj);
+        ReorderList();
+    }
+    
+    public void RemoveCollectable(Collectable obj)
+    {
+        collectablesList.Remove(obj);
+        ReorderList();
+    }
 }

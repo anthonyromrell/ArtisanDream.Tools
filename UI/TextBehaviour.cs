@@ -30,4 +30,9 @@ public class TextBehaviour : MonoBehaviour
     {
         textObj.text = obj.Value.ToString(CultureInfo.CurrentCulture);
     }
+    
+    public void UpdateText(float obj)
+    {
+        textObj.text = obj.ToString(CultureInfo.CurrentCulture);
+    }
 }

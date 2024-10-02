@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 public class CharacterSideScroller : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -12,7 +11,7 @@ public class CharacterSideScroller : MonoBehaviour
     private Vector3 velocity;
     private int jumpsRemaining;
 
-    private void Awake()
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
         jumpsRemaining = maxJumps;
@@ -20,12 +19,25 @@ public class CharacterSideScroller : MonoBehaviour
 
     private void Update()
     {
-        // Horizontal movement
+        // Calling our methods
+        HorizontalMovement();
+        ApplyGravity();
+        Jump();
+        SetZPositionToZero();
+
+        // Apply all movement
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void HorizontalMovement()
+    {
         var moveInput = Input.GetAxis("Horizontal");
         var moveDirection = new Vector3(moveInput, 0f, 0f) * moveSpeed;
-        
-        
-        // Apply gravity
+        velocity.x = moveDirection.x;
+    }
+
+    private void ApplyGravity()
+    {
         if (!controller.isGrounded)
         {
             velocity.y += gravity * Time.deltaTime;
@@ -35,25 +47,20 @@ public class CharacterSideScroller : MonoBehaviour
             velocity.y = 0;
             jumpsRemaining = maxJumps;
         }
+    }
 
-        // Jumping
-        if (Input.GetButton("Jump"))
-        {
-            if (controller.isGrounded || jumpsRemaining > 0)
-            {
-                velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
-                jumpsRemaining--;
-            }
-        }
+    private void Jump()
+    {
+        if (!Input.GetButton("Jump") || (!controller.isGrounded && jumpsRemaining <= 0)) return;
+        velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
+        jumpsRemaining--;
+    }
 
-        // Apply movement and handle collisions
-        var move = moveDirection + velocity;
-        controller.Move(move * Time.deltaTime);
-
-        // Set the character's Z position to 0
+    private void SetZPositionToZero()
+    {
         var transform1 = transform;
-        var newPosition = transform1.position;
-        newPosition.z = 0;
-        transform1.position = newPosition;
+        var position = transform1.position;
+        position.z = 0;
+        transform1.position = position;
     }
 }
