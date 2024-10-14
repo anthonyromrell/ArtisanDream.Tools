@@ -25,13 +25,13 @@ public class TextMeshProBehaviour : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameActionObj.RaiseNoArgs -= Raise;
+        if (gameActionObj != null) gameActionObj.RaiseNoArgs -= Raise;
     }
 
     protected void Awake()
     {
         textObj = GetComponent<TextMeshProUGUI>();
-        gameActionObj.RaiseNoArgs += Raise;
+        if (gameActionObj != null) gameActionObj.RaiseNoArgs += Raise;
     }
 
     private void Raise() => raiseEvent.Invoke();

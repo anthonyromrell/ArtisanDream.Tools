@@ -3,10 +3,11 @@ using UnityEngine.Events;
 
 public class SimpleMatchID : IdBehaviour
 {
-    protected NameId otherIdObj;
+    private NameId otherIdObj;
     public UnityEvent matchEvent, noMatchEvent;
     public virtual void OnTriggerEnter(Collider other)
     {
+       
         otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
 
         if (nameIdObj == otherIdObj)

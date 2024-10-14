@@ -10,7 +10,7 @@ public class AgentBehaviourPlus : MonoBehaviour
 
     private NavMeshAgent agent;
     private Coroutine routine;
-    private readonly WaitForFixedUpdate waitObj = new();
+    private readonly WaitForFixedUpdate waitObj;
 
     private void Awake()
     {

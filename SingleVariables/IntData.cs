@@ -30,6 +30,17 @@ public class IntData : ScriptableObject
     {
         value = data.value;
     }
+    
+    public void SetValue(int data)
+    {
+        Value = data;
+    }
+    
+    public void IncrementValue()
+    {
+        value++;
+        onValueChanged.Invoke();
+    }
 
     private void CheckValueRange()
     {
