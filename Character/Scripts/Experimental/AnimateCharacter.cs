@@ -17,7 +17,7 @@ public class AnimateCharacter : MonoBehaviour
     {
         characterAnim = GetComponent<Animator>();
         jumpAction.RaiseNoArgs += Jump;
-        moveSpeedAction.Raise += Walk;
+        //moveSpeedAction.Raise += Walk;
         startEvent.Invoke();
     }
 

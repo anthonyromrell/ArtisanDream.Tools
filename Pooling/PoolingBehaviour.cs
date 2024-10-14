@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PoolingBehaviour : MonoBehaviour
 {
-    public GameAction getPoolObjects;
+    public GameActionAdvanced getPoolObjects;
     public KeyCode keyCodeOption;
     
     private List<GameObject> objList;

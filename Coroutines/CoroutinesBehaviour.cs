@@ -6,7 +6,6 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
 {
     [SerializeField] private float seconds = 1f;
     public UnityEvent delayEvent, repeatEvent, endEvent;
-    public GameAction delayAction, repeatAction, endAction;
     private bool canRun;
     public IntData counterNum;
     public int maxCounterNum = 3;
@@ -32,16 +31,16 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
     }
     // ...
 
-    private void InvokeEventAndAction(UnityEvent unityEvent, GameAction gameAction)
+    private void InvokeEventAndAction(UnityEvent unityEvent)
     {
         unityEvent?.Invoke();
-        gameAction.RaiseNoArgs();
+        //gameAction.RaiseNoArgs();
     }
 
     private IEnumerator DelayCoroutine()
     {
         yield return waitForSecondsObj;
-        InvokeEventAndAction(delayEvent, delayAction);
+        InvokeEventAndAction(delayEvent);
     }
 
     // ...
@@ -57,14 +56,14 @@ public class CoroutinesBehaviour : MonoEventsBehaviour
 
     private IEnumerator RepeatSecondsCoroutine()
     {
-        InvokeEventAndAction(startEvent, startAction);
+        InvokeEventAndAction(startEvent);
         while (canRun)
         {
             yield return waitForSecondsObj;
-            InvokeEventAndAction(repeatEvent, repeatAction);
+            InvokeEventAndAction(repeatEvent);
         }
 
-        InvokeEventAndAction(endEvent, endAction);
+        InvokeEventAndAction(endEvent);
     }
 
     private IEnumerator RepeatCountDownCoroutine()

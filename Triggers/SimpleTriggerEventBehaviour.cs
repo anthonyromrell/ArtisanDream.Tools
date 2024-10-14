@@ -7,6 +7,5 @@ public class SimpleTriggerEventBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         triggerEvent.Invoke();
-        Debug.Log("Triggered");
     }
 }

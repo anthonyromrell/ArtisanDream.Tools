@@ -2,7 +2,7 @@
 
 public class TransformBehaviour : MonoBehaviour
 {
-    public GameAction sendTransformAction;
+    public GameActionAdvanced sendTransformAction;
 
     public void SendTransform()
     {

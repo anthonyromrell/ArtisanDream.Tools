@@ -15,8 +15,8 @@ public class Store : ScriptableObject
     public IntData cash;
     public int totalValue = 3000;
     public float holdTime = 0.25f;
-    public GameAction sendThisCoroutine;
-    public GameAction runBuildButtonsCoroutine;
+    public GameActionAdvanced sendThisCoroutine;
+    public GameActionAdvanced runBuildButtonsCoroutine;
     public UnityEvent enableEvent;
     private WaitForSeconds Wait { get; set; }
     public Object WaitObject { get; set; }

@@ -14,7 +14,7 @@ public class InGamePurchase : ScriptableObject, ICanBePurchased
     [SerializeField] private int value;
     [FormerlySerializedAs("Upgrade")] public bool upgrade;
     [FormerlySerializedAs("UpgradeFrom")] public InGamePurchase upgradeFrom;
-    [FormerlySerializedAs("GetInstanceLocation")] public GameAction getInstanceLocation;
+    [FormerlySerializedAs("GetInstanceLocation")] public GameActionAdvanced getInstanceLocation;
     private Transform location;
 
     [FormerlySerializedAs("Perpetual")] public bool perpetual;

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class AiHunt : AiBase
 {
-	public GameAction destinationAction;
+	public GameActionAdvanced destinationAction;
 	[HideInInspector] public Transform destination;
 
 	protected virtual void OnEnable()

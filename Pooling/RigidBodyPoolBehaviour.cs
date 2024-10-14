@@ -8,7 +8,7 @@ public class RigidBodyPoolBehaviour : MonoBehaviour
 {
     private Rigidbody rbObj;
     private WaitForSeconds wfsObj;
-    public GameAction sendToPool;
+    public GameActionAdvanced sendToPool;
     public float force = 10, holdTime = 2f;
     public Transform startPoint;
     private void Awake()

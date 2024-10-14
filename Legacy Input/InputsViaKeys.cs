@@ -2,7 +2,7 @@
 
 public class InputsViaKeys : MonoBehaviour
 {
-    public GameAction arrowKeyAction, horizontalAction, jumpAction; public GameAction endGameAction;
+    public GameActionAdvanced arrowKeyAction, horizontalAction, jumpAction; public GameAction endGameAction;
 
     private void Start()
     {
