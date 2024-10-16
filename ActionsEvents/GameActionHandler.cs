@@ -25,9 +25,9 @@ public class GameActionHandler : MonoBehaviour
             action.RaiseNoArgs += Respond;
     }
     
-    private void OnDisable()
+    private void InvokeEvent(UnityEvent unityEvent)
     {
-        action.RaiseNoArgs -= Respond;
+        unityEvent.Invoke();
     }
 
     private void OnDisable()
