@@ -11,7 +11,7 @@ public class LetterObject : MonoBehaviour
     [HideInInspector] public Image image;
     [HideInInspector] public BoxCollider boxCollider;
     [HideInInspector] public DraggableBehaviour draggableBehaviour;
-    public GameAction letterCompleted;
+    public GameActionAdvanced letterCompleted;
     public void Awake()
     {
         ConfigLetter();

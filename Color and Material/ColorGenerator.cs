@@ -8,7 +8,7 @@ public class ColorGenerator : ScriptableObject, ICreate
 	public List<NameId> Id;
 	public List<ColorData> ObjColor;
 	public GameObject RingPrefab, DotPrefab;
-	public GameAction GetDotPoints, GetRingPoints;
+	public GameActionAdvanced GetDotPoints, GetRingPoints;
 	private List<Vector3Data> dotStartPoints, ringStartPoints;
 	public int I { get; set; }
 

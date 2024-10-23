@@ -9,7 +9,7 @@ public class WordGenerator : MonoBehaviour
     public StringList words;
     public GameObject letterPrefab, duplicateLettersPrefab;
     public Transform canvasTransform, panelTransform;
-    public GameAction checkLetterNum, nextWord, letterCompleted;
+    public GameActionAdvanced checkLetterNum, nextWord, letterCompleted;
     public IntData letterNumber;
     public int poolSize = 100;
 
