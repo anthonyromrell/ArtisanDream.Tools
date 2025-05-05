@@ -24,7 +24,7 @@ public class RigidBodyPoolBehaviour : MonoBehaviour
     private IEnumerator Start()
     {
         rbObj.WakeUp();
-        rbObj.velocity = Vector3.right*force;
+        rbObj.linearVelocity = Vector3.right*force;
         yield return wfsObj;
         gameObject.SetActive(false);
     }
