@@ -4,11 +4,11 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 public class SimpleTriggerEventBehaviour : MonoBehaviour
 {
-    public UnityEvent triggerEvent;
+    public UnityEvent awakeEvent, triggerEvent;
     
-    //set trigger to isTrigger
     private void Awake()
     {
+        awakeEvent.Invoke();
         GetComponent<BoxCollider>().isTrigger = true;
     }
     
