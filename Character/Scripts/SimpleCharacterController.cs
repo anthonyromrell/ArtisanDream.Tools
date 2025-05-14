@@ -20,6 +20,9 @@ public class SimpleCharacterController : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private Transform thisTransform;
+    //add a roll to the character controller
+   
+    
 
     /// <summary>
     /// Initialize required components.
