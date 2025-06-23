@@ -11,8 +11,8 @@ public class ImageBehaviour : MonoBehaviour
     
     private void Start()
     {
-        imageObj = GetComponent<Image>();
-        updateAction.RaiseNoArgs += OnUpdate;
+        imageObj = GetComponent<Image>(); 
+        if (updateAction != null) updateAction.RaiseNoArgs += OnUpdate;
         startEvent.Invoke();
     }
 
