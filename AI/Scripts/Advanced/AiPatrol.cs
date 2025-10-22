@@ -21,10 +21,8 @@ public class AiPatrol : AiBase
 
     public override void RunAgent(NavMeshAgent agent)
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-        {
-            agent.destination = patrolPoints.vector3Datas[i].value;
-            i = (i + 1) % patrolPoints.vector3Datas.Count;
-        }
+        if (agent.pathPending || !(agent.remainingDistance < 0.5f)) return;
+        agent.destination = patrolPoints.vector3Datas[i].value;
+        i = (i + 1) % patrolPoints.vector3Datas.Count;
     }
 }

@@ -4,14 +4,15 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AgentBehaviour : MonoBehaviour
 {
-    private NavMeshAgent agent;
+    protected NavMeshAgent agent;
     public Transform player;
-    void Start()
+
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
-    
-    void Update()
+
+    protected virtual void Update()
     {
         agent.destination = player.position;
     }

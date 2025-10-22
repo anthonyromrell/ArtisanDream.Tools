@@ -39,6 +39,6 @@ public class Vector3DataCollection : ScriptableObject
             temp.value = obj.position;
             vector3Datas.Add(temp);
         }
-        vector3Datas.RemoveAt(0);
+        //vector3Datas.RemoveAt(0);
     }
 }
