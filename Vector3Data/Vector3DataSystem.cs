@@ -9,59 +9,54 @@ public class Vector3DataSystem : ScriptableObject
     public Vector3DataCollection currentList;
     public Vector3DataCollection holdList;
     public int index;
-
-    // private void OnEnable()
-    // {
-    //     if (ReturnAction != null) ReturnAction.raise += AddBack;
-    // }
-
+    
     public void RandomizeNum()
     {
-        index = Random.Range(0, currentList.vector3Datas.Count - 1);
+        index = Random.Range(0, currentList.vector3DataList.Count - 1);
     }
 
     public void MoveListItem(Vector3DataCollection listA, Vector3DataCollection listB)
     {
-        var currentObj = listA.vector3Datas[index];
-        listB.vector3Datas.Add(currentObj);
-        listA.vector3Datas.RemoveAt(index);
+        var currentObj = listA.vector3DataList[index];
+        listB.vector3DataList.Add(currentObj);
+        listA.vector3DataList.RemoveAt(index);
     }
 
     public void AddBack(object obj)
     {
         var vector3Obj = (Vector3Data) obj;
-        currentList.vector3Datas.Add(vector3Obj);
+        currentList.vector3DataList.Add(vector3Obj);
     }
     
     public void MoveToCurrentList()
     {
-        var currentObj = currentList.vector3Datas[index];
-        currentList.vector3Datas.Add(currentObj);
-        holdList.vector3Datas.RemoveAt(index);
+        var currentObj = currentList.vector3DataList[index];
+        currentList.vector3DataList.Add(currentObj);
+        holdList.vector3DataList.RemoveAt(index);
     }
     
     public void MoveToCurrentList(Vector3Data currentObj)
     {
-        currentList.vector3Datas.Add(currentObj);
+        currentList.vector3DataList.Add(currentObj);
     }
 
     public void MoveToHoldList()
     {
-        var currentObj = currentList.vector3Datas[index];
-        holdList.vector3Datas.Add(currentObj);
-        currentList.vector3Datas.RemoveAt(index);
+        var currentObj = currentList.vector3DataList[index];
+        holdList.vector3DataList.Add(currentObj);
+        currentList.vector3DataList.RemoveAt(index);
     }
     
     public Vector3Data MoveFromCurrentList()
     {
-        var currentObj = currentList.vector3Datas[index];
-        currentList.vector3Datas.RemoveAt(index);
+        var currentObj = currentList.vector3DataList[index];
+        currentList.vector3DataList.RemoveAt(index);
         return currentObj;
     }
 
     public Vector3 ReturnCurrentVector3()
     {
-        return currentList.vector3Datas[index].value;
+        return currentList.vector3DataList[index].value;
     }
 
     public Vector3 ReturnRandomVector3()
@@ -78,7 +73,7 @@ public class Vector3DataSystem : ScriptableObject
 
     public void ClearAll()
     {
-        currentList.vector3Datas.Clear();
-        holdList.vector3Datas.Clear();
+        currentList.vector3DataList.Clear();
+        holdList.vector3DataList.Clear();
     }
 }

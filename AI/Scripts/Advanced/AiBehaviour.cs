@@ -9,8 +9,6 @@ public class AiBehaviour : MonoBehaviour
 {
     public AiBrain aiBrainObj;
     private NavMeshAgent agent;
-    private WaitForFixedUpdate waitObj = new WaitForFixedUpdate();
-    public bool CanRun { get; set; } = true;
     public UnityEvent startEvent, triggerEnterEvent, triggerExitEvent;
     
     private void Awake()
@@ -22,19 +20,13 @@ public class AiBehaviour : MonoBehaviour
     {
         startEvent.Invoke();
     }
-
-    public void Stop(bool stopped)
-    {
-        agent.isStopped = stopped;
-    }
     
-
     public void SwapAIFunction(AiBase aiBaseObj)
     {
         aiBrainObj.aiBaseObj = aiBaseObj;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         aiBrainObj.Navigate(agent);
     }

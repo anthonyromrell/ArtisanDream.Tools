@@ -4,9 +4,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AgentBehaviour : MonoBehaviour
 {
-    protected NavMeshAgent agent;
+    private NavMeshAgent agent;
     public Transform player;
-
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
