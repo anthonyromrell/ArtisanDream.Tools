@@ -5,8 +5,8 @@ using UnityEngine.Events;
 public class MonoEventBehaviours : MonoBehaviour
 {
     public float holdTime = 0.1f;
-    public UnityEvent onCallEvent, awakeEvent, startEvent, runEvent, disableEvent, destroyEvent, applicationQuitEvent;
-
+    public UnityEvent onCallEvent, awakeEvent, startEvent, disableEvent, destroyEvent, applicationQuitEvent;
+    
     public void RunOnCall()
     {
         StartCoroutine(OnCall());
@@ -28,11 +28,6 @@ public class MonoEventBehaviours : MonoBehaviour
         yield return new WaitForSeconds(holdTime);
         startEvent.Invoke();
     }
-
-    public void Run()
-    {
-        runEvent.Invoke();
-    }   
 
     private void OnDisable()
     {

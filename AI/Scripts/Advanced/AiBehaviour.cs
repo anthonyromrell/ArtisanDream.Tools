@@ -2,12 +2,11 @@
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Collider))]
 public class AiBehaviour : MonoBehaviour
 {
-    public AiBrain aiBrainObj;
+    private AiBase aiBaseObj;
     private NavMeshAgent agent;
     public UnityEvent startEvent, triggerEnterEvent, triggerExitEvent;
     
@@ -20,15 +19,14 @@ public class AiBehaviour : MonoBehaviour
     {
         startEvent.Invoke();
     }
-    
-    public void SwapAIFunction(AiBase aiBaseObj)
-    {
-        aiBrainObj.aiBaseObj = aiBaseObj;
-    }
 
+    public void ChangeBase(AiBase obj)
+    {
+        aiBaseObj = obj;
+    }
     private void Update()
     {
-        aiBrainObj.Navigate(agent);
+        aiBaseObj.Navigate(agent);
     }
 
     private void OnTriggerEnter(Collider other)

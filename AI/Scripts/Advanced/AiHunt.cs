@@ -1,26 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-
 [CreateAssetMenu(fileName = "Hunt", menuName = "Ai/Function/Hunt")]
 
 public class AiHunt : AiBase
 {
-	public GameActionAdvanced destinationAction;
 	[HideInInspector] public Transform destination;
-
-	protected virtual void OnEnable()
+	
+	public void AddTransform(Transform obj)
 	{
-		if (destinationAction != null) destinationAction.Raise += OnRaise;
-	}
-
-	private void OnRaise(object obj)
-	{
-		destination = obj as Transform;
+		destination = obj;
 	}
 	
-	public override void RunAgent(NavMeshAgent agent)
+	public override void Navigate(NavMeshAgent agent)
 	{
-		agent.destination = (destination != null ? destination.position : agent.transform.position);
+		agent.destination = destination.position;
 	}
 }
