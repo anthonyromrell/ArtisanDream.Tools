@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class AiBehaviour : MonoBehaviour
 {
+    public AiStats aiStatsObj;
     private AiBase aiBaseObj;
     private NavMeshAgent agent;
     public UnityEvent startEvent, triggerEnterEvent, triggerExitEvent;
@@ -18,6 +19,12 @@ public class AiBehaviour : MonoBehaviour
     private void Start()
     {
         startEvent.Invoke();
+        
+        if (aiStatsObj == null) return;
+        agent.speed = aiStatsObj.speed;
+        agent.acceleration = aiStatsObj.acceleration;
+        agent.angularSpeed = aiStatsObj.angularSpeed;
+        agent.stoppingDistance = aiStatsObj.stoppingDistance;
     }
 
     public void ChangeBase(AiBase obj)
