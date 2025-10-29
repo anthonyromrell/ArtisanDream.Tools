@@ -35,6 +35,11 @@ public class FloatData : NameId
     {
         Value = data.Value;
     }
+    
+    public void SetValue(float data)
+    {
+        Value = data;
+    }
 
     private void ClampValue()
     {
