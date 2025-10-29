@@ -110,7 +110,7 @@ public class NewColorGenerator : MonoBehaviour
     {
         colorNumber.Value = 0;
         yield return wait2;
-        destroyAllColors.RaiseAction();
+        destroyAllColors.Raise();
         yield return wait2;
 
         if (!colors.IsNotEmpty())

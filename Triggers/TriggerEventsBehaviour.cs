@@ -5,40 +5,52 @@ using UnityEngine.Events;
 public class TriggerEventsBehaviour : MonoEventsBehaviour
 {
     public UnityEvent triggerEnterEvent, triggerEnterRepeatEvent, triggerEnterEndEvent, triggerExitEvent;
-    private WaitForSeconds waitForTriggerEnterObj, waitForTriggerRepeatObj;
-    public float triggerHoldTime = 0.01f, repeatHoldTime = 0.01f, exitHoldTime = 0.01f;
-    public bool canRepeat;
-    public int repeatTimes = 10;
+    private WaitForSeconds waitEnterObj, waitRepeatObj;
+    public float triggerHoldTime = 0.01f, repeatHoldTime = 0.01f;
+    public bool canRepeat, canRepeatWithLimits;
+    private bool repeat;
+    public int repeatLimit = 10;
 
     protected override void Awake()
     {
         base.Awake();
-        waitForTriggerEnterObj = new WaitForSeconds(triggerHoldTime);
-        waitForTriggerRepeatObj = new WaitForSeconds(repeatHoldTime);
+        waitEnterObj = new WaitForSeconds(triggerHoldTime);
+        waitRepeatObj = new WaitForSeconds(repeatHoldTime);
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
     {
-        yield return waitForTriggerEnterObj;
+        repeat = true;
+        yield return waitEnterObj;
         triggerEnterEvent.Invoke();
         
-        if (canRepeat)
+        if (canRepeatWithLimits)
         {
-            var i = 0;
-            while (i < repeatTimes)
+            var count = 0;
+            while (repeat && count < repeatLimit)
             {
-                yield return waitForTriggerEnterObj;
-                i++;
+                yield return waitRepeatObj;
                 triggerEnterRepeatEvent.Invoke();
+                count++;
             }
         }
+        
+        if (canRepeat)
+            while (repeat)
+            {
+                yield return waitRepeatObj;
+                triggerEnterRepeatEvent.Invoke();
+            }
+        
 
-        yield return waitForTriggerRepeatObj;
+        yield return waitEnterObj;
         triggerEnterEndEvent.Invoke();
     }
+    
 
     private void OnTriggerExit(Collider other)
     {
+        repeat = false;
         triggerExitEvent.Invoke();
     }
 }

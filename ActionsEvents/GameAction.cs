@@ -6,7 +6,7 @@ public class GameAction : ScriptableObject
 {
     public UnityAction RaiseNoArgs { get; set; }
 
-    public void RaiseAction()
+    public void Raise()
     {
         RaiseNoArgs?.Invoke();
     }
