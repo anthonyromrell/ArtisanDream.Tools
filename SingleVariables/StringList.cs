@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // Attribute allows to create instances of this class within Unity's asset creation menu
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "ScriptableObjects/StringList")]
 public class StringList : ScriptableObject
 {
     // A list of strings, can be manipulated and populated in Unity's editor

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Single Variables/Float3Data")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Float3Data")]
 public class Float3Data : NameId
 {
     [SerializeField] private Vector3 value;

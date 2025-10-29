@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Single Variables/BoolData")]
+[CreateAssetMenu(menuName = "ScriptableObjects/BoolData")]
 public class BoolData : NameId
 {
     [SerializeField] private bool value;

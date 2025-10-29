@@ -2,13 +2,13 @@
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Single Variables/IntData")]
+[CreateAssetMenu(menuName = "ScriptableObjects/IntData")]
 public class IntData : ScriptableObject
 {
     [SerializeField] private int value, minValue, maxValue;
 
     public UnityEvent<float> valueOutOfRange;
-    public UnityEvent onValueChanged;
+    public UnityEvent onValueChanged, onValueZero;
 
     public int Value
     {
@@ -17,7 +17,7 @@ public class IntData : ScriptableObject
         {
             this.value = value;
             onValueChanged.Invoke();
-            CheckValueRange();
+            ClampValue();
         }
     }
 
@@ -42,11 +42,16 @@ public class IntData : ScriptableObject
         onValueChanged.Invoke();
     }
 
-    public void CheckValueRange()
+    private void ClampValue()
     {
-        if (value >= minValue && value <= maxValue) return;
-        valueOutOfRange.Invoke(value);
+        if (!(Value < minValue) && !(Value > maxValue)) return;
+        valueOutOfRange.Invoke(Value);
         Value = Mathf.Clamp(Value, minValue, maxValue);
+   
+        if (value == 0)
+        {
+            onValueZero.Invoke();
+        }
     }
 
     public void UpdateValueZeroCheck(int i)

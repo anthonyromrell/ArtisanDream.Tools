@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Single Variables/StringData")]
+[CreateAssetMenu(menuName = "ScriptableObjects/StringData")]
 public class StringData : ScriptableObject
 {
     [SerializeField] private string value;

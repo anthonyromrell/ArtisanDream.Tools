@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "ScriptableObjects/Simple IntData")]
 public class SimpleIntData : MonoBehaviour
 {
     public int value;
