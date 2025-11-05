@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Single Variables/ColorData")]
+[CreateAssetMenu(menuName = "ScriptableObjects/ColorData")]
 public class ColorData : NameId
 {
     [SerializeField] private Color value = Color.blue;

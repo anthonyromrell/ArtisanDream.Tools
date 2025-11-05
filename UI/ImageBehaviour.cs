@@ -25,9 +25,10 @@ public class ImageBehaviour : MonoBehaviour
     {
         imageObj.fillAmount = dataObj.Value;
     }
-
-    public void ChangeImageColor(Color c)
+    
+    public void ChangeImageColor(ScriptableObject c)
     {
-        imageObj.color = c;
+        var colorData = c as ColorData;
+        if (colorData != null) imageObj.color = colorData.Value;
     }
 }

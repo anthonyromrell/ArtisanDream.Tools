@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AiStats", menuName = "Scriptable Objects/AiStats")]
+[CreateAssetMenu(fileName = "AiStats", menuName = "AI/AiStats")]
 public class AiStats : ScriptableObject
 {
     //NavMeshAgent settings

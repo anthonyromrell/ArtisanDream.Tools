@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Single Variables/MaterialData")]
+[CreateAssetMenu(menuName = "ScriptableObjects/MaterialData")]
 public class MaterialData : NameId
 {
     [SerializeField] private Material value;
