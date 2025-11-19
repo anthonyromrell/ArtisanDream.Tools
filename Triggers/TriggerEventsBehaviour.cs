@@ -21,9 +21,7 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
 
     private IEnumerator OnTriggerEnter(Collider other)
     {
-        //repeat = true;
         yield return waitEnterObj;
-        Debug.Log("On");
         triggerEnterEvent.Invoke();
         
         if (canRepeatWithLimits)
@@ -46,7 +44,6 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
         
 
         yield return waitExitObj;
-        Debug.Log("Off");
         triggerEnterEndEvent.Invoke();
     }
     
