@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class DestroyBehaviour : MonoBehaviour
 {
-	[FormerlySerializedAs("Seconds")] public float seconds = 2;
-	[FormerlySerializedAs("UseTrigger")] public bool useTrigger = true;
+	public float seconds = 2;
+	public bool useTrigger;
 	
 	private IEnumerator Start () {
 		yield return new WaitForSeconds(seconds);
@@ -22,11 +21,11 @@ public class DestroyBehaviour : MonoBehaviour
 		Destroy(obj);
 	}
 
-//	private void OnTriggerEnter(Collider other)
-//	{
-//		if (UseTrigger)
-//		{
-//			Destroy(other.gameObject);
-//		}
-//	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (useTrigger)
+		{
+			Destroy(other.gameObject);
+		}
+	}
 }

@@ -5,8 +5,8 @@ using UnityEngine.Events;
 public class TriggerEventsBehaviour : MonoEventsBehaviour
 {
     public UnityEvent triggerEnterEvent, triggerEnterRepeatEvent, triggerEnterEndEvent, triggerExitEvent;
-    private WaitForSeconds waitEnterObj, waitRepeatObj;
-    public float triggerHoldTime = 0.01f, repeatHoldTime = 0.01f;
+    private WaitForSeconds waitEnterObj, waitRepeatObj, waitExitObj;
+    public float enterHoldTime = 0.01f, repeatHoldTime = 0.01f, exitHoldTime = 0.01f;
     public bool canRepeat, canRepeatWithLimits;
     private bool repeat;
     public int repeatLimit = 10;
@@ -14,14 +14,16 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
     protected override void Awake()
     {
         base.Awake();
-        waitEnterObj = new WaitForSeconds(triggerHoldTime);
+        waitEnterObj = new WaitForSeconds(enterHoldTime);
         waitRepeatObj = new WaitForSeconds(repeatHoldTime);
+        waitExitObj = new WaitForSeconds(exitHoldTime);
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
     {
-        repeat = true;
+        //repeat = true;
         yield return waitEnterObj;
+        Debug.Log("On");
         triggerEnterEvent.Invoke();
         
         if (canRepeatWithLimits)
@@ -43,7 +45,8 @@ public class TriggerEventsBehaviour : MonoEventsBehaviour
             }
         
 
-        yield return waitEnterObj;
+        yield return waitExitObj;
+        Debug.Log("Off");
         triggerEnterEndEvent.Invoke();
     }
     
