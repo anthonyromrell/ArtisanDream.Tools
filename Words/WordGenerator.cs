@@ -20,14 +20,14 @@ public class WordGenerator : MonoBehaviour
     private readonly WaitForSeconds wait = new(0.1f), wait2 = new(1f);
 
     // Initialized here instead of Start function
-    private Dictionary<char, NameId> letterIdObjects { get; } = new();
+    private Dictionary<char, NameId> LetterIdObjects { get; } = new();
 
     private Queue<LetterObject> inactiveLetters = new(), inactiveDuplicateLetters = new();
 
     [SerializeField] private List<LetterObject> activeLetters = new(), activeDuplicateLetters = new();
     [SerializeField] private List<Vector3> letterPositions = new();
-    private const string LETTER = "Letter", DUPLICATELETTER = "DuplicateLetter";
-    private bool _isRunning = false;
+    private const string Letter = "Letter", DuplicateLetter = "DuplicateLetter";
+    private bool isRunning = false;
 
     private void Start()
     {
@@ -41,8 +41,8 @@ public class WordGenerator : MonoBehaviour
         letterCompleted.Raise += ReturnLetter;
 
         // Replaced original list initializations with InitializePool
-        letterPool = InitializePool(letterPrefab, LETTER, poolSize);
-        duplicateLetterPool = InitializePool(duplicateLettersPrefab, DUPLICATELETTER, poolSize);
+        letterPool = InitializePool(letterPrefab, Letter, poolSize);
+        duplicateLetterPool = InitializePool(duplicateLettersPrefab, DuplicateLetter, poolSize);
 
         Generate();
     }
@@ -71,10 +71,10 @@ public class WordGenerator : MonoBehaviour
 
         switch (letter.name)
         {
-            case LETTER:
+            case Letter:
                 ReturnLetterToPool(letter);
                 break;
-            case DUPLICATELETTER:
+            case DuplicateLetter:
                 ReturnDuplicateLetterToPool(letter);
                 break;
         }
@@ -87,6 +87,9 @@ public class WordGenerator : MonoBehaviour
 
     public void Generate()
     {
+        // Always ensure we are at a valid 'currentString' index
+        words.CheckNum(letterNumber);
+
         foreach (var letter in letterPool.Where(letter => letter.gameObject.activeSelf))
         {
             letter.gameObject.SetActive(false);
@@ -174,45 +177,28 @@ public class WordGenerator : MonoBehaviour
         letterObject.image.enabled = true;
         letterObject.boxCollider.enabled = true;
     }
-    
+
     private IEnumerator GenerateWord()
     {
-        if (_isRunning)
+        if (isRunning)
         {
             yield break;
         }
 
-        _isRunning = true;
+        isRunning = true;
         yield return wait2;
-        _isRunning = false;
-        
+        isRunning = false;
+
         letterNumber.Value = 0;
-        // Deactivate all letters and duplicate letters from the pools
-        foreach (var letter in letterPool.Where(letter => letter.gameObject.activeSelf))
-        {
-            letter.gameObject.SetActive(false);
-        }
 
-        var index = 0;
-        for (; index < duplicateLetterPool.Count; index++)
-        {
-            var duplicateLetter = duplicateLetterPool[index];
-            if (duplicateLetter.gameObject.activeSelf)
-            {
-                duplicateLetter.gameObject.SetActive(false);
-            }
-        }
-
-        // Check if there are words left in the list to generate
         if (!words.IsNotEmpty())
         {
             yield break;
         }
 
-        var word = words.CurrentLine;
+        var word = words.currentString;
         var letters = word.ToCharArray();
 
-        // Generate each letter in the word
         foreach (var t in letters)
         {
             var letter = ObtainLetterFromPool();
@@ -222,7 +208,6 @@ public class WordGenerator : MonoBehaviour
             yield return wait;
         }
 
-        // Generate random duplicate letters
         foreach (var t in letters)
         {
             var duplicateLetter = ObtainDuplicateLetterFromPool();
@@ -231,20 +216,19 @@ public class WordGenerator : MonoBehaviour
 
             yield return wait;
         }
-
     }
 
     private void AssignPropertiesToLetter(char t, LetterObject letterObject, bool isDuplicate)
     {
         // Assign the NameId based on current letter
-        if (!letterIdObjects.ContainsKey(t))
+        if (!LetterIdObjects.ContainsKey(t))
         {
             var nameId = ScriptableObject.CreateInstance<NameId>();
             nameId.name = t.ToString();
-            letterIdObjects[t] = nameId;
+            LetterIdObjects[t] = nameId;
         }
 
-        letterObject.idBehaviour.ChangeId(letterIdObjects[t]);
+        letterObject.idBehaviour.ChangeId(LetterIdObjects[t]);
 
         // Assign value to the letter and deactivate it
         letterObject.textMesh.text = t.ToString();

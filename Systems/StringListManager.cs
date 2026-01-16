@@ -4,28 +4,21 @@ using UnityEngine;
 [CreateAssetMenu]
 public class StringListManager : ScriptableObject
 {
-    [SerializeField] private List<StringList> stringListDatas;
-
+    [SerializeField] private List<StringList> stringLists;
     [SerializeField] private int currentListNum;
+    private StringList CurrentListData => stringLists?[currentListNum];
 
-    private StringList CurrentListData
+    private void IncrementListNum()
     {
-        get => stringListDatas != null && currentListNum < stringListDatas.Count
-            ? stringListDatas[currentListNum]
-            : null;
-    }
-
-    public void IncrementListNum()
-    {
-        if (stringListDatas != null && stringListDatas.Count > 0)
+        if (stringLists != null && stringLists.Count > 0)
         {
-            currentListNum = (currentListNum + 1) % stringListDatas.Count;
+            currentListNum = (currentListNum + 1) % stringLists.Count;
         }
     }
 
     public void UseNextListOnEnd()
     {
-        if (CurrentListData != null && CurrentListData.CurrentLineNumber == CurrentListData.stringListObj.Count - 1)
+        if (CurrentListData.IsLastString())
         {
             IncrementListNum();
         }

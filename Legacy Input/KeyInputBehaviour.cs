@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class KeyInputBehaviour : MonoBehaviour
 {
     public KeyCode keyCode;
     public List<KeyCode> keyCodes;
     public GameAction onKeyEvent;
-    void Update()
+    private bool isOnKeyEventNotNull;
+
+    private void Start()
     {
-        if (Input.GetKeyDown(keyCode))
-        {
-            onKeyEvent.RaiseNoArgs();
-        }
+        isOnKeyEventNotNull = onKeyEvent != null;
+    }
+
+    private void Update()
+    {
+        if (!Input.GetKeyDown(keyCode)) return;
+        if (isOnKeyEventNotNull) onKeyEvent.RaiseNoArgs();
+        Debug.Log(keyCode);
     }
 }
