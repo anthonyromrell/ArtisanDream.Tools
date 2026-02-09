@@ -16,6 +16,11 @@ public class GameActionAdvanced : GameAction
     {
         Raise?.Invoke(obj);
     }
+    
+    public void RaiseAction(ScriptableObject obj)
+    {
+        Raise?.Invoke(obj);
+    }
 
     public void RaiseAction(float obj)
     {

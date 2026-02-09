@@ -8,7 +8,7 @@ public class InventoryData : ScriptableObject
     [SerializeField] private List<ScriptableObject> inventory;
     public readonly List<IInventoryItem> inventoryDataObjList = new List<IInventoryItem>();
     public readonly List<IStoreItem> storeDataObjList = new List<IStoreItem>();
-
+    
     private void OnEnable()
     {
         SynchronizeInventory();
@@ -41,5 +41,12 @@ public class InventoryData : ScriptableObject
             if (item is IStoreItem storeItem)
                 storeDataObjList.Add(storeItem);
         }
+    }
+    
+    //remove item from inventory and return it to store
+    public void RemoveFromInventory(ScriptableObject item)
+    {
+        inventory.Remove(item);
+        SynchronizeInventory();
     }
 }

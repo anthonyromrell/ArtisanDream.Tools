@@ -21,7 +21,7 @@ public class InventoryPrefabItemBehaviour : ColliderBehaviour
         return i;
     }
     
-    private void UseItem()
+    public void UseItem()
     {
         if (inventoryItemObj == null) return;
         inventoryItemObj.UsedOrPurchase = false;

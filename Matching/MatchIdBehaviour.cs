@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class MatchIdBehaviour : IdBehaviour
 {
-  
-   [Serializable]
    public struct PossibleMatch
    {
       public NameId nameIdObj;
@@ -19,20 +15,20 @@ public class MatchIdBehaviour : IdBehaviour
    }
 
    public float holdTime = 0.1f;
-   public WaitForSeconds waitObj;
+   private WaitForSeconds _waitObj;
    public List<PossibleMatch> triggerEnterMatches, triggerExitMatches;
-   private NameId otherIdObj;
+   private NameId _otherIdObj;
 
    private void Awake()
    {
-      waitObj = new WaitForSeconds(holdTime);
-      foreach (var obj in triggerEnterMatches)
-      {
-         var possibleMatch = obj;
-         possibleMatch.repeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
-      }
-      
-      foreach (var obj in triggerExitMatches)
+      _waitObj = new WaitForSeconds(holdTime);
+      InitializeRepeatWaitObjects(triggerEnterMatches);
+      InitializeRepeatWaitObjects(triggerExitMatches);
+   }
+   
+   private void InitializeRepeatWaitObjects(List<PossibleMatch> matches)
+   {
+      foreach (var obj in matches)
       {
          var possibleMatch = obj;
          possibleMatch.repeatWaitObj = new WaitForSeconds(possibleMatch.repeatTime);
@@ -41,45 +37,39 @@ public class MatchIdBehaviour : IdBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-      if (other.GetComponent<IdBehaviour>() == null) return;
-      otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
-      StartCoroutine(CheckId(otherIdObj, triggerEnterMatches));
-   }
-   
-   private void OnTriggerExit(Collider other)
-   {
-      if (other.GetComponent<IdBehaviour>() == null) return;
-      otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
-      StartCoroutine(CheckId(otherIdObj, triggerExitMatches));
+      CheckMatch(other);
    }
 
-   public void StopIdCoroutine()
+   private void OnTriggerExit(Collider other)
    {
-      foreach (var obj in triggerEnterMatches)
-      {
-         var possibleMatch = obj;
-         if (possibleMatch.nameIdObj == otherIdObj)
-         {
-            possibleMatch.canRepeat = false;
-         }
-      }
+      CheckMatch(other);
+   }
+
+   private void CheckMatch(Component other)
+   {
+      if (other.GetComponent<IdBehaviour>() == null) return;
+      _otherIdObj = other.GetComponent<IdBehaviour>().nameIdObj;
+      StartCoroutine(CheckId(_otherIdObj, triggerEnterMatches));
    }
    
    private IEnumerator CheckId(NameId nameId, List<PossibleMatch> possibleMatches)
    {
-      otherIdObj = nameId;
-      foreach (var obj in possibleMatches.Where(obj => otherIdObj == obj.nameIdObj))
+      _otherIdObj = nameId;
+      foreach (var obj in possibleMatches)
       {
-         obj.workEvent.Invoke();
-
-         while (obj.canRepeat)
+         if (_otherIdObj == obj.nameIdObj)
          {
-            yield return obj.repeatWaitObj;
-            obj.repeatEvent.Invoke();
+            obj.workEvent.Invoke();
+
+            while (obj.canRepeat)
+            {
+               yield return obj.repeatWaitObj;
+               obj.repeatEvent.Invoke();
+            }
+
+            yield return _waitObj;
+            obj.delayedEvent.Invoke();
          }
-         
-         yield return waitObj;
-         obj.delayedEvent.Invoke();
       }
    }
 }
