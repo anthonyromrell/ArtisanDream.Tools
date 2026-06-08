@@ -4,7 +4,7 @@ public class CharacterAnimationController : MonoBehaviour
 {
     public CharacterController controller;
     private Animator animator;
-    private readonly int 
+    private readonly int
         run = Animator.StringToHash("Run"),
         idle = Animator.StringToHash("Idle"),
         jump = Animator.StringToHash("Jump"),
@@ -27,7 +27,7 @@ public class CharacterAnimationController : MonoBehaviour
     {
         float horizontalMove = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
             animator.SetBool(jump, true);
         }
@@ -36,7 +36,7 @@ public class CharacterAnimationController : MonoBehaviour
             animator.SetBool(jump, false);
         }
 
-        if (Mathf.Abs(horizontalMove) > 0)
+        if (Mathf.Abs(horizontalMove) > 0 && !animator.GetBool(jump))
         {
             animator.SetBool(run, true);
             animator.SetBool(idle, false);
